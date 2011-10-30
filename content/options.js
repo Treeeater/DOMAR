@@ -1,6 +1,6 @@
 var DOMAccessRecorderOptions = {
 	URL: function() {
-		return document.location.href;
+		return window.content.document.location.href;
 	},
 	
 	applySettings: function() {
@@ -8,7 +8,7 @@ var DOMAccessRecorderOptions = {
 		//file.initWithPath("preference.txt");
 		Components.utils.import("resource://gre/modules/NetUtil.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
-		var file = FileUtils.getFile("ProfD", ["DOMAR_preference.txt"]);
+		var file = FileUtils.getFile("UChrm", ["DOMAR_preference.txt"]);
 		if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
 		var data = this.URL();
 		alert(data);
@@ -33,5 +33,9 @@ var DOMAccessRecorderOptions = {
 		  // Data has been written to the file.
 		});
 		close();
-    }
+    },
+	initialize: function() {
+		document.getElementById('url').innerHTML = this.URL();
+	}
+	
 };

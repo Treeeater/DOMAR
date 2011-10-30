@@ -6,12 +6,13 @@
         title="&title.label;">
 <script src="options.js"></script>
 <hbox align="center" style="width:100%; text-align:center;">
-  <description style="font-size:20px; display: inline-block;" flex="1">&title.label;</description><br/>
+  <description style="font-size:20px; display: inline-block;" flex="1">&title.label;</description>
 </hbox>
 
 <groupbox style="width:100%; text-align:center;">
   <caption style="font-size:14px;" label="&sitesettings.label;"/>
   <checkbox style="font-size:14px; display: inline-block;" label="&subtitle1.label;" checked="true"/>
+  <description id = "url" style="font-size:14px; display: inline-block;" flex="1">abc</description>
 </groupbox>
 
 <groupbox style="width:100%; text-align:center;">

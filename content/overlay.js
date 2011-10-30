@@ -5,7 +5,9 @@ var DOMAccessRecorder = {
   },
   
   onMenuItemCommand: function() {
-    window.open("chrome://helloworld/content/options.xul", "", "chrome");
+    var optionWindow = window.open("chrome://helloworld/content/options.xul", "", "chrome");
+	optionWindow.content = window.content;
+	optionWindow.addEventListener("DOMContentLoaded", function(){optionWindow.document.getElementById("url").textContent = window.content.document.location.href;},false);
   }
 };
 
