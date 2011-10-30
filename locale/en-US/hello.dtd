@@ -1,0 +1,6 @@
+<!ENTITY title.label "DOMAccessRecorder Options">
+<!ENTITY sitesettings.label "Site-specific Settings">
+<!ENTITY allsettings.label "Manage settings on all sites">
+<!ENTITY subtitle1.label "Mediate access on this site">
+<!ENTITY apply.label "Apply">
+<!ENTITY close.label "Close">

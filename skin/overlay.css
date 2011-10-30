@@ -1,0 +1,12 @@
+/* This is just an example. You shouldn't do this. */
+menuitem#main {
+  color: red !important;
+}
+
+statusbarpanel#DOMAR-panel {
+	cursor:pointer;
+}
+
+statusbarpanel#DOMAR-panel {
+	list-style-image: url("chrome://helloworld/content/bwIco.png");
+}

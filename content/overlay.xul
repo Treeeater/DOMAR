@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://helloworld/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://helloworld/locale/overlay.dtd">
+<overlay id="helloworld-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="overlay.js"/>
+  <script src="main.js"/>
+  <menupopup id="menu_ToolsPopup">
+    <menuitem id="main" label="&DOMAccessRecorder;" 
+              oncommand="DOMAccessRecorder.onMenuItemCommand(event);"/>
+  </menupopup>
+  <statusbar id="status-bar">
+  <statusbarpanel class="statusbarpanel-iconic" context="Menu" onclick="DOMAccessRecorder.onMenuItemCommand(event);" tooltip="DOMAccessRecorder" id="DOMAR-panel"  />
+  </statusbar> 
+</overlay>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://helloworld/locale/hello.dtd">
+
+<window screenX="200" screenY="200" width="400" height="400" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+        title="&title.label;">
+<script src="options.js"></script>
+<hbox align="center" style="width:100%; text-align:center;">
+  <description style="font-size:20px; display: inline-block;" flex="1">&title.label;</description><br/>
+</hbox>
+
+<groupbox style="width:100%; text-align:center;">
+  <caption style="font-size:14px;" label="&sitesettings.label;"/>
+  <checkbox style="font-size:14px; display: inline-block;" label="&subtitle1.label;" checked="true"/>
+</groupbox>
+
+<groupbox style="width:100%; text-align:center;">
+  <caption style="font-size:14px;" label="&allsettings.label;"/>
+  
+</groupbox>
+
+<hbox align="center">
+<button label="&apply.label;" oncommand="DOMAccessRecorderOptions.applySettings();"/>
+<button label="&close.label;" oncommand="close();"/>
+</hbox>
+
+</window>
