@@ -1,7 +1,8 @@
+(function(){
+
 function TracingListener() {
     //this.receivedData = [];
 }
-
 if (typeof CCIN == "undefined") {
 	function CCIN(cName, ifaceName){
 		return Cc[cName].createInstance(Ci[ifaceName]);
@@ -103,8 +104,31 @@ hRO = {
             }
             if (aTopic == "http-on-examine-response") {
                 request.QueryInterface(Ci.nsIHttpChannel);
-
-                if (request.originalURI.path.indexOf("yz8ra") > 0) {
+				Components.utils.import("resource://gre/modules/NetUtil.jsm");
+				Components.utils.import("resource://gre/modules/FileUtils.jsm");
+				var file = FileUtils.getFile("UChrm", ["DOMAR_preference.txt"]);
+				if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
+				// open an input stream from file
+				var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
+					createInstance(Components.interfaces.nsIFileInputStream);
+				istream.init(file, 0x01, 0444, 0);
+				istream.QueryInterface(Components.interfaces.nsILineInputStream);
+				// read lines into array
+				var line = {}, lines = [], hasmore;
+				do {
+					hasmore = istream.readLine(line);
+					lines.push(line.value); 
+				} while(hasmore);
+				istream.close();
+				var modifythis = false;
+				var i;
+				for (i = 0; i < lines.length; i++)
+				{
+					var url = request.originalURI.scheme+"://"+request.originalURI.host+request.originalURI.path;
+					if (lines[i]==url) modifythis = true;
+				}
+                //if (request.originalURI.path.indexOf("yz8ra") > 0) {
+				if (modifythis) {
                     var newListener = new TracingListener();
                     request.QueryInterface(Ci.nsITraceableChannel);
                     newListener.originalListener = request.setNewListener(newListener);
@@ -138,7 +162,4 @@ var observerService = Cc["@mozilla.org/observer-service;1"]
 
 observerService.addObserver(hRO,
     "http-on-examine-response", false);
-
-//var doSomething = function (){if ((window.content.document.URL[0]!='a')&&(window.content.document.URL[0])!="") alert(window.content.document.URL);};
-
-//window.addEventListener("DOMContentLoaded", doSomething, false);
+})();

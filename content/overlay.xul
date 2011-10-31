@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<?xml-stylesheet href="chrome://helloworld/skin/overlay.css" type="text/css"?>
-<!DOCTYPE overlay SYSTEM "chrome://helloworld/locale/overlay.dtd">
-<overlay id="helloworld-overlay"
+<?xml-stylesheet href="chrome://domar/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://domar/locale/overlay.dtd">
+<overlay id="domar-overlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script src="overlay.js"/>
   <script src="main.js"/>

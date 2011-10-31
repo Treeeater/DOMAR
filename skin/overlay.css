@@ -8,5 +8,5 @@ statusbarpanel#DOMAR-panel {
 }
 
 statusbarpanel#DOMAR-panel {
-	list-style-image: url("chrome://helloworld/content/bwIco.png");
+	list-style-image: url("chrome://DOMAR/content/bwIco.png");
 }

@@ -2,5 +2,9 @@
 <!ENTITY sitesettings.label "Site-specific Settings">
 <!ENTITY allsettings.label "Manage settings on all sites">
 <!ENTITY subtitle1.label "Mediate access on this site:">
+<!ENTITY delete.label "Delete selected URL">
+<!ENTITY addtitle.label "Add an URL">
+<!ENTITY addconfirm.label "OK">
+<!ENTITY add.label "Add an URL">
 <!ENTITY apply.label "Apply">
 <!ENTITY close.label "Close">
