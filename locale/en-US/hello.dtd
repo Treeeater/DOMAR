@@ -1,10 +1,10 @@
 <!ENTITY title.label "DOMAccessRecorder Options">
-<!ENTITY sitesettings.label "Site-specific Settings">
-<!ENTITY allsettings.label "Manage settings on all sites">
-<!ENTITY subtitle1.label "Mediate access on this site:">
-<!ENTITY delete.label "Delete selected URL">
-<!ENTITY addtitle.label "Add an URL">
+<!ENTITY sitesettings.label "Domain-specific Settings">
+<!ENTITY allsettings.label "Manage settings on all domains">
+<!ENTITY subtitle1.label "Mediate access on this domain:">
+<!ENTITY delete.label "Delete selected domain">
+<!ENTITY addtitle.label "Add an domain">
 <!ENTITY addconfirm.label "OK">
-<!ENTITY add.label "Add an URL">
+<!ENTITY add.label "Add an domain">
 <!ENTITY apply.label "Apply">
 <!ENTITY close.label "Close">

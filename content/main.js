@@ -1,5 +1,6 @@
 (function(){
-
+Components.utils.import("resource://gre/modules/NetUtil.jsm");
+Components.utils.import("resource://gre/modules/FileUtils.jsm");
 function TracingListener() {
     //this.receivedData = [];
 }
@@ -104,8 +105,6 @@ hRO = {
             }
             if (aTopic == "http-on-examine-response") {
                 request.QueryInterface(Ci.nsIHttpChannel);
-				Components.utils.import("resource://gre/modules/NetUtil.jsm");
-				Components.utils.import("resource://gre/modules/FileUtils.jsm");
 				var file = FileUtils.getFile("UChrm", ["DOMAR_preference.txt"]);
 				if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
 				// open an input stream from file
@@ -124,8 +123,9 @@ hRO = {
 				var i;
 				for (i = 0; i < lines.length; i++)
 				{
-					var url = request.originalURI.scheme+"://"+request.originalURI.host+request.originalURI.path;
-					if (lines[i]==url) modifythis = true;
+					//var url = request.originalURI.scheme+"://"+request.originalURI.host+request.originalURI.path;
+					var domain = request.originalURI.scheme+"://"+request.originalURI.host;
+					if (lines[i]==domain) modifythis = true;
 				}
                 //if (request.originalURI.path.indexOf("yz8ra") > 0) {
 				if (modifythis) {
@@ -162,4 +162,19 @@ var observerService = Cc["@mozilla.org/observer-service;1"]
 
 observerService.addObserver(hRO,
     "http-on-examine-response", false);
+
+//register an eventhandler at window.onunload to write ___record() to disk.
+function writePolicy()
+{
+	var win=window.content.document.defaultView.wrappedJSObject;
+	if (win.___record!=undefined)
+	{
+		var rawdata = win.___record();
+		//var file = FileUtils.getFile("UChrm", ["DOMAR_preference.txt"]);
+		//if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
+	}
+}
+
+//only register the eventhandler after page has been loaded, otherwise window.content is null.
+window.addEventListener("DOMContentLoaded",function(){window.content.addEventListener('beforeunload',writePolicy,false);},false);
 })();

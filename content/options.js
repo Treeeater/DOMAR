@@ -2,7 +2,10 @@ function DOMAccessRecorderOptions() {
 	var old_pref = [];
 	var cur_pref = [];
 	var url = function() {
-		return window.content.document.location.href;
+		var rvalue = window.content.document.domain;
+		if (window.content.document.location.href.indexOf("https")>=0) rvalue = "https://"+rvalue;
+		else rvalue = "http://"+rvalue;
+		return rvalue;
 	};
 	
 	this.applySettings = function() {
@@ -62,7 +65,7 @@ function DOMAccessRecorderOptions() {
 		close();
     };
 	this.initialize = function() {
-		document.getElementById("url").textContent = window.content.document.location.href;
+		document.getElementById("url").textContent = url();
 		Components.utils.import("resource://gre/modules/NetUtil.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
 		var file = FileUtils.getFile("UChrm", ["DOMAR_preference.txt"]);
@@ -97,7 +100,7 @@ function DOMAccessRecorderOptions() {
 		var i;
 		for (i = 0; i < items.length; i++)
 		{
-			if (items[i].getAttribute("label") == s) {alert('This URL already exists!'); return;}
+			if (items[i].getAttribute("label") == s) {alert('This domain already exists!'); return;}
 		}
 		var newitem = document.createElement('listitem');
 		newitem.setAttribute("label",s);
