@@ -21,18 +21,12 @@ if (typeof CCSV == "undefined") {
 }
 function modify(response)
 {
-	if (response.indexOf('<he'+'ad>') > 0)
+	//find the first head or HEAD or body or BODY
+	var insertIndex = response.toLowerCase().indexOf('<head>');
+	if (insertIndex == -1) insertIndex = response.toLowerCase().indexOf('<body>');
+	if (insertIndex > 0)
 	{
-		var headpos = response.indexOf('<he'+'ad>')+6;
-		var firstportion = response.substr(0,headpos);
-		var lastportion = response.substr(headpos,response.length);
-		var middleportion = "\n<script src='http://www.cs.virgin"+"ia.edu/~yz8ra/FFReplace.js'></scr"+"ipt>\n";
-		var total = firstportion+middleportion+lastportion;
-		return total;
-	}
-	else if (response.indexOf('<bo'+'dy>') > 0)
-	{
-		var headpos = response.indexOf('<bo'+'dy>')+6;
+		var headpos = insertIndex+6;
 		var firstportion = response.substr(0,headpos);
 		var lastportion = response.substr(headpos,response.length);
 		var middleportion = "\n<script src='http://www.cs.virginia.edu"+"/~yz8ra/FFReplace.js'></scr"+"ipt>\n";
@@ -105,7 +99,7 @@ hRO = {
             }
             if (aTopic == "http-on-examine-response") {
                 request.QueryInterface(Ci.nsIHttpChannel);
-				var file = FileUtils.getFile("UChrm", ["DOMAR_preference.txt"]);
+				var file = FileUtils.getFile("ProfD", ["DOMAR","DOMAR_preference.txt"]);
 				if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
 				// open an input stream from file
 				var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
@@ -125,7 +119,12 @@ hRO = {
 				{
 					//var url = request.originalURI.scheme+"://"+request.originalURI.host+request.originalURI.path;
 					var domain = request.originalURI.scheme+"://"+request.originalURI.host;
-					if (lines[i]==domain) modifythis = true;
+					if (lines[i]==domain) 
+					{
+						modifythis = true;
+						break;
+					}
+						
 				}
                 //if (request.originalURI.path.indexOf("yz8ra") > 0) {
 				if (modifythis) {
@@ -167,11 +166,72 @@ observerService.addObserver(hRO,
 function writePolicy()
 {
 	var win=window.content.document.defaultView.wrappedJSObject;
+	var url = win.document.URL;
+	var domain = win.document.domain;
+	if (url.indexOf("?")>0)
+	{
+		//Now we ignore the GET parameters
+		url = url.substr(0,url.indexOf("?"));
+	}
+	urlfile = url.replace(/[^a-zA-Z0-9]/g,"");	//\W also does the trick.
+	urlfile = urlfile.substr(0,63);						//restrict the file length
+	domain = domain.replace(/[^a-zA-Z0-9]/g,"");
+	domain = domain.substr(0,63);
 	if (win.___record!=undefined)
 	{
 		var rawdata = win.___record();
-		//var file = FileUtils.getFile("UChrm", ["DOMAR_preference.txt"]);
-		//if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
+		var historycount = 1;
+		var file = FileUtils.getFile("ProfD", ["DOMAR","policy",domain,urlfile,"policy"+historycount+".txt"]);
+		while (file.exists()==true) 
+		{
+			historycount++;
+			file = FileUtils.getFile("ProfD", ["DOMAR","policy",domain,urlfile,"policy"+historycount+".txt"]);
+		}
+		file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);		//Create different file each time
+		//policy extraction
+		
+		
+		//done policy extraction
+		// From here down: writing bytes to file. file is nsIFile, data is a string
+		var rawstring = "";
+		var i;
+		for (i = 0; i < rawdata[0].length; i++)
+		{
+			//0 means DOM node accesses;
+			rawstring = rawstring + "DOM Node access: ID = "+rawdata[0][i].when+" XPath = "+rawdata[0][i].what+"\n";
+		}
+		rawstring = rawstring + "\nEnd of DOM node access\n---------------------------------------\n";
+		for (i = 0; i < rawdata[1].length; i++)
+		{
+			//1 means DOM node accesses;
+			rawstring = rawstring + "window special property access: ID = "+rawdata[1][i].when+" Property = "+rawdata[1][i].what+"\n";
+		}
+		rawstring = rawstring + "\nEnd of window special property access\n---------------------------------------\n";
+		for (i = 0; i < rawdata[2].length; i++)
+		{
+			//2 means DOM node accesses;
+			rawstring = rawstring + "document special property access: ID = "+rawdata[2][i].when+" Property = "+rawdata[2][i].what+"\n";
+		}
+		rawstring = rawstring + "\nEnd of document special property access\n---------------------------------------\n";
+		var data = rawstring;
+		// You can also optionally pass a flags parameter here. It defaults to
+		// FileUtils.MODE_WRONLY | FileUtils.MODE_CREATE | FileUtils.MODE_TRUNCATE;
+		var ostream = FileUtils.openSafeFileOutputStream(file)
+
+		var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"].
+						createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
+		converter.charset = "UTF-8";
+		var istream = converter.convertToInputStream(data);
+
+		// The last argument (the callback) is optional.
+		NetUtil.asyncCopy(istream, ostream, function(status) {
+		  if (!Components.isSuccessCode(status)) {
+			// Handle error!
+			return;
+		  }
+
+		  // Data has been written to the file.
+		});
 	}
 }
 

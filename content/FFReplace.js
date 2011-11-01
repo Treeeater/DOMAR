@@ -158,7 +158,7 @@ if (oldGetClassName)
 	var newGetClassName = function(){
 	//record.push('Called document.getElementsByClassName('+arguments[0]+');');	//This is only going to add a English prose to record.
 	seqID++;
-	record[DOMRecord].push({what:getXPathCollection(oldGetClassName.apply(document,arguments)),when:seqID});			//This is going to return all accessed elements.
+	record[DOMRecord].push({what:"getElementsByClassName: "+arguments[0]+", results: "+getXPathCollection(oldGetClassName.apply(document,arguments)),when:seqID});			//This is going to return all accessed elements.
 	return oldGetClassName.apply(document,arguments);
 	};
 }
@@ -167,7 +167,7 @@ if (oldGetTagName)
 	var newGetTagName = function(){
 	//record.push('Called document.getElementsByTagName('+arguments[0]+');');	//This is only going to add a English prose to record.
 	seqID++;
-	record[DOMRecord].push({what:getXPathCollection(oldGetTagName.apply(document,arguments)),when:seqID});			//This is going to return all accessed elements.
+	record[DOMRecord].push({what:"getElementsByTagName: "+arguments[0]+", results: "+getXPathCollection(oldGetTagName.apply(document,arguments)),when:seqID});			//This is going to return all accessed elements.
 	return oldGetTagName.apply(document,arguments);
 	};
 }
@@ -176,7 +176,7 @@ if (oldGetName)
 	var newGetName = function(){
 	//record.push('Called document.getElementsByName('+arguments[0]+');');	//This is only going to add a English prose to record.
 	seqID++;
-	record[DOMRecord].push({what:getXPathCollection(oldGetName.apply(document,arguments)),when:seqID});			//This is going to return all accessed elements.
+	record[DOMRecord].push({what:"getElementsByName: "+arguments[0]+", results: "+getXPathCollection(oldGetName.apply(document,arguments)),when:seqID});			//This is going to return all accessed elements.
 	return oldGetName.apply(document,arguments);
 	};
 }
@@ -428,8 +428,8 @@ for (; i<allElementsType.length; i++)
 	allElementsType[i].prototype.__defineGetter__('previousSibling',function(){seqID++;record[DOMRecord].push({what:getXPath(oldPreviousSibling.apply(this)),when:seqID});return oldPreviousSibling.apply(this);});
 	allElementsType[i].prototype.__defineGetter__('firstChild',function(){seqID++;record[DOMRecord].push({what:getXPath(oldFirstChild.apply(this)),when:seqID});return oldFirstChild.apply(this);});
 	allElementsType[i].prototype.__defineGetter__('lastChild',function(){seqID++;record[DOMRecord].push({what:getXPath(oldLastChild.apply(this)),when:seqID});return oldLastChild.apply(this);});
-	allElementsType[i].prototype.__defineGetter__('children',function(){seqID++;record[DOMRecord].push({what:getXPathCollection(oldChildren.apply(this)),when:seqID});return oldChildren.apply(this);});
-	allElementsType[i].prototype.__defineGetter__('childNodes',function(){seqID++;record[DOMRecord].push({what:getXPathCollection(oldChildNodes.apply(this)),when:seqID});return oldChildNodes.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('children',function(){seqID++;record[DOMRecord].push({what:"Children of: "+getXPath(this)+", results: "+getXPathCollection(oldChildren.apply(this)),when:seqID});return oldChildren.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('childNodes',function(){seqID++;record[DOMRecord].push({what:"Children of: "+getXPath(this)+", results: "+getXPathCollection(oldChildNodes.apply(this)),when:seqID});return oldChildNodes.apply(this);});
 	
 	if (oldInnerHTMLGetter)
 	{
@@ -443,4 +443,4 @@ for (; i<allElementsType.length; i++)
 }
 return (function(){return record;});
 })();
-document.head.removeChild(document.getElementsByTagName('script')[0]);			//remove myself
+//document.head.removeChild(document.getElementsByTagName('script')[0]);			//remove myself

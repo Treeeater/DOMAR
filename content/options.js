@@ -13,7 +13,7 @@ function DOMAccessRecorderOptions() {
 		//file.initWithPath("preference.txt");
 		Components.utils.import("resource://gre/modules/NetUtil.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
-		var file = FileUtils.getFile("UChrm", ["DOMAR_preference.txt"]);
+		var file = FileUtils.getFile("ProfD", ["DOMAR","DOMAR_preference.txt"]);
 		if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
 		var URL = url();
 		//Get current preference -> cur_pref:
@@ -68,7 +68,7 @@ function DOMAccessRecorderOptions() {
 		document.getElementById("url").textContent = url();
 		Components.utils.import("resource://gre/modules/NetUtil.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
-		var file = FileUtils.getFile("UChrm", ["DOMAR_preference.txt"]);
+		var file = FileUtils.getFile("ProfD", ["DOMAR","DOMAR_preference.txt"]);
 		if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
 		// open an input stream from file
 		var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
