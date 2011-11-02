@@ -441,6 +441,6 @@ for (; i<allElementsType.length; i++)
 	}
 	//allElementsType[i].prototype.__defineGetter__('attributes',function(){record.push(getXPathCollection(oldAttributes.apply(this)));return oldAttributes.apply(this);});		//attribute nodes are detached from the DOM tree. Currently we do not support mediation of this.
 }
+document.head.removeChild(oldGetTagName.call(document,'script')[0]);			//remove myself
 return (function(){return record;});
 })();
-//document.head.removeChild(document.getElementsByTagName('script')[0]);			//remove myself

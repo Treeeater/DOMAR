@@ -117,14 +117,14 @@ hRO = {
 				var i;
 				for (i = 0; i < lines.length; i++)
 				{
-					//var url = request.originalURI.scheme+"://"+request.originalURI.host+request.originalURI.path;
+					var url = request.originalURI.scheme+"://"+request.originalURI.host+request.originalURI.path;
 					var domain = request.originalURI.scheme+"://"+request.originalURI.host;
-					if (lines[i]==domain) 
+					if ((lines[i]==domain)&&(url.substr(url.length-2,url.length)!="js"))
 					{
+						//Do not modify js requests! This will mess up a lot of sites!
 						modifythis = true;
 						break;
 					}
-						
 				}
                 //if (request.originalURI.path.indexOf("yz8ra") > 0) {
 				if (modifythis) {
@@ -198,7 +198,12 @@ function writePolicy()
 		for (i = 0; i < rawdata[0].length; i++)
 		{
 			//0 means DOM node accesses;
-			rawstring = rawstring + "DOM Node access: ID = "+rawdata[0][i].when+" XPath = "+rawdata[0][i].what+"\n";
+			if (rawdata[0][i].what!="")
+			{
+				//Rigth now we only track accesses on element node, text node and attribute node. If the node is 'others', xpath is gonna return "",
+				//so we ignore it here.
+				rawstring = rawstring + "DOM Node access: ID = "+rawdata[0][i].when+" XPath = "+rawdata[0][i].what+"\n";
+			}
 		}
 		rawstring = rawstring + "\nEnd of DOM node access\n---------------------------------------\n";
 		for (i = 0; i < rawdata[1].length; i++)
