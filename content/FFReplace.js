@@ -42,7 +42,6 @@ var documentRecord = 2;
 //Enumerates all types of elements to mediate properties like parentNode
 //According to DOM spec level2 by W3C, HTMLBaseFontElement not defined in FF.
 var allElementsType = [HTMLElement,HTMLHtmlElement,HTMLHeadElement,HTMLLinkElement,HTMLTitleElement,HTMLMetaElement,HTMLBaseElement,HTMLIsIndexElement,HTMLStyleElement,HTMLBodyElement,HTMLFormElement,HTMLSelectElement,HTMLOptGroupElement,HTMLOptionElement,HTMLInputElement,HTMLTextAreaElement,HTMLButtonElement,HTMLLabelElement,HTMLFieldSetElement,HTMLLegendElement,HTMLUListElement,HTMLDListElement,HTMLDirectoryElement,HTMLMenuElement,HTMLLIElement,HTMLDivElement,HTMLParagraphElement,HTMLHeadingElement,HTMLQuoteElement,HTMLPreElement,HTMLBRElement,HTMLFontElement,HTMLHRElement,HTMLModElement,HTMLAnchorElement,HTMLImageElement,HTMLParamElement,HTMLAppletElement,HTMLMapElement,HTMLAreaElement,HTMLScriptElement,HTMLTableElement,HTMLTableCaptionElement,HTMLTableColElement,HTMLTableSectionElement,HTMLTableRowElement,HTMLTableCellElement,HTMLFrameSetElement,HTMLFrameElement,HTMLIFrameElement,HTMLObjectElement,HTMLSpanElement];
-
 //These need to be here because getXPath relies on this.
 var oldParentNode = Element.prototype.__lookupGetter__('parentNode');
 var oldNextSibling = Element.prototype.__lookupGetter__('nextSibling');
@@ -99,7 +98,8 @@ var getXPath = function(elt)
 		path = "/" + xname + path;
      }
 	 //if ((path=="")&&(elt!=null)) alert(elt);		//for debug purposes.
-     return path;
+     if (path.substr(0,5)!="/HTML") return "";		//right now, if this node is not originated from HTMLDocument (e.g., some script calls createElement which does not contain any private information, we do not record this access.
+	 return path;
 };
 
 var getElementIdx = function(elt)
@@ -134,7 +134,11 @@ var getXPathCollection = function (collection) {
 	var i = 0;
 	for (; i < collection.length; i++)
 	{
-		path = path + getXPath(collection[i])+"; ";
+		var thispath = getXPath(collection[i]);
+		if (thispath!="")
+		{
+			path = path + thispath +"; ";
+		}
 	}
 	return path;
 }
@@ -148,8 +152,12 @@ var oldGetName = document.getElementsByName;
 if (oldGetId)
 {
 	var newGetId = function(){
-	seqID++;
-	record[DOMRecord].push({what:getXPath(oldGetId.apply(document,arguments)),when:seqID});
+	var thispath = getXPath(oldGetId.apply(document,arguments));
+	if (thispath!="")
+	{
+		seqID++;
+		record[DOMRecord].push({what:thispath,when:seqID});
+	}
 	return oldGetId.apply(document,arguments);
 	};
 }
@@ -157,8 +165,12 @@ if (oldGetClassName)
 {
 	var newGetClassName = function(){
 	//record.push('Called document.getElementsByClassName('+arguments[0]+');');	//This is only going to add a English prose to record.
-	seqID++;
-	record[DOMRecord].push({what:"getElementsByClassName: "+arguments[0]+", results: "+getXPathCollection(oldGetClassName.apply(document,arguments)),when:seqID});			//This is going to return all accessed elements.
+	var thispath = getXPathCollection(oldGetClassName.apply(document,arguments));
+	if (thispath!="")
+	{
+		seqID++;
+		record[DOMRecord].push({what:"getElementsByClassName: "+arguments[0]+", results: " + thispath,when:seqID});			//This is going to return all accessed elements.
+	}
 	return oldGetClassName.apply(document,arguments);
 	};
 }
@@ -166,8 +178,12 @@ if (oldGetTagName)
 {
 	var newGetTagName = function(){
 	//record.push('Called document.getElementsByTagName('+arguments[0]+');');	//This is only going to add a English prose to record.
-	seqID++;
-	record[DOMRecord].push({what:"getElementsByTagName: "+arguments[0]+", results: "+getXPathCollection(oldGetTagName.apply(document,arguments)),when:seqID});			//This is going to return all accessed elements.
+	var thispath = getXPathCollection(oldGetTagName.apply(document,arguments));
+	if (thispath!="")
+	{
+		seqID++;
+		record[DOMRecord].push({what:"getElementsByTagName: "+arguments[0]+", results: " + thispath,when:seqID});			//This is going to return all accessed elements.
+	}
 	return oldGetTagName.apply(document,arguments);
 	};
 }
@@ -175,8 +191,12 @@ if (oldGetName)
 {
 	var newGetName = function(){
 	//record.push('Called document.getElementsByName('+arguments[0]+');');	//This is only going to add a English prose to record.
-	seqID++;
-	record[DOMRecord].push({what:"getElementsByName: "+arguments[0]+", results: "+getXPathCollection(oldGetName.apply(document,arguments)),when:seqID});			//This is going to return all accessed elements.
+	var thispath = getXPathCollection(oldGetName.apply(document,arguments));
+	if (thispath!="")
+	{	
+		seqID++;
+		record[DOMRecord].push({what:"getElementsByName: "+arguments[0]+", results: " + thispath,when:seqID});			//This is going to return all accessed elements.
+	}
 	return oldGetName.apply(document,arguments);
 	};
 }
@@ -420,17 +440,73 @@ if (newGetName)
 }
 //Set property accessors to new traversal APIs.
 var i = 0;
+var oldEGetTagName = new Array();
+var oldEGetClassName = new Array();
+var oldEGetTagNameNS = new Array();
 for (; i<allElementsType.length; i++)
 {
-
-	allElementsType[i].prototype.__defineGetter__('parentNode',function(){seqID++;record[DOMRecord].push({what:getXPath(oldParentNode.apply(this)),when:seqID});return oldParentNode.apply(this);});
-	allElementsType[i].prototype.__defineGetter__('nextSibling',function(){seqID++;record[DOMRecord].push({what:getXPath(oldNextSibling.apply(this)),when:seqID});return oldNextSibling.apply(this);});
-	allElementsType[i].prototype.__defineGetter__('previousSibling',function(){seqID++;record[DOMRecord].push({what:getXPath(oldPreviousSibling.apply(this)),when:seqID});return oldPreviousSibling.apply(this);});
-	allElementsType[i].prototype.__defineGetter__('firstChild',function(){seqID++;record[DOMRecord].push({what:getXPath(oldFirstChild.apply(this)),when:seqID});return oldFirstChild.apply(this);});
-	allElementsType[i].prototype.__defineGetter__('lastChild',function(){seqID++;record[DOMRecord].push({what:getXPath(oldLastChild.apply(this)),when:seqID});return oldLastChild.apply(this);});
-	allElementsType[i].prototype.__defineGetter__('children',function(){seqID++;record[DOMRecord].push({what:"Children of: "+getXPath(this)+", results: "+getXPathCollection(oldChildren.apply(this)),when:seqID});return oldChildren.apply(this);});
-	allElementsType[i].prototype.__defineGetter__('childNodes',function(){seqID++;record[DOMRecord].push({what:"Children of: "+getXPath(this)+", results: "+getXPathCollection(oldChildNodes.apply(this)),when:seqID});return oldChildNodes.apply(this);});
-	
+	//store element.getElementsByTagName to old value
+	oldEGetTagName[i] = allElementsType[i].prototype.getElementsByTagName;
+	oldEGetClassName[i] = allElementsType[i].prototype.getElementsByClassName;
+	oldEGetTagNameNS[i] = allElementsType[i].prototype.getElementsByTagNameNS;
+	allElementsType[i].prototype.__defineGetter__('parentNode',function(){var thispath = getXPath(oldParentNode.apply(this)); if (thispath!="") {seqID++;record[DOMRecord].push({what:thispath,when:seqID});} return oldParentNode.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('nextSibling',function(){var thispath = getXPath(oldNextSibling.apply(this)); if (thispath!="") {seqID++;record[DOMRecord].push({what:thispath,when:seqID});} return oldNextSibling.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('previousSibling',function(){var thispath = getXPath(oldPreviousSibling.apply(this)); if (thispath!="") {seqID++;record[DOMRecord].push({what:thispath,when:seqID});} return oldPreviousSibling.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('firstChild',function(){var thispath = getXPath(oldFirstChild.apply(this)); if (thispath!="") {seqID++;record[DOMRecord].push({what:thispath,when:seqID});} return oldFirstChild.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('lastChild',function(){var thispath = getXPath(oldLastChild.apply(this)); if (thispath!="") {seqID++;record[DOMRecord].push({what:thispath,when:seqID});} return oldLastChild.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('children',function(){var thispath = getXPath(this); if (thispath!="") {seqID++;record[DOMRecord].push({what:"Children of: "+ thispath +", results: "+getXPathCollection(oldChildren.apply(this)),when:seqID});} return oldChildren.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('childNodes',function(){var thispath = getXPath(this); if (thispath!="") {seqID++;record[DOMRecord].push({what:"Children of: "+thispath+", results: "+getXPathCollection(oldChildNodes.apply(this)),when:seqID});} return oldChildNodes.apply(this);});	
+	allElementsType[i].prototype.getElementsByTagName = function(){
+		var func;
+		var j;
+		for (j=0; j < allElementsType.length; j++)
+		{
+			if (this.constructor==allElementsType[j]) 
+			{
+				func = oldEGetTagName[j];
+			}
+		}
+		//record.push('Called someElement.getElementsByTagName('+arguments[0]+');');	//This is only going to add a English prose to record.
+		var thispath = getXPath(this);
+		if (thispath!="")
+		{
+			seqID++;
+			record[DOMRecord].push({what:"someElement: "+thispath+" called .getElementsByTagName: "+arguments[0]+", results: "+getXPathCollection(func.apply(this,arguments)),when:seqID});			//This is going to return all accessed elements.
+		}
+		return func.apply(this,arguments);
+	};
+	allElementsType[i].prototype.getElementsByClassName = function(){
+		var func;
+		var j;
+		for (j=0; j < allElementsType.length; j++)
+		{
+			if (this.constructor==allElementsType[j]) func = oldEGetClassName[j];
+		}
+		//record.push('Called someElement.getElementsByClassName('+arguments[0]+');');	//This is only going to add a English prose to record.
+		var thispath = getXPath(this);
+		if (thispath!="")
+		{
+			seqID++;
+			record[DOMRecord].push({what:"someElement: "+thispath+" called .getElementsByClassName: "+arguments[0]+", results: "+getXPathCollection(func.apply(this,arguments)),when:seqID});			//This is going to return all accessed elements.
+		}
+		return func.apply(this,arguments);
+	};
+	allElementsType[i].prototype.getElementsByTagNameNS = function(){
+		var func;
+		var j;
+		for (j=0; j < allElementsType.length; j++)
+		{
+			if (this.constructor==allElementsType[j]) func = oldEGetTagNameNS[j];
+		}
+		//record.push('Called someElement.getElementsByTagNameNS('+arguments[0]+');');	//This is only going to add a English prose to record.
+		var thispath = getXPath(this);
+		if (thispath!="")
+		{
+			seqID++;
+			record[DOMRecord].push({what:"someElement: "+thispath+" called .getElementsByTagNameNS: "+arguments[0]+", results: "+getXPathCollection(func.apply(this,arguments)),when:seqID});			//This is going to return all accessed elements.
+		}
+		return func.apply(this,arguments);
+	};
 	if (oldInnerHTMLGetter)
 	{
 		allElementsType[i].prototype.__defineGetter__('innerHTML',function(str){
@@ -441,6 +517,6 @@ for (; i<allElementsType.length; i++)
 	}
 	//allElementsType[i].prototype.__defineGetter__('attributes',function(){record.push(getXPathCollection(oldAttributes.apply(this)));return oldAttributes.apply(this);});		//attribute nodes are detached from the DOM tree. Currently we do not support mediation of this.
 }
-document.head.removeChild(oldGetTagName.call(document,'script')[0]);			//remove myself
+//document.head.removeChild(oldGetTagName.call(document,'script')[0]);			//remove myself
 return (function(){return record;});
 })();

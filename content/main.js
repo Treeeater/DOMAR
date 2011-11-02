@@ -33,6 +33,17 @@ function modify(response)
 		var total = firstportion+middleportion+lastportion;
 		return total;
 	}
+	/*customized modification*/
+	/*
+	if (response.indexOf('http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js'))
+	{
+		var s = response.indexOf('http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js');
+		response = response.replace(/http:\/\/ajax\.googleapis\.com\/ajax\/libs\/jquery\/1\.4\.0\/jquery\.min\.js/, 
+		"http://www.cs.virginia.edu/~yz8ra/jquery-1.4.js");
+		return response;
+	}
+	*/
+	/*end of customization*/
 	else return response;
 }
 TracingListener.prototype =
@@ -86,7 +97,15 @@ TracingListener.prototype =
 
 }
 
-
+function isLegitURL(url){
+	var legitSuffix = ["js","css"];
+	var i = 0;
+	for (; i<legitSuffix.length;i++)
+	{
+		if (url.substr(url.length-legitSuffix[i].length,url.length)==legitSuffix[i]) return false;
+	}
+	return true;
+}
 hRO = {
 
     observe: function(request, aTopic, aData){
@@ -119,7 +138,7 @@ hRO = {
 				{
 					var url = request.originalURI.scheme+"://"+request.originalURI.host+request.originalURI.path;
 					var domain = request.originalURI.scheme+"://"+request.originalURI.host;
-					if ((lines[i]==domain)&&(url.substr(url.length-2,url.length)!="js"))
+					if ((lines[i]==domain)&&(isLegitURL(url)))
 					{
 						//Do not modify js requests! This will mess up a lot of sites!
 						modifythis = true;
