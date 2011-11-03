@@ -19,11 +19,25 @@ if (typeof CCSV == "undefined") {
 			dump("CCSV fails for cName:" + cName);
 	};
 }
+function detect_response_beginning(response)
+{
+	//sometimes responses are divided into chunks, we only want to modify the beginning of the response.
+	if (response.match(/^\s*<[!hH]/)) return true;
+	else return false;
+}
+function if_already_modified(response)
+{
+	//sometimes responses are divided into chunks, we only want to modify the beginning of the response.
+	if (response.match(/FFReplace/)) return true;
+	else return false;
+}
 function modify(response)
 {
 	//find the first head or HEAD or body or BODY
 	var insertIndex = response.toLowerCase().indexOf('<head>');
 	if (insertIndex == -1) insertIndex = response.toLowerCase().indexOf('<body>');
+	if (!detect_response_beginning(response)) return response;
+	if (if_already_modified(response)) return response;
 	if (insertIndex > 0)
 	{
 		var headpos = insertIndex+6;
@@ -98,7 +112,7 @@ TracingListener.prototype =
 }
 
 function isLegitURL(url){
-	var legitSuffix = ["js","css"];
+	var legitSuffix = ["js","css","jpg","gif","png","ico"];
 	var i = 0;
 	for (; i<legitSuffix.length;i++)
 	{
@@ -134,18 +148,18 @@ hRO = {
 				istream.close();
 				var modifythis = false;
 				var i;
+				var url = request.originalURI.scheme+"://"+request.originalURI.host+request.originalURI.path;
+				var domain = request.originalURI.scheme+"://"+request.originalURI.host;
 				for (i = 0; i < lines.length; i++)
 				{
-					var url = request.originalURI.scheme+"://"+request.originalURI.host+request.originalURI.path;
-					var domain = request.originalURI.scheme+"://"+request.originalURI.host;
 					if ((lines[i]==domain)&&(isLegitURL(url)))
 					{
+						//alert(url+" , "+domain);
 						//Do not modify js requests! This will mess up a lot of sites!
 						modifythis = true;
 						break;
 					}
 				}
-                //if (request.originalURI.path.indexOf("yz8ra") > 0) {
 				if (modifythis) {
                     var newListener = new TracingListener();
                     request.QueryInterface(Ci.nsITraceableChannel);
@@ -185,6 +199,7 @@ observerService.addObserver(hRO,
 function writePolicy()
 {
 	var win=window.content.document.defaultView.wrappedJSObject;
+	if (win.___record==undefined) return;
 	var url = win.document.URL;
 	var domain = win.document.domain;
 	if (url.indexOf("?")>0)
