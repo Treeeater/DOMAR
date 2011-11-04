@@ -43,7 +43,8 @@ function modify(response)
 		var headpos = insertIndex+6;
 		var firstportion = response.substr(0,headpos);
 		var lastportion = response.substr(headpos,response.length);
-		var middleportion = "\n<script src='http://www.cs.virginia.edu"+"/~yz8ra/FFReplace.js'></scr"+"ipt>\n";
+		var middleportion = "<script src='http://www.cs.virginia.edu/~yz8ra/md5.js'></script><script src='http://www.cs.virginia.edu/~yz8ra/FFReplace.js'></script>";
+		//var middleportion = "\n<script src='chrome://domar/content/FFReplace.js'></script>\n";	//This will not work.
 		var total = firstportion+middleportion+lastportion;
 		return total;
 	}
@@ -236,20 +237,20 @@ function writePolicy()
 			{
 				//Rigth now we only track accesses on element node, text node and attribute node. If the node is 'others', xpath is gonna return "",
 				//so we ignore it here.
-				rawstring = rawstring + "DOM Node access: ID = "+rawdata[0][i].when+" XPath = "+rawdata[0][i].what+"\n";
+				rawstring = rawstring + "DOM Node access: ID = "+rawdata[0][i].when+" XPath = "+rawdata[0][i].what+" Who = "+rawdata[0][i].who+"\n";
 			}
 		}
 		rawstring = rawstring + "\nEnd of DOM node access\n---------------------------------------\n";
 		for (i = 0; i < rawdata[1].length; i++)
 		{
 			//1 means DOM node accesses;
-			rawstring = rawstring + "window special property access: ID = "+rawdata[1][i].when+" Property = "+rawdata[1][i].what+"\n";
+			rawstring = rawstring + "window special property access: ID = "+rawdata[1][i].when+" Property = "+rawdata[1][i].what+" Who = "+rawdata[0][i].who+"\n";
 		}
 		rawstring = rawstring + "\nEnd of window special property access\n---------------------------------------\n";
 		for (i = 0; i < rawdata[2].length; i++)
 		{
 			//2 means DOM node accesses;
-			rawstring = rawstring + "document special property access: ID = "+rawdata[2][i].when+" Property = "+rawdata[2][i].what+"\n";
+			rawstring = rawstring + "document special property access: ID = "+rawdata[2][i].when+" Property = "+rawdata[2][i].what+" Who = "+rawdata[0][i].who+"\n";
 		}
 		rawstring = rawstring + "\nEnd of document special property access\n---------------------------------------\n";
 		var data = rawstring;
