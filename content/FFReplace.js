@@ -161,6 +161,7 @@ function getCallerInfo(funcName)
 		}
 		currentCaller = currentCaller.caller;
 	}
+	if (callerInfo=="") callerInfo = "window called ";
 	callerInfo = callerInfo + funcName + ".";
 	return callerInfo;
 }
