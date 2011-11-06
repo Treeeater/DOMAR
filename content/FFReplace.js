@@ -129,6 +129,7 @@ var getElementIdx = function(elt)
 };
 
 var getXPathCollection = function (collection) {
+	if (collection.length>10) return "More than 10 elements!";		//Sometimes the trace gets too big. We try to avoid that.
 	path = "";
 	var i = 0;
 	for (; i < collection.length; i++)
@@ -143,28 +144,19 @@ var getXPathCollection = function (collection) {
 }
 //utilities:
 var lookupTable = new Array();		//to store computed MD5 hashes.
-function getCallerInfo(funcName)
-{
-	var callerInfo = "";
-	var currentCaller = getCallerInfo.caller.caller;		//get the real caller by calling the caller twice.
-	var depth = 0;
-	while ((currentCaller!=null)&&(depth<=3))
-	{
-		depth++;			//currently just record 3 levels of caller
-		cached = lookupTable[currentCaller.toString()];
-		if (cached!=undefined) callerInfo = cached + " called " + callerInfo;
-		else
-		{
-			toCache = faultylabs.MD5(currentCaller.toString());
-			callerInfo = toCache + " called " + callerInfo;
-			lookupTable[currentCaller.toString()]=toCache;		//push computed function hash to hashtable.
-		}
-		currentCaller = currentCaller.caller;
-	}
-	if (callerInfo=="") callerInfo = "window called ";
-	callerInfo = callerInfo + funcName + ".";
-	return callerInfo;
-}
+var getCallerInfo = function() {
+    try {
+        this.undef();
+        return null;
+    } catch (e) {
+        var lastline = e.stack.replace(/[\s\S]*\n(.*)\n$/m,"$1");
+		//var penultimateline = e.stack.replace(/[\s\S]*\n(.*)\n(.*)\n$/m,"$1");
+		lastline = lastline.replace(/[\s\S]*@(.*)$/,"$1");			//get rid of the whole arguments
+		//penultimateline = penultimateline.replace(/[\s\S]*@(.*)$/,"$1");
+		lastline = lastline.replace(/\?(.*)/,"");					//get rid of all the get parameters
+		return lastline;
+    }
+};
 //Original DOM-ECMAscript API
 var oldGetId = document.getElementById;	
 var oldGetClassName = document.getElementsByClassName;
