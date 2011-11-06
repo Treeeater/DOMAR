@@ -43,7 +43,8 @@ function modify(response)
 		var headpos = insertIndex+6;
 		var firstportion = response.substr(0,headpos);
 		var lastportion = response.substr(headpos,response.length);
-		var middleportion = "<script src='http://www.cs.virginia.edu/~yz8ra/FFReplace.js'></script>";
+		//var middleportion = "<script src='http://www.cs.virginia.edu/~yz8ra/FFReplace.js'></script>";
+		var middleportion = "<script src='http://127.0.0.1/FFReplace.js'></script>";
 		//var middleportion = "\n<script src='chrome://domar/content/FFReplace.js'></script>\n";	//This will not work.
 		var total = firstportion+middleportion+lastportion;
 		return total;

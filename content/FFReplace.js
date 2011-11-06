@@ -25,7 +25,8 @@ document.images/anchors/links/applets/forms
 --node special properties--
 node.innerHTML
 */
-
+try
+{
 var ___record = (function (){
 var seqID = 0;
 if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent))
@@ -159,6 +160,7 @@ var getCallerInfo = function() {
 			lastline = lastline.replace(/\?(.*)/,"");					//get rid of all the GET parameters
 			lastline = lastline + ":" + lineNo;
 		}
+		//if (lastline.match(/:0$/)) alert(e.stack);					//Now FF occasionally gives lineNumber as 0. This should be a bug in FF implementation, or this indicates some other types of access. Right now we ignore this bug.
 		return lastline;
     }
 };
@@ -522,17 +524,20 @@ for (; i<allElementsType.length; i++)
 	allElementsType[i].prototype.__defineGetter__('lastChild',function(){var thispath = getXPath(oldLastChild.apply(this)); if (thispath!="") {seqID++;record[DOMRecord].push({what:thispath,when:seqID,who:getCallerInfo("lastChild")});} return oldLastChild.apply(this);});
 	allElementsType[i].prototype.__defineGetter__('children',function(){var thispath = getXPath(this); if (thispath!="") {seqID++;record[DOMRecord].push({what:"Children of: "+ thispath +", results: "+getXPathCollection(oldChildren.apply(this)),when:seqID,who:getCallerInfo("children")});} return oldChildren.apply(this);});
 	allElementsType[i].prototype.__defineGetter__('childNodes',function(){var thispath = getXPath(this); if (thispath!="") {seqID++;record[DOMRecord].push({what:"Children of: "+thispath+", results: "+getXPathCollection(oldChildNodes.apply(this)),when:seqID,who:getCallerInfo("childNodes")});} return oldChildNodes.apply(this);});	
+}
+//assign element.getElementsByTagName to new value
+for (i=0; i<allElementsType.length; i++)
+{
 	allElementsType[i].prototype.getElementsByTagName = function(){
-		var func;
+		var func = oldEGetTagName[50];		//HTMLObjectElement in FF has a bug. This is a ad hoc workaround.
 		var j;
 		for (j=0; j < allElementsType.length; j++)
 		{
-			if (this.constructor==allElementsType[j]) 
+			if ((this.constructor==allElementsType[j])||(this.__proto__==allElementsType[j].prototype))
 			{
 				func = oldEGetTagName[j];
 			}
 		}
-		//if (func==undefined) alert(getFullCallerInfo());			//here, func cannot be guaranteed to be defined, though theoretically it should be.
 		//record.push('Called someElement.getElementsByTagName('+arguments[0]+');');	//This is only going to add a English prose to record.
 		var thispath = getXPath(this);
 		if (thispath!="")
@@ -547,7 +552,7 @@ for (; i<allElementsType.length; i++)
 		var j;
 		for (j=0; j < allElementsType.length; j++)
 		{
-			if (this.constructor==allElementsType[j]) func = oldEGetClassName[j];
+			if ((this.constructor==allElementsType[j])||(this.__proto__==allElementsType[j].prototype)) func = oldEGetClassName[j];
 		}
 		//record.push('Called someElement.getElementsByClassName('+arguments[0]+');');	//This is only going to add a English prose to record.
 		var thispath = getXPath(this);
@@ -563,7 +568,7 @@ for (; i<allElementsType.length; i++)
 		var j;
 		for (j=0; j < allElementsType.length; j++)
 		{
-			if (this.constructor==allElementsType[j]) func = oldEGetTagNameNS[j];
+			if ((this.constructor==allElementsType[j])||(this.__proto__==allElementsType[j].prototype)) func = oldEGetTagNameNS[j];
 		}
 		//record.push('Called someElement.getElementsByTagNameNS('+arguments[0]+');');	//This is only going to add a English prose to record.
 		var thispath = getXPath(this);
@@ -587,3 +592,8 @@ for (; i<allElementsType.length; i++)
 //document.head.removeChild(oldGetTagName.call(document,'script')[0]);			//remove myself
 return (function(){return record;});
 })();
+}
+catch (e)
+{
+	alert(e);			//To make sure our FFReplace initialization process is correct.
+}
