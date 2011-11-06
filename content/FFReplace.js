@@ -149,12 +149,25 @@ var getCallerInfo = function() {
         this.undef();
         return null;
     } catch (e) {
-        var lastline = e.stack.replace(/[\s\S]*\n(.*)\n$/m,"$1");
+        var lastline = e.stack.replace(/[\s\S]*\n(.*)\n$/m,"$1");		//getting rid of other lines
 		//var penultimateline = e.stack.replace(/[\s\S]*\n(.*)\n(.*)\n$/m,"$1");
-		lastline = lastline.replace(/[\s\S]*@(.*)$/,"$1");			//get rid of the whole arguments
+		lastline = lastline.replace(/[\s\S]*@(.*)$/,"$1");				//get rid of the whole arguments
 		//penultimateline = penultimateline.replace(/[\s\S]*@(.*)$/,"$1");
-		lastline = lastline.replace(/\?(.*)/,"");					//get rid of all the get parameters
+		if (lastline.match(/\?(.*)/,""))
+		{
+			lineNo = lastline.replace(/.*\:(.*)$/,"$1");				//extract the line number
+			lastline = lastline.replace(/\?(.*)/,"");					//get rid of all the GET parameters
+			lastline = lastline + ":" + lineNo;
+		}
 		return lastline;
+    }
+};
+var getFullCallerInfo = function() {
+    try {
+        this.undef();
+        return null;
+    } catch (e) {
+        return e.stack;
     }
 };
 //Original DOM-ECMAscript API
@@ -519,6 +532,7 @@ for (; i<allElementsType.length; i++)
 				func = oldEGetTagName[j];
 			}
 		}
+		//if (func==undefined) alert(getFullCallerInfo());			//here, func cannot be guaranteed to be defined, though theoretically it should be.
 		//record.push('Called someElement.getElementsByTagName('+arguments[0]+');');	//This is only going to add a English prose to record.
 		var thispath = getXPath(this);
 		if (thispath!="")
