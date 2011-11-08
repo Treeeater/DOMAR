@@ -1,10 +1,12 @@
 function DOMAccessRecorderOptions() {
 	var old_pref = [];
 	var cur_pref = [];
-	var url = function() {
+	var getDomain = function() {
 		var rvalue = window.content.document.domain;
-		if (window.content.document.location.href.indexOf("https")>=0) rvalue = "https://"+rvalue;
-		else rvalue = "http://"+rvalue;
+		//if (window.content.document.location.href.indexOf("https")>=0) rvalue = "https://"+rvalue;
+		//else rvalue = "http://"+rvalue;
+		//only record top tow level domains:
+		rvalue = rvalue.replace(/(.*)\.(.*)\.(.*)$/,"$2.$3");
 		return rvalue;
 	};
 	
@@ -15,7 +17,7 @@ function DOMAccessRecorderOptions() {
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
 		var file = FileUtils.getFile("ProfD", ["DOMAR","DOMAR_preference.txt"]);
 		if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
-		var URL = url();
+		var domain = getDomain();
 		//Get current preference -> cur_pref:
 		var items = document.getElementsByTagName('listitem');
 		var i;
@@ -23,20 +25,20 @@ function DOMAccessRecorderOptions() {
 		{
 			cur_pref.push(items[i].getAttribute("label"));
 		}
-		//Add or remove the current URL to/from the cur_pref.
+		//Add or remove the current domain to/from the cur_pref.
 		var checked = document.getElementById('checkbx').checked;
 		var exists = false;
 		var count = -1;
 		for (i = 0; i < cur_pref.length; i++)
 		{
-			if (cur_pref[i]==URL) {
+			if (cur_pref[i]==domain) {
 				exists = true;
 				count = i;
 			}
 		}
 		if ((checked)&&(!exists))
 		{
-			cur_pref.push(URL);
+			cur_pref.push(domain);
 		}
 		else if ((!checked)&&(exists))
 		{
@@ -65,7 +67,7 @@ function DOMAccessRecorderOptions() {
 		close();
     };
 	this.initialize = function() {
-		document.getElementById("url").textContent = url();
+		document.getElementById("url").textContent = getDomain();
 		Components.utils.import("resource://gre/modules/NetUtil.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
 		var file = FileUtils.getFile("ProfD", ["DOMAR","DOMAR_preference.txt"]);
@@ -75,7 +77,7 @@ function DOMAccessRecorderOptions() {
               createInstance(Components.interfaces.nsIFileInputStream);
 		istream.init(file, 0x01, 0444, 0);
 		istream.QueryInterface(Components.interfaces.nsILineInputStream);
-		var URL = url();
+		var domain = getDomain();
 		// read lines into array
 		var line = {}, hasmore;
 		do {
@@ -90,7 +92,7 @@ function DOMAccessRecorderOptions() {
 			var newitem = document.createElement('listitem');
 			newitem.setAttribute("label",old_pref[i]);
 			document.getElementById('URLList').appendChild(newitem);
-			if (old_pref[i]==URL) {
+			if (old_pref[i]==domain) {
 				document.getElementById('checkbx').setAttribute("checked","true");
 			}
 		}
@@ -111,8 +113,19 @@ function DOMAccessRecorderOptions() {
 		addWindow.ref = this.addCallBack;
 	};
 	this.remove = function() {
-		document.getElementById('URLList').removeChild(document.getElementById('URLList').getSelectedItem(0));
+		if(document.getElementById('URLList').getSelectedItem(0)!=null)
+		{
+			document.getElementById('URLList').removeChild(document.getElementById('URLList').getSelectedItem(0));
+		}
 	};
+	this.trusted = function() {
+		if (document.getElementById('URLList').getSelectedItem(0)!=null)
+		{
+			var addWindow = window.open("chrome://domar/content/trusted.xul", "", "chrome");
+			addWindow.mainDomain = document.getElementById('URLList').getSelectedItem(0).label;
+		}
+		else alert('please select an URL to edit first!');
+	}
 	return this;
 };
 var DOMaccessRecorderOptions = new DOMAccessRecorderOptions();

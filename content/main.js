@@ -151,7 +151,10 @@ hRO = {
 				var modifythis = false;
 				var i;
 				var url = request.originalURI.scheme+"://"+request.originalURI.host+request.originalURI.path;
-				var domain = request.originalURI.scheme+"://"+request.originalURI.host;
+				//var domain = request.originalURI.scheme+"://"+request.originalURI.host;
+				var domain = request.originalURI.host;
+				domain = domain.replace(/(.*)\.(.*)\.(.*)$/,"$2.$3");
+				//only works if domain does not use direct ip. For example, 192.168.0.1 -> 0.1
 				for (i = 0; i < lines.length; i++)
 				{
 					if ((lines[i]==domain)&&(isLegitURL(url)))
@@ -197,6 +200,26 @@ var observerService = Cc["@mozilla.org/observer-service;1"]
 observerService.addObserver(hRO,
     "http-on-examine-response", false);
 
+function getTrustedDomain(domain)
+{
+	Components.utils.import("resource://gre/modules/NetUtil.jsm");
+	Components.utils.import("resource://gre/modules/FileUtils.jsm");
+	var file = FileUtils.getFile("ProfD", ["DOMAR","site_preferences",domain+".txt"]);
+	if (file.exists()==false) {console.log("No trusted domains registered for this site!"); return []};
+	// open an input stream from file
+	var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
+		createInstance(Components.interfaces.nsIFileInputStream);
+	istream.init(file, 0x01, 0444, 0);
+	istream.QueryInterface(Components.interfaces.nsILineInputStream);
+	// read lines into array
+	var line = {}, lines = [], hasmore;
+	do {
+		hasmore = istream.readLine(line);
+		lines.push(line.value); 
+	} while(hasmore);
+	istream.close();
+	return lines;
+}
 //register an eventhandler at window.onunload to write ___record() to disk.
 function writePolicy()
 {
@@ -204,6 +227,7 @@ function writePolicy()
 	if (win.___record==undefined) return;
 	var url = win.document.URL;
 	var domain = win.document.domain;
+	domain = domain.replace(/(.*)\.(.*)\.(.*)$/,"$2.$3");
 	if (url.indexOf("?")>0)
 	{
 		//Now we ignore the GET parameters
@@ -215,6 +239,7 @@ function writePolicy()
 	domain = domain.substr(0,63);
 	if (win.___record!=undefined)
 	{
+		var i;
 		var rawdata = win.___record();
 		var historycount = 1;
 		var file = FileUtils.getFile("ProfD", ["DOMAR","policy",domain,urlfile,"policy"+historycount+".txt"]);
@@ -225,33 +250,68 @@ function writePolicy()
 		}
 		file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);		//Create different file each time
 		//policy extraction
-		
-		
+		var trustedDomains = getTrustedDomain(domain);
+		var j = 0;
+		for (j = 0; j < rawdata[0].length; j++)
+		{
+			raw = rawdata[0][j].who.replace(/(.*?)\/\/(.*?)\/(.*)/,"$2");
+			raw = raw.replace(/(.*?)\/\/(.*)/,"$2");
+			raw = raw.replace(/(.*)\.(.*)\.(.*)$/,"$2.$3");
+			for (i = 0; i < trustedDomains.length; i++)
+			{
+				if (trustedDomains[i]==raw) rawdata[0][j].who = "trusted";
+			}
+		}
+		for (j = 0; j < rawdata[1].length; j++)
+		{
+			raw = rawdata[1][j].who.replace(/(.*?)\/\/(.*?)\/(.*)/,"$2");
+			raw = raw.replace(/(.*?)\/\/(.*)/,"$2");
+			raw = raw.replace(/(.*)\.(.*)\.(.*)$/,"$2.$3");
+			for (i = 0; i < trustedDomains.length; i++)
+			{
+				if (trustedDomains[i]==raw) rawdata[1][j].who = "trusted";
+			}
+		}
+		for (j = 0; j < rawdata[2].length; j++)
+		{
+			raw = rawdata[2][j].who.replace(/(.*?)\/\/(.*?)\/(.*)/,"$2");
+			raw = raw.replace(/(.*?)\/\/(.*)/,"$2");
+			raw = raw.replace(/(.*)\.(.*)\.(.*)$/,"$2.$3");
+			for (i = 0; i < trustedDomains.length; i++)
+			{
+				if (trustedDomains[i]==raw) rawdata[2][j].who = "trusted";
+			}
+		}
 		//done policy extraction
 		// From here down: writing bytes to file. file is nsIFile, data is a string
 		var rawstring = "";
-		var i;
 		for (i = 0; i < rawdata[0].length; i++)
 		{
 			//0 means DOM node accesses;
-			if (rawdata[0][i].what!="")
+			if ((rawdata[0][i].what!="")&&(rawdata[0][i].who!="trusted"))
 			{
 				//Rigth now we only track accesses on element node, text node and attribute node. If the node is 'others', xpath is gonna return "",
 				//so we ignore it here.
-				rawstring = rawstring + "DOM Node access: ID = "+rawdata[0][i].when+" XPath = "+rawdata[0][i].what+" Who = "+rawdata[0][i].who+"\n";
+				rawstring = rawstring + "When = "+rawdata[0][i].when+" What = "+rawdata[0][i].what+" Who = "+rawdata[0][i].who+"\n";
 			}
 		}
 		rawstring = rawstring + "\nEnd of DOM node access\n---------------------------------------\n";
 		for (i = 0; i < rawdata[1].length; i++)
 		{
-			//1 means DOM node accesses;
-			rawstring = rawstring + "window special property access: ID = "+rawdata[1][i].when+" Property = "+rawdata[1][i].what+" Who = "+rawdata[1][i].who+"\n";
+			//1 means window accesses;
+			if ((rawdata[1][i].what!="")&&(rawdata[1][i].who!="trusted"))
+			{
+				rawstring = rawstring + "When = "+rawdata[1][i].when+" What = "+rawdata[1][i].what+" Who = "+rawdata[1][i].who+"\n";
+			}
 		}
 		rawstring = rawstring + "\nEnd of window special property access\n---------------------------------------\n";
 		for (i = 0; i < rawdata[2].length; i++)
 		{
-			//2 means DOM node accesses;
-			rawstring = rawstring + "document special property access: ID = "+rawdata[2][i].when+" Property = "+rawdata[2][i].what+" Who = "+rawdata[2][i].who+"\n";
+			//2 means document accesses;
+			if ((rawdata[2][i].what!="")&&(rawdata[2][i].who!="trusted"))
+			{
+				rawstring = rawstring + "When = "+rawdata[2][i].when+" What = "+rawdata[2][i].what+" Who = "+rawdata[2][i].who+"\n";
+			}
 		}
 		rawstring = rawstring + "\nEnd of document special property access\n---------------------------------------\n";
 		var data = rawstring;

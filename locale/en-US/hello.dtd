@@ -5,6 +5,9 @@
 <!ENTITY delete.label "Delete selected domain">
 <!ENTITY addtitle.label "Add an domain">
 <!ENTITY addconfirm.label "OK">
-<!ENTITY add.label "Add an domain">
+<!ENTITY add.label "Add a domain">
+<!ENTITY trusted.label "Manage trusted sites">
+<!ENTITY ti.label "Add a trusted domain:">
+<!ENTITY saveTrusted.label "Save">
 <!ENTITY apply.label "Apply">
 <!ENTITY close.label "Close">

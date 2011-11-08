@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://domar/locale/hello.dtd">
+
+<window screenX="200" screenY="200" width="500" height="500" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+        title="&addtitle.label;">
+<script src="trusted.js"></script>
+<groupbox style="width:100%; text-align:center;">
+  <caption style="font-size:14px;" label="&trusted.label;"/>
+  <listbox id="URLList" height="300">
+  </listbox>
+  <description id = "description" style="font-size:14px; display: inline-block;" flex="1">&ti.label;</description>
+  <textbox id="input" minwidth="300" value=""/>
+  <hbox pack = "center" align="center">
+	<button label="&delete.label;" oncommand="trustedSites.remove();"/>
+	<button label="&add.label;" oncommand="trustedSites.add();"/>
+  </hbox>
+</groupbox>
+<button label="&saveTrusted.label;" oncommand="trustedSites.save();"/>
+</window>

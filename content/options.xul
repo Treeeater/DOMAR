@@ -12,7 +12,7 @@
 <groupbox style="width:100%; text-align:center;">
   <caption style="font-size:14px;" label="&sitesettings.label;"/>
   <checkbox id = "checkbx" style="font-size:14px; display: inline-block;" label="&subtitle1.label;" checked="false"/>
-  <description id = "url" style="font-size:14px; display: inline-block;" flex="1">abc</description>
+  <description id = "url" style="font-size:14px; display: inline-block;" flex="1">__default_URL__You_should_not_see_this__</description>
 </groupbox>
 
 <groupbox style="width:100%; text-align:center;">
@@ -22,6 +22,7 @@
   <hbox pack = "center" align="center">
 	<button label="&delete.label;" oncommand="DOMaccessRecorderOptions.remove();"/>
 	<button label="&add.label;" oncommand="DOMaccessRecorderOptions.add();"/>
+	<button label="&trusted.label;" oncommand="DOMaccessRecorderOptions.trusted();"/>
   </hbox>
 </groupbox>
 

@@ -144,7 +144,6 @@ var getXPathCollection = function (collection) {
 	return path;
 }
 //utilities:
-var lookupTable = new Array();		//to store computed MD5 hashes.
 var getCallerInfo = function() {
     try {
         this.undef();
@@ -160,7 +159,16 @@ var getCallerInfo = function() {
 			lastline = lastline.replace(/\?(.*)/,"");					//get rid of all the GET parameters
 			lastline = lastline + ":" + lineNo;
 		}
-		//if (lastline.match(/:0$/)) alert(e.stack);					//Now FF occasionally gives lineNumber as 0. This should be a bug in FF implementation, or this indicates some other types of access. Right now we ignore this bug.
+		if (lastline.match(/:0$/)) {
+			var calls = getCallerInfo.caller;
+			var str="";
+			while (calls)
+			{
+				str += calls.toString()+"\n";
+				calls=calls.caller;
+			}
+			alert(e.stack+"\n"+str);					//Now FF occasionally gives lineNumber as 0. This should be a bug in FF implementation, or this indicates some other types of access. Right now we ignore this bug.
+		}
 		return lastline;
     }
 };
