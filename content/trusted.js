@@ -81,6 +81,7 @@ function trustedSites() {
 
 		  // Data has been written to the file.
 		});
+		close();
 	}
 	return this;
 };

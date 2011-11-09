@@ -41,7 +41,7 @@ var windowRecord = 1;
 var documentRecord = 2;
 //Enumerates all types of elements to mediate properties like parentNode
 //According to DOM spec level2 by W3C, HTMLBaseFontElement not defined in FF.
-var allElementsType = [HTMLElement,HTMLHtmlElement,HTMLHeadElement,HTMLLinkElement,HTMLTitleElement,HTMLMetaElement,HTMLBaseElement,HTMLIsIndexElement,HTMLStyleElement,HTMLBodyElement,HTMLFormElement,HTMLSelectElement,HTMLOptGroupElement,HTMLOptionElement,HTMLInputElement,HTMLTextAreaElement,HTMLButtonElement,HTMLLabelElement,HTMLFieldSetElement,HTMLLegendElement,HTMLUListElement,HTMLDListElement,HTMLDirectoryElement,HTMLMenuElement,HTMLLIElement,HTMLDivElement,HTMLParagraphElement,HTMLHeadingElement,HTMLQuoteElement,HTMLPreElement,HTMLBRElement,HTMLFontElement,HTMLHRElement,HTMLModElement,HTMLAnchorElement,HTMLImageElement,HTMLParamElement,HTMLAppletElement,HTMLMapElement,HTMLAreaElement,HTMLScriptElement,HTMLTableElement,HTMLTableCaptionElement,HTMLTableColElement,HTMLTableSectionElement,HTMLTableRowElement,HTMLTableCellElement,HTMLFrameSetElement,HTMLFrameElement,HTMLIFrameElement,HTMLObjectElement,HTMLSpanElement];
+var allElementsType = [HTMLElement,HTMLHtmlElement,HTMLHeadElement,HTMLLinkElement,HTMLTitleElement,HTMLMetaElement,HTMLBaseElement,HTMLStyleElement,HTMLBodyElement,HTMLFormElement,HTMLSelectElement,HTMLOptGroupElement,HTMLOptionElement,HTMLInputElement,HTMLTextAreaElement,HTMLButtonElement,HTMLLabelElement,HTMLFieldSetElement,HTMLLegendElement,HTMLUListElement,HTMLDListElement,HTMLDirectoryElement,HTMLMenuElement,HTMLLIElement,HTMLDivElement,HTMLParagraphElement,HTMLHeadingElement,HTMLQuoteElement,HTMLPreElement,HTMLBRElement,HTMLFontElement,HTMLHRElement,HTMLModElement,HTMLAnchorElement,HTMLImageElement,HTMLParamElement,HTMLAppletElement,HTMLMapElement,HTMLAreaElement,HTMLScriptElement,HTMLTableElement,HTMLTableCaptionElement,HTMLTableColElement,HTMLTableSectionElement,HTMLTableRowElement,HTMLTableCellElement,HTMLFrameSetElement,HTMLFrameElement,HTMLIFrameElement,HTMLObjectElement,HTMLSpanElement];
 //These need to be here because getXPath relies on this.
 var oldParentNode = Element.prototype.__lookupGetter__('parentNode');
 var oldNextSibling = Element.prototype.__lookupGetter__('nextSibling');
@@ -149,7 +149,11 @@ var getCallerInfo = function() {
         this.undef();
         return null;
     } catch (e) {
-        var lastline = e.stack.replace(/[\s\S]*\n(.*)\n$/m,"$1");		//getting rid of other lines
+		var lastline = e.stack;
+		var ignored = "";
+		if (lastline.length>3000) lastline = lastline.substr(lastline.length-3000,lastline.length);		//Assumes the total call stack is less than 3000 characters. avoid the situation when arguments becomes huge and regex operation virtually stalls the browser.  This could very well happen when innerHTML is changed. For example, flickr.com freezes our extension without this line.
+		if (lastline!=e.stack) ignored = "; stack trace > 3000 chars.";
+        lastline = lastline.replace(/[\s\S]*\n(.*)\n$/m,"$1");		//getting rid of other lines
 		//var penultimateline = e.stack.replace(/[\s\S]*\n(.*)\n(.*)\n$/m,"$1");
 		lastline = lastline.replace(/[\s\S]*@(.*)$/,"$1");				//get rid of the whole arguments
 		//penultimateline = penultimateline.replace(/[\s\S]*@(.*)$/,"$1");
@@ -169,7 +173,7 @@ var getCallerInfo = function() {
 			}
 			alert(e.stack+"\n"+str);					//Now FF occasionally gives lineNumber as 0. This should be a bug in FF implementation, or this indicates some other types of access. Right now we ignore this bug.
 		}
-		return lastline;
+		return lastline+ignored;
     }
 };
 var getFullCallerInfo = function() {
