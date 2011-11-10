@@ -163,16 +163,19 @@ var getCallerInfo = function() {
 			lastline = lastline.replace(/\?(.*)/,"");					//get rid of all the GET parameters
 			lastline = lastline + ":" + lineNo;
 		}
-		if (lastline.match(/:0$/)) {
-			var calls = getCallerInfo.caller;
-			var str="";
-			while (calls)
+		if (lastline.match(/:1$/){
+			if (!lastline.match(/js:1$/))
 			{
-				str += calls.toString()+"\n";
-				calls=calls.caller;
+				alert(e.stack);
+				//This probably is an event handler registered using old API (setAttribute onclick). FF cannot return correctly who registered it.
+				//However according to MDN this registering method is deprecated.
 			}
-			alert(e.stack+"\n"+str);					//Now FF occasionally gives lineNumber as 0. This should be a bug in FF implementation, or this indicates some other types of access. Right now we ignore this bug.
 		}
+		//if (lastline.match(/:0$/)) {
+			//When actionscript in Flash/Flex tries to call related APIs, e.stack will return URI:0 as top stack, which is incorrect. However we ignore this bug because we are not specifically looking at Actionscript accesses.
+			//We ignore this case for now.
+			//alert(e.stack);
+		//}
 		return lastline+ignored;
     }
 };
