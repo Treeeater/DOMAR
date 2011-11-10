@@ -163,12 +163,13 @@ var getCallerInfo = function() {
 			lastline = lastline.replace(/\?(.*)/,"");					//get rid of all the GET parameters
 			lastline = lastline + ":" + lineNo;
 		}
-		if (lastline.match(/:1$/){
+		if (lastline.match(/:1$/)){
 			if (!lastline.match(/js:1$/))
 			{
-				alert(e.stack);
+				//alert(e.stack);
 				//This probably is an event handler registered using old API (setAttribute onclick). FF cannot return correctly who registered it.
 				//However according to MDN this registering method is deprecated.
+				//Also worth noticing is that not all non js's 1st line access indicates an eventhandler.
 			}
 		}
 		//if (lastline.match(/:0$/)) {
