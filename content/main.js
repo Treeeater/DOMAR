@@ -31,7 +31,27 @@ function if_already_modified(response)
 	if (response.match(/FFReplace/)) return true;
 	else return false;
 }
-function modify(response)
+function getTrustedDomain(domain)
+{
+	Components.utils.import("resource://gre/modules/NetUtil.jsm");
+	Components.utils.import("resource://gre/modules/FileUtils.jsm");
+	var file = FileUtils.getFile("ProfD", ["DOMAR","site_preferences",domain+".txt"]);
+	if (file.exists()==false) {console.log("No trusted domains registered for this site!"); return []};
+	// open an input stream from file
+	var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
+		createInstance(Components.interfaces.nsIFileInputStream);
+	istream.init(file, 0x01, 0444, 0);
+	istream.QueryInterface(Components.interfaces.nsILineInputStream);
+	// read lines into array
+	var line = {}, lines = [], hasmore;
+	do {
+		hasmore = istream.readLine(line);
+		lines.push(line.value); 
+	} while(hasmore);
+	istream.close();
+	return lines;
+}
+function modify(response,trustedDomains)
 {
 	//find the first head or HEAD or body or BODY
 	var insertIndex = response.toLowerCase().indexOf('<head>');
@@ -44,7 +64,12 @@ function modify(response)
 		var firstportion = response.substr(0,headpos);
 		var lastportion = response.substr(headpos,response.length);
 		//var middleportion = "<script src='http://www.cs.virginia.edu/~yz8ra/FFReplace.js'></script>";
-		var middleportion = "<script src='http://127.0.0.1/FFReplace.js'></script>";
+		var middleportion = "<script src='http://127.0.0.1/FFReplace.js'></script><script>";
+		while (trustedDomains.length>0)
+		{
+			middleportion = middleportion + "__record().Push(\"" + trustedDomains.pop() + "\");\n";
+		}
+		middleportion = middleportion + "__record().Push(\"127.0.0.1\");</script>";
 		//var middleportion = "\n<script src='chrome://domar/content/FFReplace.js'></script>\n";	//This will not work.
 		var total = firstportion+middleportion+lastportion;
 		return total;
@@ -84,7 +109,11 @@ TracingListener.prototype =
         //var data = inputStream.readBytes(count);
         this.receivedData.push(data);
         //binaryOutputStream.writeBytes("abc", 3);
-		data = modify(data);
+		var domain = request.originalURI.host.replace(/(.*)\.(.*)\.(.*)$/,"$2.$3");
+		domain = domain.replace(/[^a-zA-Z0-9]/g,"");
+		domain = domain.substr(0,63);
+		var trustedDomains = getTrustedDomain(domain);
+		data = modify(data,trustedDomains);
 		count = data.length;
 		binaryOutputStream.writeBytes(data, count);
         this.originalListener.onDataAvailable(request, context, storageStream.newInputStream(0), offset, count);
@@ -200,26 +229,7 @@ var observerService = Cc["@mozilla.org/observer-service;1"]
 observerService.addObserver(hRO,
     "http-on-examine-response", false);
 
-function getTrustedDomain(domain)
-{
-	Components.utils.import("resource://gre/modules/NetUtil.jsm");
-	Components.utils.import("resource://gre/modules/FileUtils.jsm");
-	var file = FileUtils.getFile("ProfD", ["DOMAR","site_preferences",domain+".txt"]);
-	if (file.exists()==false) {console.log("No trusted domains registered for this site!"); return []};
-	// open an input stream from file
-	var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
-		createInstance(Components.interfaces.nsIFileInputStream);
-	istream.init(file, 0x01, 0444, 0);
-	istream.QueryInterface(Components.interfaces.nsILineInputStream);
-	// read lines into array
-	var line = {}, lines = [], hasmore;
-	do {
-		hasmore = istream.readLine(line);
-		lines.push(line.value); 
-	} while(hasmore);
-	istream.close();
-	return lines;
-}
+
 //register an eventhandler at window.onunload to write ___record() to disk.
 function writePolicy()
 {
@@ -240,7 +250,7 @@ function writePolicy()
 	if (win.___record!=undefined)
 	{
 		var i;
-		var rawdata = win.___record();
+		var rawdata = win._record.getRecord();
 		var historycount = 1;
 		var file = FileUtils.getFile("ProfD", ["DOMAR","policy",domain,urlfile,"policy"+historycount+".txt"]);
 		while (file.exists()==true) 
@@ -250,7 +260,7 @@ function writePolicy()
 		}
 		file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);		//Create different file each time
 		//policy extraction
-		var trustedDomains = getTrustedDomain(domain);
+		/*
 		var j = 0;
 		for (j = 0; j < rawdata[0].length; j++)
 		{
@@ -281,7 +291,7 @@ function writePolicy()
 			{
 				if (trustedDomains[i]==raw) rawdata[2][j].who = "trusted";
 			}
-		}
+		}*/
 		//done policy extraction
 		// From here down: writing bytes to file. file is nsIFile, data is a string
 		var rawstring = "";
@@ -334,7 +344,7 @@ function writePolicy()
 		  // Data has been written to the file.
 		});
 	}
-}
+};
 
 //only register the eventhandler after page has been loaded, otherwise window.content is null.
 window.addEventListener("DOMContentLoaded",function(){window.content.addEventListener('beforeunload',writePolicy,false);},false);
