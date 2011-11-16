@@ -252,11 +252,11 @@ function writePolicy()
 		var i;
 		var rawdata = win._record.getRecord();
 		var historycount = 1;
-		var file = FileUtils.getFile("ProfD", ["DOMAR","policy",domain,urlfile,"policy"+historycount+".txt"]);
+		var file = FileUtils.getFile("ProfD", ["DOMAR","records",domain,urlfile,"record"+historycount+".txt"]);
 		while (file.exists()==true) 
 		{
 			historycount++;
-			file = FileUtils.getFile("ProfD", ["DOMAR","policy",domain,urlfile,"policy"+historycount+".txt"]);
+			file = FileUtils.getFile("ProfD", ["DOMAR","records",domain,urlfile,"record"+historycount+".txt"]);
 		}
 		file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);		//Create different file each time
 		//policy extraction
