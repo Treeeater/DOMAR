@@ -326,7 +326,7 @@ if (oldGetTagNameNS)
 		var callerInfo = getCallerInfo("getElementsByTagNameNS");	
 		if (callerInfo!=null){
 		seqID++;
-		record[DOMRecord].push({what:"getElementsByTagNameNS: "+arguments[0]+", results: " + thispath,when:seqID,who:callerInfo});			//This is going to return all accessed elements.
+		record[DOMRecord].push({what:"getElementsByTagNameNS: NS: "+arguments[0]+" Tag: "+arguments[1]+", results: " + thispath,when:seqID,who:callerInfo});			//This is going to return all accessed elements.
 		}
 	}
 	return oldGetTagNameNS.apply(document,arguments);
@@ -698,7 +698,7 @@ for (i=0; i<allElementsType.length; i++)
 		if ((thispath!="")&&(callerInfo!=null))
 		{
 			seqID++;
-			record[DOMRecord].push({what:"someElement: "+thispath+" called .getElementsByTagNameNS: "+arguments[0]+", results: "+getXPathCollection(func.apply(this,arguments)),when:seqID,who:callerInfo});			//This is going to return all accessed elements.
+			record[DOMRecord].push({what:"someElement: "+thispath+" called .getElementsByTagNameNS: NS:"+arguments[0]+" Tag:"+ arguments[1]+", results: "+getXPathCollection(func.apply(this,arguments)),when:seqID,who:callerInfo});			//This is going to return all accessed elements.
 		}
 		return func.apply(this,arguments);
 	};

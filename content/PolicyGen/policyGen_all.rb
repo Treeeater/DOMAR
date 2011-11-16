@@ -1,3 +1,5 @@
+require 'fileutils'
+
 PRootDir="../../../../DOMAR/policy/"	#root directory for generated policy
 RRootDir="../../../../DOMAR/records/"	#root directory for collected records.
 
@@ -7,9 +9,10 @@ def getTLD(url)
 	return tld
 end
 
-def pGen(hostD,pFolder)
+def pGen(hostD)
+	pFolder = PRootDir+hostD
 	accessArray = Hash.new
-	hostDir = RRootDir+hostD;
+	hostDir = RRootDir+hostD
 	files = Dir.glob(hostDir+"/*")
 	files.each{|file|
 		f = File.open(file, 'r')
@@ -29,15 +32,14 @@ def pGen(hostD,pFolder)
 				accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
 			end
 		end
+		f.close()
 	}
 	accessArray.each_key{|tld|
-		if (!File.directory? pFolder+tld) 
-			Dir.mkdir(pFolder+tld)
-		end
-		f = File.open(pFolder+tld+"/"+"policy.txt","w")
+		f = File.open(pFolder+tld+".txt","w")
 		accessArray[tld].each_key{|xpath|
-			f.puts xpath+":"+accessArray[tld][xpath].to_s
+			f.puts (xpath+"|:=>"+accessArray[tld][xpath].to_s)
 		}
+		f.close()
 	}
 end
 
@@ -57,7 +59,7 @@ else
 	#puts "Either give me no arguments or give me two, the first one is host domain and the second one is third party domain. Other arguments are not accepted."
 	#Process.exit
 	hostDomain = "yelpcom"
-	hostURL = "httpwwwyelpcomuserdetailslists"
+	hostURL = "httpwwwyelpcomuserdetails/"
 end
 if (!File.directory? PRootDir) 
 	Dir.mkdir(PRootDir)
@@ -65,8 +67,7 @@ end
 if (!File.directory? PRootDir+hostDomain)
 	Dir.mkdir(PRootDir+hostDomain)
 end
-if (!File.directory? PRootDir+hostDomain+"/"+hostURL) 
+if (!File.directory? PRootDir+hostDomain+"/"+hostURL)
 	Dir.mkdir(PRootDir+hostDomain+"/"+hostURL)
 end
-policyFolder = PRootDir+hostDomain+"/"+hostURL+"/"
-pGen(hostDomain+"/"+hostURL,policyFolder)
+pGen(hostDomain+"/"+hostURL)
