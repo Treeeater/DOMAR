@@ -81,17 +81,13 @@ requestFile = ""
 if ARGV.length==2
 	#arguments provided
 	hostDomain = ARGV[0]
-	requestFile=ARGV[1]
+	requestFile = ARGV[1]
 elsif ARGV.length == 0
 	puts "where is the intended host domain/URL policy stored? e.g. yelpcom/httpwwwyelpcomuserdetails"
-	hostDomain = gets.chomp
+	#hostDomain = gets.chomp
+	hostDomain = "yelpcom/httpwwwyelpcomuserdetails"
 	puts "What is the intended request record file to check? e.g. record1.txt"
 	requestFile = gets.chomp
-else
-	#puts "Either give me no arguments or give me two, the first one is host domain and the second one is third party domain. Other arguments are not accepted."
-	#Process.exit
-	hostDomain = "yelpcom/httpwwwyelpcomuserdetails"
-	requestFile = "record5.txt"
 end
 requestFile=hostDomain+"/"+requestFile
 output = "diff.txt"
