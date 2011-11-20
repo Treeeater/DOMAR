@@ -35,7 +35,7 @@ function getTrustedDomain(domain)
 {
 	Components.utils.import("resource://gre/modules/NetUtil.jsm");
 	Components.utils.import("resource://gre/modules/FileUtils.jsm");
-	var file = FileUtils.getFile("ProfD", ["DOMAR","site_preferences",domain+".txt"]);
+	var file = FileUtils.getFile("Desk", ["DOMAR","site_preferences",domain+".txt"]);
 	if (file.exists()==false) {console.log("No trusted domains registered for this site!"); return []};
 	// open an input stream from file
 	var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
@@ -166,7 +166,7 @@ hRO = {
             }
             if (aTopic == "http-on-examine-response") {
                 request.QueryInterface(Ci.nsIHttpChannel);
-				var file = FileUtils.getFile("ProfD", ["DOMAR","DOMAR_preference.txt"]);
+				var file = FileUtils.getFile("Desk", ["DOMAR","DOMAR_preference.txt"]);
 				if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
 				// open an input stream from file
 				var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
@@ -254,11 +254,11 @@ function writePolicy()
 		var i;
 		var rawdata = win._record.getRecord();
 		var historycount = 1;
-		var file = FileUtils.getFile("ProfD", ["DOMAR","records",domain,urlfile,"record"+historycount+".txt"]);
+		var file = FileUtils.getFile("Desk", ["DOMAR","records",domain,urlfile,"record"+historycount+".txt"]);
 		while (file.exists()==true) 
 		{
 			historycount++;
-			file = FileUtils.getFile("ProfD", ["DOMAR","records",domain,urlfile,"record"+historycount+".txt"]);
+			file = FileUtils.getFile("Desk", ["DOMAR","records",domain,urlfile,"record"+historycount+".txt"]);
 		}
 		file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);		//Create different file each time
 		//policy extraction

@@ -13,7 +13,7 @@ function trustedSites() {
 		urlfile = urlfile.substr(0,63);						//restrict the file length
 		Components.utils.import("resource://gre/modules/NetUtil.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
-		var file = FileUtils.getFile("ProfD", ["DOMAR","site_preferences",urlfile+".txt"]);
+		var file = FileUtils.getFile("Desk", ["DOMAR","site_preferences",urlfile+".txt"]);
 		if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
 		// open an input stream from file
 		var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
@@ -54,7 +54,7 @@ function trustedSites() {
 	this.save = function() {
 		Components.utils.import("resource://gre/modules/NetUtil.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
-		var file = FileUtils.getFile("ProfD", ["DOMAR","site_preferences",urlfile+".txt"]);
+		var file = FileUtils.getFile("Desk", ["DOMAR","site_preferences",urlfile+".txt"]);
 		if (file.exists()==false) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);
 		var items = document.getElementsByTagName('listitem');
 		var i;
