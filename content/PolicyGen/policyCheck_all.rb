@@ -1,6 +1,6 @@
-PRootDir="C:/Users/Yuchen/Desktop/DOMAR/policy/"	#root directory for generated policy
-RRootDir="C:/Users/Yuchen/Desktop/DOMAR/records/"	#root directory for collected records.
-CRootDir="C:/Users/Yuchen/Desktop/DOMAR/check/"		#root directory for record - policy checking.
+PRootDir=ENV["Desktop"]+"DOMAR/policy/"	#root directory for generated policy
+RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
+CRootDir=ENV["Desktop"]+"DOMAR/check/"		#root directory for record - policy checking.
 
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')

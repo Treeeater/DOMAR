@@ -2,8 +2,8 @@ require 'fileutils'
 
 #PRootDir="../../../../DOMAR/policy/"	#root directory for generated policy
 #RRootDir="../../../../DOMAR/records/"	#root directory for collected records.
-PRootDir="C:/Users/Yuchen/Desktop/DOMAR/policy/"	#root directory for generated policy
-RRootDir="C:/Users/Yuchen/Desktop/DOMAR/records/"	#root directory for collected records.
+PRootDir=ENV["Desktop"]+"DOMAR/policy/"	#root directory for generated policy
+RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
 
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
