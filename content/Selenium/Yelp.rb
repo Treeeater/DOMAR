@@ -8,8 +8,8 @@ class Yelp < Test::Unit::TestCase
   def setup
     @verification_errors = []
     @selenium = Selenium::Client::Driver.new \
-      :host => "localhost",
-      :port => 4444,
+      :host => "chromium.cs.virginia.edu",
+      :port => 12345,
       :browser => "*chrome",
       :url => "http://www.yelp.com/",
       :timeout_in_second => 60
