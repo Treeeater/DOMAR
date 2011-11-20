@@ -77,50 +77,39 @@ end
 
 #main program
 hostDomain = ""
-requestFolder = ""
+requestFile = ""
 if ARGV.length==2
 	#arguments provided
 	hostDomain = ARGV[0]
-	requestFolder = ARGV[1]
+	requestFile = ARGV[1]
 elsif ARGV.length == 0
 	puts "where is the intended host domain/URL policy stored? e.g. yelpcom/httpwwwyelpcomuserdetails"
-	hostDomain = gets.chomp
-else
+	#hostDomain = gets.chomp
 	hostDomain = "yelpcom/httpwwwyelpcomuserdetails"
-	#puts "What is the intended request record folder to check? e.g. yelpcom/httpwwwyelpcomuserdetails"
+	puts "What is the intended request record file to check? e.g. record1.txt"
+	requestFile = gets.chomp
 end
-
-requestFolder = hostDomain
+requestFile=hostDomain+"/"+requestFile
+output = "diff.txt"
 policyFolder = PRootDir+hostDomain+"/"
-requestFolder = RRootDir+requestFolder+"/"
-if ((!File.directory? policyFolder)||(!File.directory? requestFolder))
-	puts("No policy/requests found!")
+requestFile = RRootDir+requestFile
+if ((!File.directory? policyFolder)||(!File.exists? requestFile))
+	puts("No policy found!")
 	Process.exit
 end
 
 policyArray = pLoad(policyFolder)
-requestFiles = Dir.glob(requestFolder+"*")
-requestFiles.each{|file|
-	different = false
-	outputFileName = file+"diff"
-	accessArray = rLoad(file)
-	diffArray = compare(policyArray,accessArray)
-	outputFile = File.open(outputFileName, 'w')
-	diffArray.each_key{|tld|
-		outputFile.puts("-----"+tld+"------")
-		if (diffArray[tld].length==0)
-			outputFile.puts("------All accesses are legal!------")
-		else
-			different = true
-			diffArray[tld].each_key{|what|
-				outputFile.puts(what.to_s+"|:=>"+diffArray[tld][what].to_s)
-			}
-		end
-	}
-	outputFile.close()
-	if (different == false)
-		#If there is no policy violation we are going to delete the output.
-		File.delete(outputFileName)
+accessArray = rLoad(requestFile)
+diffArray = compare(policyArray,accessArray)
+outputFile = File.open(output, 'w')
+diffArray.each_key{|tld|
+	outputFile.puts("-----"+tld+"------")
+	if (diffArray[tld].length==0)
+		outputFile.puts("------All accesses are legal!------")
+	else
+		diffArray[tld].each_key{|what|
+			outputFile.puts(what.to_s+"|:=>"+diffArray[tld][what].to_s)
+		}
 	end
 }
-	
+outputFile.close()

@@ -9,7 +9,9 @@
     <menuitem id="main" label="&DOMAccessRecorder;" 
               oncommand="DOMAccessRecorder.onMenuItemCommand(event);"/>
   </menupopup>
+
   <statusbar id="status-bar">
   <statusbarpanel class="statusbarpanel-iconic" context="Menu" onclick="DOMAccessRecorder.onMenuItemCommand(event);" tooltip="DOMAccessRecorder" id="DOMAR-panel"  />
+  <statusbarpanel id = "enabled" label="Enabled" onload = "mainControl.loadP()" onclick = "mainControl.toggleP()"/>
   </statusbar> 
 </overlay>

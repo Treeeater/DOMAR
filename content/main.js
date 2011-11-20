@@ -53,6 +53,9 @@ function getTrustedDomain(domain)
 }
 function modify(response,trustedDomains)
 {
+	if (!mainControl.getStatus()) {
+		return response;
+	}
 	//find the first head or HEAD or body or BODY
 	var insertIndex = response.toLowerCase().indexOf('<head>');
 	if (insertIndex == -1) insertIndex = response.toLowerCase().indexOf('<body>');
@@ -222,17 +225,16 @@ hRO = {
     },
 };
 
-
 var observerService = Cc["@mozilla.org/observer-service;1"]
     .getService(Ci.nsIObserverService);
 
 observerService.addObserver(hRO,
     "http-on-examine-response", false);
 
-
 //register an eventhandler at window.onunload to write ___record() to disk.
 function writePolicy()
 {
+	if (!mainControl.getStatus()) {return;}
 	var win=window.content.document.defaultView.wrappedJSObject;
 	if (win.___record==undefined) return;
 	var url = win.document.URL;
@@ -336,16 +338,16 @@ function writePolicy()
 
 		// The last argument (the callback) is optional.
 		NetUtil.asyncCopy(istream, ostream, function(status) {
+		  istream.close();
 		  if (!Components.isSuccessCode(status)) {
 			// Handle error!
+			alert("error writing policy to disk!");
 			return;
 		  }
-
 		  // Data has been written to the file.
 		});
 	}
 };
-
 //only register the eventhandler after page has been loaded, otherwise window.content is null.
 window.addEventListener("DOMContentLoaded",function(){window.content.addEventListener('beforeunload',writePolicy,false);},false);
 })();
