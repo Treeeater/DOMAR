@@ -211,8 +211,14 @@ var getCallerInfo = function() {
 			curLine = curLine.replace(/[\s\S]*@(http.*\n)$/,"$1");				//get rid of the whole arguments
 			curDomain = curLine.replace(/.*?\/\/(.*?)\/.*/,"$1");				//http://www.google.com/a.html, w/ third slash.
 			if (curDomain==curLine) curDomain = curLine.replace(/.*?\/\/(.*)/,"$1");	//http://www.google.com, no third slash.
-			if (curDomain==curLine) alert('error');								//WTF? is this a URL?
-			curTopDomain = curDomain.replace(/.*\.(.*\..*)/,"$1");				//get the top domain
+			if (curDomain==curLine) 
+			{
+				curTopDomain="javascript pseudo protocol";								//maybe this is a javascript pseudo protocol
+			}
+			else
+			{
+				curTopDomain = curDomain.replace(/.*\.(.*\..*)/,"$1");				//get the top domain
+			}
 			if (curTopDomain[curTopDomain.length-1]=="\n") curTopDomain=curTopDomain.substr(0,curTopDomain.length-1);	//chomp
 			var i = 0;
 			var trusted = false;
@@ -240,7 +246,7 @@ var getCallerInfo = function() {
 			if ((!trusted)&&(!recorded)) 
 			{
 				untrustedStack += curLine;
-				recordedDomains.push(curTopDomain);
+				if (curTopDomain!="javascript pseudo protocol") recordedDomains.push(curTopDomain);		//Now we ignore pseudo-protocol
 			}
 		}
 		if (untrustedStack == "") return null;
