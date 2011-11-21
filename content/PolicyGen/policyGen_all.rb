@@ -4,6 +4,8 @@ require 'fileutils'
 #RRootDir="../../../../DOMAR/records/"	#root directory for collected records.
 PRootDir=ENV["Desktop"]+"DOMAR/policy/"	#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
+HostDomain = "yelpcom"
+HostURL = "httpwwwyelpcomcharlottesvilleva/"
 
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
@@ -60,8 +62,8 @@ elsif ARGV.length == 0
 else
 	#puts "Either give me no arguments or give me two, the first one is host domain and the second one is third party domain. Other arguments are not accepted."
 	#Process.exit
-	hostDomain = "yelpcom"
-	hostURL = "httpwwwyelpcomuserdetails/"
+	hostDomain = HostDomain
+	hostURL = HostURL
 end
 if (!File.directory? PRootDir) 
 	Dir.mkdir(PRootDir)

@@ -1,7 +1,7 @@
 PRootDir=ENV["Desktop"]+"DOMAR/policy/"	#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
-CRootDir=ENV["Desktop"]+"DOMAR/check/"		#root directory for record - policy checking.
-
+CRootDir=ENV["Desktop"]+"DOMAR/diff/"		#root directory for record - policy checking.
+HostDomain = "yelpcom/httpwwwyelpcomcharlottesvilleva"
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
 	tld = domain.gsub(/.*\.(.*\..*)/,'\1')
@@ -86,7 +86,7 @@ elsif ARGV.length == 0
 	puts "where is the intended host domain/URL policy stored? e.g. yelpcom/httpwwwyelpcomuserdetails"
 	hostDomain = gets.chomp
 else
-	hostDomain = "yelpcom/httpwwwyelpcomuserdetails"
+	hostDomain = HostDomain
 	#puts "What is the intended request record folder to check? e.g. yelpcom/httpwwwyelpcomuserdetails"
 end
 
@@ -98,11 +98,15 @@ if ((!File.directory? policyFolder)||(!File.directory? requestFolder))
 	Process.exit
 end
 
+if (!File.directory? CRootDir)
+	Dir.mkdir(CRootDir)
+end
+
 policyArray = pLoad(policyFolder)
 requestFiles = Dir.glob(requestFolder+"*")
 requestFiles.each{|file|
 	different = false
-	outputFileName = file+"diff"
+	outputFileName = CRootDir+"diff"+file.to_s.chomp.gsub(/.*record(.*\.txt)$/,'\1')
 	accessArray = rLoad(file)
 	diffArray = compare(policyArray,accessArray)
 	outputFile = File.open(outputFileName, 'w')
