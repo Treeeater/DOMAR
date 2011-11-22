@@ -25,6 +25,7 @@ class Newegg < Test::Unit::TestCase
   def test_newegg_xml
 	@selenium.execution_delay = "4000"
 	@selenium.open "/"
+	sleep(8)
 	count = 0
 	while (count<50)
 		count = count+1

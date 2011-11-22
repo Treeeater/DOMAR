@@ -1,7 +1,7 @@
 PRootDir=ENV["Desktop"]+"DOMAR/policy/"	#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
 CRootDir=ENV["Desktop"]+"DOMAR/diff/"		#root directory for record - policy checking.
-HostDomain = "yelpcom/httpwwwyelpcomuserdetails"
+HostDomain = "neweggcom/httpwwwneweggcomProductProductaspx"
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
 	tld = domain.gsub(/.*\.(.*\..*)/,'\1')

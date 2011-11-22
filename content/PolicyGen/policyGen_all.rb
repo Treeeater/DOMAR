@@ -4,8 +4,8 @@ require 'fileutils'
 #RRootDir="../../../../DOMAR/records/"	#root directory for collected records.
 PRootDir=ENV["Desktop"]+"DOMAR/policy/"	#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
-HostDomain = "yelpcom"
-HostURL = "httpwwwyelpcomuserdetails/"
+HostDomain = "neweggcom"
+HostURL = "httpwwwneweggcomProductProductaspx/"
 
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
