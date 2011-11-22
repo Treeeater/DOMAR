@@ -211,7 +211,7 @@ var getCallerInfo = function() {
 			curLine = curLine.replace(/[\s\S]*@(http.*\n)$/,"$1");				//get rid of the whole arguments
 			curDomain = curLine.replace(/.*?\/\/(.*?)\/.*/,"$1");				//http://www.google.com/a.html, w/ third slash.
 			if (curDomain==curLine) curDomain = curLine.replace(/.*?\/\/(.*)/,"$1");	//http://www.google.com, no third slash.
-			if (curDomain==curLine) 
+			if ((curDomain==curLine) || (curDomain.substr(0,12).toLowerCase()=="@javascript:"))
 			{
 				curTopDomain="javascript pseudo protocol";								//maybe this is a javascript pseudo protocol
 			}
