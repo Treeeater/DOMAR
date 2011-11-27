@@ -1,0 +1,33 @@
+<html>
+<head>
+<script src="FFReplace.js"></script>
+<!--<script src="jquery-1.4.js"></script>-->
+</head>
+<body id = 'bd'>
+<div href="#" class="comment" id="1">11111111</div>
+<div class="commentdetail" id = "2">2222222</div><br/>
+<div href="#" class="comment" id="3">3333333</div>
+<div class="commentdetail" id = "4">444444</div>
+</script>
+<script type="text/javascript">
+var a = window.open("asdf.html");
+var nd = a.HTMLDocument.prototype.getElementById;
+var ne = a.HTMLElement.prototype.__lookupGetter__("parentNode");
+var x = ne.apply(nd.apply(document,['1']));
+/*
+var a = document.createElement("iframe");
+a.src="about:blank";
+a.id="5";
+document.body.appendChild(a);
+var b = document.createElement("iframe");
+b.src="about:blank";
+b.id="6";
+document.body.appendChild(b);
+//var nd = a.contentWindow.HTMLDocument.prototype.getElementById;
+//var ne = a.contentWindow.HTMLElement.prototype.__lookupGetter__("parentNode");
+//var nd = frames[0].HTMLDocument.prototype.getElementById;
+//var ne = frames[0].HTMLElement.prototype.__lookupGetter__("parentNode");
+var x = ne.apply(nd.apply(document,['1']));*/
+</script>
+</body>
+</html>

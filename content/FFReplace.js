@@ -723,6 +723,26 @@ for (i=0; i<allElementsType.length; i++)
 	}
 	//allElementsType[i].prototype.__defineGetter__('attributes',function(){record.push(getXPathCollection(oldAttributes.apply(this)));return oldAttributes.apply(this);});		//attribute nodes are detached from the DOM tree. Currently we do not support mediation of this.
 }
+//prevent the old context to grab a new set of DOM APIs by calling window.open or from an iframe and grab API from that newly opened window
+var oldWindowOpen = window.open;
+var newWindowOpen = function(){var _a = oldWindowOpen.apply(window,arguments); _a.HTMLDocument.prototype.getElementById = newGetId; return _a;};
+window.open=newWindowOpen;
+//window.frames leak
+var oldFrames = Window.prototype.__lookupGetter__('frames');
+var newFrames = function(){
+	var _a = oldFrames.apply(window,arguments); 
+	var i = 0;
+	for (; i<_a.length; i++)
+	{
+		_a[i].HTMLDocument.prototype.getElementById = newGetId;
+	}
+	return _a;
+}
+Window.prototype.__defineGetter__('frames',newFrames);
+//iframe contentwindow leak
+var oldIContentWindow = HTMLIFrameElement.prototype.__lookupGetter__('contentWindow');
+var newIContentWindow = function(){var _a = oldIContentWindow.apply(this,arguments);  _a.HTMLDocument.prototype.getElementById = newGetId; return _a;};
+HTMLIFrameElement.prototype.__defineGetter__('contentWindow', newIContentWindow);
 //document.head.removeChild(oldGetTagName.call(document,'script')[0]);			//remove myself
 return (function(){this.getRecord = function(){return record;}; this.Push = function(a){trustedDomains.push(a)}; this.Get = function() {return trustedDomains}; return this;});
 }
