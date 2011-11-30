@@ -8,7 +8,7 @@ class Nytimes < Test::Unit::TestCase
   def setup
     @verification_errors = []
     @selenium = Selenium::Client::Driver.new \
-      :host => "chromium.cs.virginia.edu",
+	  :host => "chromium.cs.virginia.edu", #:host => "localhost", #
       :port => 12345,
       :browser => "*chrome",
       :url => "http://www.nytimes.com/",
@@ -28,10 +28,15 @@ class Nytimes < Test::Unit::TestCase
     @selenium.open "/"
 	puts "opened!"
 	sleep(8)
+	errcount = 0
 	while (count<200)
 		count = count+1
 		while (!@selenium.element? "link=Today's Paper")
 			puts "needs refresh!"
+			errcount += 1
+			if (errcount > 10) 
+				exit 2
+			end
 			@selenium.refresh
 			sleep(8)
 		end
@@ -39,6 +44,10 @@ class Nytimes < Test::Unit::TestCase
 		sleep(8)
 		while (!@selenium.element? "link=International")
 			puts "needs refresh!"
+			errcount += 1
+			if (errcount > 10) 
+				exit 2
+			end
 			@selenium.refresh
 			sleep(8)
 		end
@@ -46,6 +55,10 @@ class Nytimes < Test::Unit::TestCase
 		sleep(8)
 		while (!@selenium.element? "link=Most Popular")
 			puts "needs refresh!"
+			errcount += 1
+			if (errcount > 10) 
+				exit 2
+			end
 			@selenium.refresh
 			sleep(8)
 		end
@@ -53,20 +66,32 @@ class Nytimes < Test::Unit::TestCase
 		sleep(8)
 		while (!@selenium.element? "link=Technology")
 			puts "needs refresh!"
+			errcount += 1
+			if (errcount > 10) 
+				exit 2
+			end
 			@selenium.refresh
 			sleep(8)
 		end
 		@selenium.click "link=Technology"
 		sleep(8)
-		while (!@selenium.element? "//div[@class=\"ledeStory\"]/div[2]/h1/a")
+		while (!@selenium.element? "//div[@class=\"storyFollowsLede\"]/h3/a")
 			puts "needs refresh!"
+			errcount += 1
+			if (errcount > 10) 
+				exit 2
+			end
 			@selenium.refresh
 			sleep(8)
 		end
-		@selenium.click "//div[@class=\"ledeStory\"]/div[2]/h1/a"
+		@selenium.click "//div[@class=\"storyFollowsLede\"]/h3/a"
 		sleep(8)
 		while (!@selenium.element? "link=aaa123abc...")
 			puts "needs refresh!"
+			errcount += 1
+			if (errcount > 10) 
+				exit 2
+			end
 			@selenium.refresh
 			sleep(8)
 		end
@@ -75,6 +100,10 @@ class Nytimes < Test::Unit::TestCase
 		#To make sure this page loads first
 		while (!@selenium.element? "id=NYTLogo")
 			puts "needs refresh!"
+			errcount += 1
+			if (errcount > 10) 
+				exit 2
+			end
 			@selenium.refresh
 			sleep(8)
 		end
@@ -91,6 +120,10 @@ class Nytimes < Test::Unit::TestCase
 		#check if reentered request goes through
 		while (!@selenium.element? "//ul[@class=\"refer flush multiline\"]/li/a")
 			puts "needs refresh!"
+			errcount += 1
+			if (errcount > 10) 
+				exit 2
+			end
 			@selenium.refresh
 			sleep(8)
 		end
@@ -98,6 +131,10 @@ class Nytimes < Test::Unit::TestCase
 		sleep(8)
 		while (!@selenium.element? "id=NYTLogo")
 			puts "needs refresh!"
+			errcount += 1
+			if (errcount > 10) 
+				exit 2
+			end
 			@selenium.refresh
 			sleep(8)
 		end
@@ -113,11 +150,16 @@ class Nytimes < Test::Unit::TestCase
 		end
 		while (!@selenium.element? "id=NYTLogo")
 			puts "needs refresh!"
+			errcount += 1
+			if (errcount > 10)
+				exit 2
+			end
 			@selenium.refresh
 			sleep(8)
 		end
 		@selenium.click "id=NYTLogo"
 		sleep(8)
+		errcount = 0
 		puts count
 	end
   end

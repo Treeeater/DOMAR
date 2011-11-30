@@ -4,8 +4,9 @@ require 'fileutils'
 #RRootDir="../../../../DOMAR/records/"	#root directory for collected records.
 PRootDir=ENV["Desktop"]+"DOMAR/policy/"	#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
-HostDomain = "neweggcom"
-HostURL = "httpwwwneweggcomProductProductaspx/"
+HostDomain = "nytimescom"
+HostURL = "httpwwwnytimescom/"
+Max = 80
 
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
@@ -13,12 +14,17 @@ def getTLD(url)
 	return tld
 end
 
-def pGen(hostD)
+def pGen(hostD,max)
 	pFolder = PRootDir+hostD
 	accessArray = Hash.new
 	hostDir = RRootDir+hostD
 	files = Dir.glob(hostDir+"/*")
+	i = 0
 	files.each{|file|
+	    i+=1
+		if (i>max) 
+			break
+		end
 		f = File.open(file, 'r')
 		while (line = f.gets)
 			line=line.chomp
@@ -50,6 +56,7 @@ end
 #main program
 hostDomain = ""
 hostURL = ""
+max = Max
 if ARGV.length==2
 	#arguments provided
 	hostDomain = ARGV[0]
@@ -74,4 +81,4 @@ end
 if (!File.directory? PRootDir+hostDomain+"/"+hostURL)
 	Dir.mkdir(PRootDir+hostDomain+"/"+hostURL)
 end
-pGen(hostDomain+"/"+hostURL)
+pGen(hostDomain+"/"+hostURL, max)
