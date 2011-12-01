@@ -1,6 +1,8 @@
 (function(){
 Components.utils.import("resource://gre/modules/NetUtil.jsm");
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
+var startTime;
+var endTime;
 function TracingListener() {
     //this.receivedData = [];
 }
@@ -53,9 +55,6 @@ function getTrustedDomain(domain)
 }
 function modify(response,trustedDomains)
 {
-	if (!mainControl.getStatus()) {
-		return response;
-	}
 	//find the first head or HEAD or body or BODY
 	var insertIndex = response.toLowerCase().indexOf('<head>');
 	if (insertIndex == -1) insertIndex = response.toLowerCase().indexOf('<body>');
@@ -63,6 +62,10 @@ function modify(response,trustedDomains)
 	if (if_already_modified(response)) return response;
 	if (insertIndex > 0)
 	{
+		startTime = new Date().getTime();
+		if (!mainControl.getStatus()) {
+			return response;
+		}
 		var headpos = insertIndex+6;
 		var firstportion = response.substr(0,headpos);
 		var lastportion = response.substr(headpos,response.length);
@@ -348,6 +351,12 @@ function writePolicy()
 		});
 	}
 };
+function recordTime(){
+	var win=window.content.document.defaultView.wrappedJSObject;
+	//if (win.___record==undefined) return;			//uncomment this line if we want to record instrumented performance only.
+	endTime=new Date().getTime();
+	//alert(endTime-startTime);						//uncomment this line if we want to alert the time in real-time.
+}
 //only register the eventhandler after page has been loaded, otherwise window.content is null.
-window.addEventListener("DOMContentLoaded",function(){window.content.addEventListener('beforeunload',writePolicy,false);},false);
+window.addEventListener("DOMContentLoaded",function(){window.content.addEventListener('beforeunload',writePolicy,false);window.content.addEventListener('load',recordTime,false);},false);
 })();
