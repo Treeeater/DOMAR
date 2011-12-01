@@ -1,12 +1,10 @@
 require 'fileutils'
 
-#PRootDir="../../../../DOMAR/policy/"	#root directory for generated policy
-#RRootDir="../../../../DOMAR/records/"	#root directory for collected records.
-PRootDir=ENV["Desktop"]+"DOMAR/policy/"	#root directory for generated policy
+PRootDir=ENV["Desktop"]+"DOMAR/policy/"		#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
-HostDomain = "nytimescom"
-HostURL = "httpwwwnytimescom/"
-Max = 80
+HostDomain = "yelpcom"
+HostURL = "httpwwwyelpcomcharlottesvilleva"
+P_inst = 0.05								#instrumentation frequency
 
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
@@ -14,18 +12,29 @@ def getTLD(url)
 	return tld
 end
 
-def pGen(hostD,max)
-	pFolder = PRootDir+hostD
+def extractRecordsFromFile(hostD)
+# This function extracts data from files to an associative array randomly, given the P_inst.
 	accessArray = Hash.new
-	hostDir = RRootDir+hostD
-	files = Dir.glob(hostDir+"/*")
-	i = 0
-	files.each{|file|
-	    i+=1
-		if (i>max) 
-			break
+	pFolder = PRootDir+hostD
+	rFolder = RRootDir+hostD
+	#files = Dir.glob(hostDir+"/*")
+	numberOfRecords = Dir.entries(rFolder).length-2			#Total number of records
+	numberOfTrainingSamples = (numberOfRecords * P_inst).round		#Total training cases
+	indexOfTrainingSamples = Array.new
+	#randomize training data
+	while ( indexOfTrainingSamples.length < numberOfTrainingSamples )
+		temp = rand(numberOfRecords)
+		if (!indexOfTrainingSamples.include?(temp)) 
+			indexOfTrainingSamples.push(temp)
 		end
-		f = File.open(file, 'r')
+	end
+	
+	#files.each{|file|
+	i = 0
+	while (i < numberOfTrainingSamples)
+		fileName = rFolder+"record"+indexOfTrainingSamples[i].to_s+".txt"
+		i += 1
+		f = File.open(fileName, 'r')
 		while (line = f.gets)
 			line=line.chomp
 			_whatloc = line.index(" What = ")
@@ -43,7 +52,13 @@ def pGen(hostD,max)
 			end
 		end
 		f.close()
-	}
+	end
+	return accessArray
+	#}
+end
+
+def buildStrictModel(accessArray,hostD)
+	pFolder = PRootDir+hostD
 	accessArray.each_key{|tld|
 		f = File.open(pFolder+tld+".txt","w")
 		accessArray[tld].each_key{|xpath|
@@ -52,11 +67,9 @@ def pGen(hostD,max)
 		f.close()
 	}
 end
-
 #main program
 hostDomain = ""
 hostURL = ""
-max = Max
 if ARGV.length==2
 	#arguments provided
 	hostDomain = ARGV[0]
@@ -78,7 +91,9 @@ end
 if (!File.directory? PRootDir+hostDomain)
 	Dir.mkdir(PRootDir+hostDomain)
 end
-if (!File.directory? PRootDir+hostDomain+"/"+hostURL)
-	Dir.mkdir(PRootDir+hostDomain+"/"+hostURL)
+workingDir = hostDomain+"/"+hostURL+"/"
+if (!File.directory? PRootDir+workingDir)
+	Dir.mkdir(PRootDir+workingDir)
 end
-pGen(hostDomain+"/"+hostURL, max)
+accessArray = extractRecordsFromFile(workingDir)
+buildStrictModel(accessArray,workingDir)
