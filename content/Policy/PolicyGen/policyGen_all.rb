@@ -1,7 +1,10 @@
 require 'fileutils'
+require_relative 'naive'
+require_relative 'model'
 
 PRootDir=ENV["Desktop"]+"DOMAR/policy/"		#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
+CRootDir=ENV["Desktop"]+"DOMAR/diff/"		#root directory for record - policy checking.
 HostDomain = "yelpcom"
 HostURL = "httpwwwyelpcomcharlottesvilleva"
 P_inst = 0.05								#instrumentation frequency
@@ -29,7 +32,6 @@ def extractRecordsFromFile(hostD)
 		end
 	end
 	
-	#files.each{|file|
 	i = 0
 	while (i < numberOfTrainingSamples)
 		fileName = rFolder+"record"+indexOfTrainingSamples[i].to_s+".txt"
@@ -53,20 +55,10 @@ def extractRecordsFromFile(hostD)
 		end
 		f.close()
 	end
-	return accessArray
-	#}
+	temp = ExtractedRecords.new(accessArray, indexOfTrainingSamples)
+	return temp
 end
 
-def buildStrictModel(accessArray,hostD)
-	pFolder = PRootDir+hostD
-	accessArray.each_key{|tld|
-		f = File.open(pFolder+tld+".txt","w")
-		accessArray[tld].each_key{|xpath|
-			f.puts (xpath+"|:=>"+accessArray[tld][xpath].to_s)
-		}
-		f.close()
-	}
-end
 #main program
 hostDomain = ""
 hostURL = ""
@@ -95,5 +87,9 @@ workingDir = hostDomain+"/"+hostURL+"/"
 if (!File.directory? PRootDir+workingDir)
 	Dir.mkdir(PRootDir+workingDir)
 end
-accessArray = extractRecordsFromFile(workingDir)
-buildStrictModel(accessArray,workingDir)
+extractedRecords = extractRecordsFromFile(workingDir)
+strictModel = extractedRecords 	#strictest model is actually just extractedRecord
+exportStrictModel(extractedRecords,workingDir)
+strictModelTestResult = checkStrictModel(strictModel, workingDir)
+p strictModelTestResult.percentage
+exportDiffArray(strictModelTestResult, workingDir)
