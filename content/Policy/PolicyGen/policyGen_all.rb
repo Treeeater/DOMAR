@@ -1,13 +1,16 @@
 require 'fileutils'
-require_relative 'naive'
 require_relative 'model'
+require_relative 'utils'
+require_relative 'naive'
 
 PRootDir=ENV["Desktop"]+"DOMAR/policy/"		#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
 CRootDir=ENV["Desktop"]+"DOMAR/diff/"		#root directory for record - policy checking.
-HostDomain = "yelpcom"
-HostURL = "httpwwwyelpcomcharlottesvilleva"
-P_inst = 0.05								#instrumentation frequency
+HostDomain = "nytimescom"
+HostURL = "httpwwwnytimescom"
+P_inst = 0.04								#instrumentation frequency
+Thres = 0.1									#allowed maximum false positive
+Alldomain = true							#allow the model builder to first scan all records and record all files that contain a new domain. Those files will be automatically considered in training phase.
 
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
@@ -15,23 +18,54 @@ def getTLD(url)
 	return tld
 end
 
-def extractRecordsFromFile(hostD)
+def getNecessaryFile(hostD)
+	hostDir = RRootDir+hostD
+	files = Dir.glob(hostDir+"*")
+	existingDomains = Array.new
+	returnList = Array.new
+	files.each{|file|
+		f = File.open(file, 'r')
+		while (line = f.gets)
+			line=line.chomp
+			_wholoc = line.index(" Who = ")
+			if (_wholoc!=nil)
+				_who = line[_wholoc+1,line.length]
+				_tld = getTLD(_who)
+				fileNo = file.to_s.chomp.gsub(/.*record(\d*)\.txt$/,'\1')
+				if ((!existingDomains.include? _tld)&&(!returnList.include? fileNo))
+					returnList.push(fileNo)
+					existingDomains.push(_tld)
+				end
+			end
+		end
+	}
+	return returnList
+end
+
+def extractRecordsFromFile(hostD, necessaryFileList)
 # This function extracts data from files to an associative array randomly, given the P_inst.
 	accessArray = Hash.new
 	pFolder = PRootDir+hostD
 	rFolder = RRootDir+hostD
 	#files = Dir.glob(hostDir+"/*")
-	numberOfRecords = Dir.entries(rFolder).length-2			#Total number of records
+	numberOfRecords = Dir.entries(rFolder).length-2					#Total number of records
 	numberOfTrainingSamples = (numberOfRecords * P_inst).round		#Total training cases
-	indexOfTrainingSamples = Array.new
-	#randomize training data
+	if (numberOfTrainingSamples < necessaryFileList.length)
+		p "Warning: Given number of training samples aren't even enough to cover all domains, automatically setting sample rate to a minimum of "+(necessaryFileList.length/numberOfRecords.to_f).to_s
+		puts ""
+		numberOfTrainingSamples = necessaryFileList.length
+	end
+	p numberOfTrainingSamples
+	indexOfTrainingSamples = necessaryFileList
+	#randomize adding additional training data (necessary data should be already there)
 	while ( indexOfTrainingSamples.length < numberOfTrainingSamples )
 		temp = rand(numberOfRecords)
 		if (!indexOfTrainingSamples.include?(temp)) 
 			indexOfTrainingSamples.push(temp)
 		end
 	end
-	
+	p "Training sample indices are: " + indexOfTrainingSamples.to_s
+	puts ""
 	i = 0
 	while (i < numberOfTrainingSamples)
 		fileName = rFolder+"record"+indexOfTrainingSamples[i].to_s+".txt"
@@ -59,7 +93,7 @@ def extractRecordsFromFile(hostD)
 	return temp
 end
 
-#main program
+#main training program
 hostDomain = ""
 hostURL = ""
 if ARGV.length==2
@@ -87,9 +121,25 @@ workingDir = hostDomain+"/"+hostURL+"/"
 if (!File.directory? PRootDir+workingDir)
 	Dir.mkdir(PRootDir+workingDir)
 end
-extractedRecords = extractRecordsFromFile(workingDir)
-strictModel = extractedRecords 	#strictest model is actually just extractedRecord
-exportStrictModel(extractedRecords,workingDir)
-strictModelTestResult = checkStrictModel(strictModel, workingDir)
-p strictModelTestResult.percentage
-exportDiffArray(strictModelTestResult, workingDir)
+
+puts ""
+puts "Initialized directory configuration, starting to run model building..."
+puts ""
+#For now we make sure training data includes traces from all possible sources.
+necessaryFileList = Alldomain ? getNecessaryFile(workingDir) : Array.new
+
+#
+strictModelAvgResult = 0.0
+for i in (1..1)
+	extractedRecords = extractRecordsFromFile(workingDir, necessaryFileList)
+	strictModel = extractedRecords 	#strictest model is actually just extractedRecord
+	exportStrictModel(extractedRecords,workingDir)
+	strictModelTestResult = checkStrictModel(strictModel, workingDir)
+	strictModelAvgResult += strictModelTestResult.percentage
+	p strictModelTestResult.percentage
+	exportDiffArray(strictModelTestResult, workingDir)
+end
+strictModelAvgResult = strictModelAvgResult / 3.0
+if (strictModelAvgResult<Thres)
+	p "done! Strictest model suffice. Average result is "+strictModelAvgResult.to_s
+end

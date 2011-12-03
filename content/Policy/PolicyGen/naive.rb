@@ -1,5 +1,6 @@
 def exportStrictModel(extractedRecords, hostD)
 	pFolder = PRootDir+hostD
+	cleanDirectory(pFolder)
 	accessArray = extractedRecords.records
 	accessArray.each_key{|tld|
 		f = File.open(pFolder+tld+".txt","w")
@@ -8,30 +9,6 @@ def exportStrictModel(extractedRecords, hostD)
 		}
 		f.close()
 	}
-end
-
-def rLoad(requestRecordFile)
-	#load from recordings of a single request into accessArray
-	accessArray = Hash.new
-	f = File.open(requestRecordFile, 'r')
-	while (line = f.gets)
-		line=line.chomp
-		_whatloc = line.index(" What = ")
-		_wholoc = line.index(" Who = ")
-		if ((_whatloc!=nil)&&(_wholoc!=nil))
-			_when = line[0,_whatloc]
-			_what = line[_whatloc+1, _wholoc-_whatloc]
-			_who = line[_wholoc+1,line.length]
-			_tld = getTLD(_who)
-			if (accessArray[_tld]==nil)
-				#2-level array
-				accessArray[_tld] = Hash.new
-			end
-			accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
-		end
-	end
-	f.close()
-	return accessArray
 end
 
 def compareStrictModel(pArray, aArray)
@@ -53,7 +30,7 @@ def compareStrictModel(pArray, aArray)
 				if (pArray[tld][what]==nil)
 					#This access has never happened before
 					#This is illegal, record
-					diff = false
+					diff = true
 					diffArray[tld][what]=aArray[tld][what]
 				end
 			}
@@ -75,34 +52,6 @@ def isTrainingData?(file,strictModel,rFolder)
 		i+=1
 	end
 	return false
-end
-
-def cleanDirectory(param)
-	#cleans everything in param directory! Use extreme caution!
-	Dir.foreach(param) do |f|
-		if f == '.' or f == '..' then next 
-		elsif File.directory?(param+f) then FileUtils.rm_rf(param+f)      
-		else FileUtils.rm(param+f)
-		end
-	end 
-end
-
-def exportDiffArray(diffRecords, hostD)
-	#store diffrecords into hard drive (CRootDir).
-	cleanDirectory(CRootDir)
-	diffRecords.records.each_key{|fileName|
-		outputFileName = CRootDir+"diff"+fileName+".txt"
-		outputFile = File.open(outputFileName, 'w')
-		diffRecords.records[fileName].each_key{|tld|
-			if (diffRecords.records[fileName][tld].length>0)
-				outputFile.puts("-----"+tld+"------")
-				diffRecords.records[fileName][tld].each_key{|what|
-					outputFile.puts(what.to_s+"|:=>"+diffRecords.records[fileName][tld][what].to_s)
-				}
-			end
-		}
-		outputFile.close()
-	}
 end
 
 def checkStrictModel(strictModel, hostD)
