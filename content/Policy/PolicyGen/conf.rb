@@ -1,0 +1,2 @@
+HostDomain = "yelpcom"
+HostURL = "httpwwwyelpcomcharlottesvilleva"

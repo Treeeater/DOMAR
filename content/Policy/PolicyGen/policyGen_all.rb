@@ -1,4 +1,5 @@
 require 'fileutils'
+require_relative 'conf'
 require_relative 'model'
 require_relative 'utils'
 require_relative 'naive'
@@ -6,11 +7,10 @@ require_relative 'naive'
 PRootDir=ENV["Desktop"]+"DOMAR/policy/"		#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
 CRootDir=ENV["Desktop"]+"DOMAR/diff/"		#root directory for record - policy checking.
-HostDomain = "nytimescom"
-HostURL = "httpwwwnytimescom"
-P_inst = 0.04								#instrumentation frequency
+P_inst = 0.01								#instrumentation frequency
 Thres = 0.1									#allowed maximum false positive
-Alldomain = true							#allow the model builder to first scan all records and record all files that contain a new domain. Those files will be automatically considered in training phase.
+Alldomain = true							#allow the model builder to first scan all records and record all files that contain a previously unrecorded domain. Those files will be automatically considered in training phase.
+MinRep = 2									#Only effective when Alldomain is set to true. Instead of having one representative for each domain, a minimum number of representatives are required for each domain.
 
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
@@ -21,9 +21,10 @@ end
 def getNecessaryFile(hostD)
 	hostDir = RRootDir+hostD
 	files = Dir.glob(hostDir+"*")
-	existingDomains = Array.new
+	existingDomains = Hash.new
 	returnList = Array.new
 	files.each{|file|
+		recordedTLD = Array.new
 		f = File.open(file, 'r')
 		while (line = f.gets)
 			line=line.chomp
@@ -32,9 +33,12 @@ def getNecessaryFile(hostD)
 				_who = line[_wholoc+1,line.length]
 				_tld = getTLD(_who)
 				fileNo = file.to_s.chomp.gsub(/.*record(\d*)\.txt$/,'\1')
-				if ((!existingDomains.include? _tld)&&(!returnList.include? fileNo))
-					returnList.push(fileNo)
-					existingDomains.push(_tld)
+				if ((!recordedTLD.include?(_tld))&&((!existingDomains.keys.include? _tld) || (existingDomains[_tld]<MinRep)))
+					if (!returnList.include? fileNo)
+						returnList.push(fileNo)
+					end
+					existingDomains[_tld] = (existingDomains[_tld] == nil) ? 1 : existingDomains[_tld] + 1
+					recordedTLD.push(_tld)
 				end
 			end
 		end
@@ -42,7 +46,7 @@ def getNecessaryFile(hostD)
 	return returnList
 end
 
-def extractRecordsFromFile(hostD, necessaryFileList)
+def extractRecordsFromFile(hostD, necFileList)
 # This function extracts data from files to an associative array randomly, given the P_inst.
 	accessArray = Hash.new
 	pFolder = PRootDir+hostD
@@ -50,13 +54,13 @@ def extractRecordsFromFile(hostD, necessaryFileList)
 	#files = Dir.glob(hostDir+"/*")
 	numberOfRecords = Dir.entries(rFolder).length-2					#Total number of records
 	numberOfTrainingSamples = (numberOfRecords * P_inst).round		#Total training cases
-	if (numberOfTrainingSamples < necessaryFileList.length)
-		p "Warning: Given number of training samples aren't even enough to cover all domains, automatically setting sample rate to a minimum of "+(necessaryFileList.length/numberOfRecords.to_f).to_s
+	if (numberOfTrainingSamples < necFileList.length)
+		p "Warning: Given number of training samples aren't even enough to cover all domains, automatically setting sample rate to a minimum of "+(necFileList.length/numberOfRecords.to_f).to_s
 		puts ""
-		numberOfTrainingSamples = necessaryFileList.length
+		numberOfTrainingSamples = necFileList.length
 	end
 	p numberOfTrainingSamples
-	indexOfTrainingSamples = necessaryFileList
+	indexOfTrainingSamples = Array.new(necFileList)
 	#randomize adding additional training data (necessary data should be already there)
 	while ( indexOfTrainingSamples.length < numberOfTrainingSamples )
 		temp = rand(numberOfRecords)
@@ -130,8 +134,9 @@ necessaryFileList = Alldomain ? getNecessaryFile(workingDir) : Array.new
 
 #
 strictModelAvgResult = 0.0
-for i in (1..1)
-	extractedRecords = extractRecordsFromFile(workingDir, necessaryFileList)
+for i in (1..3)
+	necFileList = Alldomain ? necessaryFileList : Array.new
+	extractedRecords = extractRecordsFromFile(workingDir, necFileList)
 	strictModel = extractedRecords 	#strictest model is actually just extractedRecord
 	exportStrictModel(extractedRecords,workingDir)
 	strictModelTestResult = checkStrictModel(strictModel, workingDir)
@@ -142,4 +147,6 @@ end
 strictModelAvgResult = strictModelAvgResult / 3.0
 if (strictModelAvgResult<Thres)
 	p "done! Strictest model suffice. Average result is "+strictModelAvgResult.to_s
+else
+	p "Strictest model gives bad result, average is "+strictModelAvgResult.to_s
 end
