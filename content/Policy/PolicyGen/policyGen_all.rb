@@ -7,10 +7,6 @@ require_relative 'naive'
 PRootDir=ENV["Desktop"]+"DOMAR/policy/"		#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
 CRootDir=ENV["Desktop"]+"DOMAR/diff/"		#root directory for record - policy checking.
-P_inst = 0.01								#instrumentation frequency
-Thres = 0.1									#allowed maximum false positive
-Alldomain = true							#allow the model builder to first scan all records and record all files that contain a previously unrecorded domain. Those files will be automatically considered in training phase.
-MinRep = 2									#Only effective when Alldomain is set to true. Instead of having one representative for each domain, a minimum number of representatives are required for each domain.
 
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
@@ -32,7 +28,7 @@ def getNecessaryFile(hostD)
 			if (_wholoc!=nil)
 				_who = line[_wholoc+1,line.length]
 				_tld = getTLD(_who)
-				fileNo = file.to_s.chomp.gsub(/.*record(\d*)\.txt$/,'\1')
+				fileNo = (file.to_s.chomp.gsub(/.*record(\d*)\.txt$/,'\1')).to_i
 				if ((!recordedTLD.include?(_tld))&&((!existingDomains.keys.include? _tld) || (existingDomains[_tld]<MinRep)))
 					if (!returnList.include? fileNo)
 						returnList.push(fileNo)

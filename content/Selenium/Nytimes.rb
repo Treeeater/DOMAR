@@ -86,7 +86,7 @@ class Nytimes < Test::Unit::TestCase
 		end
 		@selenium.click "//div[@class=\"storyFollowsLede\"]/h3/a"
 		sleep(8)
-		while (!@selenium.element? "link=aaa123abc...")
+		while (!@selenium.element? "link=aaa123abc@gmail.com")
 			puts "needs refresh!"
 			errcount += 1
 			if (errcount > 10) 
@@ -95,7 +95,7 @@ class Nytimes < Test::Unit::TestCase
 			@selenium.refresh
 			sleep(8)
 		end
-		@selenium.click "link=aaa123abc..."
+		@selenium.click "link=aaa123abc@gmail.com"
 		sleep(8)
 		#To make sure this page loads first
 		while (!@selenium.element? "id=NYTLogo")
@@ -107,6 +107,7 @@ class Nytimes < Test::Unit::TestCase
 			@selenium.refresh
 			sleep(8)
 		end
+=begin
 		#To find if the cookie is good, otherwise reenter information needed.
 		if (@selenium.element? "id=reauthContinueButton")
 			@selenium.type("id=reauthPassword","123456")
@@ -148,6 +149,7 @@ class Nytimes < Test::Unit::TestCase
 			@selenium.click("//div[@class=\"normalizeBlock\"]/input[@type=\"submit\"]")
 			sleep(8)
 		end
+
 		while (!@selenium.element? "id=NYTLogo")
 			puts "needs refresh!"
 			errcount += 1
@@ -157,6 +159,7 @@ class Nytimes < Test::Unit::TestCase
 			@selenium.refresh
 			sleep(8)
 		end
+=end
 		@selenium.click "id=NYTLogo"
 		sleep(8)
 		errcount = 0
