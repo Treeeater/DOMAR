@@ -86,7 +86,7 @@ class Nytimes < Test::Unit::TestCase
 		end
 		@selenium.click "//div[@class=\"storyFollowsLede\"]/h3/a"
 		sleep(8)
-		while (!@selenium.element? "link=aaa123abc@gmail.com")
+		while ((!@selenium.element? "link=aaa123abc@gmail.com")&&(!@selenium.element? "link=aaa123abc..."))
 			puts "needs refresh!"
 			errcount += 1
 			if (errcount > 10) 
@@ -95,7 +95,11 @@ class Nytimes < Test::Unit::TestCase
 			@selenium.refresh
 			sleep(8)
 		end
-		@selenium.click "link=aaa123abc@gmail.com"
+		if (@selenium.element? "link=aaa123abc@gmail.com")
+			@selenium.click "link=aaa123abc@gmail.com"			
+		elsif (@selenium.element? "link=aaa123abc...")
+			@selenium.click "link=aaa123abc..."			
+		end
 		sleep(8)
 		#To make sure this page loads first
 		while (!@selenium.element? "id=NYTLogo")
