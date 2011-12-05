@@ -13,9 +13,13 @@ def rLoad(requestRecordFile)
 			_tld = getTLD(_who)
 			if (accessArray[_tld]==nil)
 				#2-level array
-				accessArray[_tld] = Hash.new
+				#accessArray[_tld] = Hash.new
+				accessArray[_tld] = Array.new
 			end
-			accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
+			#accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
+			if (!accessArray[_tld].include? _what)
+				accessArray[_tld].push(_what)
+			end
 		end
 	end
 	f.close()
@@ -41,8 +45,8 @@ def exportDiffArray(diffRecords, hostD)
 		diffRecords.records[fileName].each_key{|tld|
 			if (diffRecords.records[fileName][tld].length>0)
 				outputFile.puts("-----"+tld+"------")
-				diffRecords.records[fileName][tld].each_key{|what|
-					outputFile.puts(what.to_s+"|:=>"+diffRecords.records[fileName][tld][what].to_s)
+				diffRecords.records[fileName][tld].each{|what|
+					outputFile.puts(what.to_s)
 				}
 			end
 		}

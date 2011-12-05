@@ -82,9 +82,14 @@ def extractRecordsFromFile(hostD, necFileList)
 				_tld = getTLD(_who)
 				if (accessArray[_tld]==nil)
 					#2-level array
-					accessArray[_tld] = Hash.new
+					#accessArray[_tld] = Hash.new
+					accessArray[_tld] = Array.new
 				end
-				accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
+				#If we want to care about the number of accesses of each node, we uncomment the next line and make necessary changes
+				#accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
+				if (!accessArray[_tld].include? _what)
+					accessArray[_tld].push(_what)
+				end
 			end
 		end
 		f.close()

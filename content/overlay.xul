@@ -4,7 +4,7 @@
 <overlay id="domar-overlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script src="overlay.js"/>
-  <script src="main.js"/>
+  <script src="main_simpl.js"/>
   <menupopup id="menu_ToolsPopup">
     <menuitem id="main" label="&DOMAccessRecorder;" 
               oncommand="DOMAccessRecorder.onMenuItemCommand(event);"/>

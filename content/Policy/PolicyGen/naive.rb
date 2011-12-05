@@ -4,8 +4,8 @@ def exportStrictModel(extractedRecords, hostD)
 	accessArray = extractedRecords.records
 	accessArray.each_key{|tld|
 		f = File.open(pFolder+tld+".txt","w")
-		accessArray[tld].each_key{|xpath|
-			f.puts (xpath+"|:=>"+accessArray[tld][xpath].to_s)
+		accessArray[tld].each{|xpath|
+			f.puts (xpath)#+"|:=>"+accessArray[tld][xpath].to_s)
 		}
 		f.close()
 	}
@@ -19,19 +19,19 @@ def compareStrictModel(pArray, aArray)
 		if (pArray[tld]==nil)
 			#script from new source detected. We want to copy all accesses from this script to diff.
 			diff = true
-			diffArray[tld] = Hash.new
-			aArray[tld].each_key{|what|
-				diffArray[tld][what]=aArray[tld][what]
+			diffArray[tld] = Array.new
+			aArray[tld].each{|what|
+				diffArray[tld].push(what)
 			}
 		else
 			#we have policies for this script's source domain
-			diffArray[tld]=Hash.new
-			aArray[tld].each_key{|what|
-				if (pArray[tld][what]==nil)
+			diffArray[tld]=Array.new
+			aArray[tld].each{|what|
+				if (!pArray[tld].include?(what))
 					#This access has never happened before
 					#This is illegal, record
 					diff = true
-					diffArray[tld][what]=aArray[tld][what]
+					diffArray[tld].push(what)
 				end
 			}
 		end
