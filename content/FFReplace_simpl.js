@@ -285,9 +285,9 @@ if (oldGetId)
 		//To record the acutal content.
 		{
 			seqID++;
-			if (recordedDOMActions[thispath]!=true)
+			if (recordedDOMActions[thispath+callerInfo]!=true)
 			{
-				recordedDOMActions[thispath]=true;
+				recordedDOMActions[thispath+callerInfo]=true;
 				record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});
 			}
 		}
@@ -306,9 +306,9 @@ if (oldGetClassName)
 		if (callerInfo!=null)
 		{
 			seqID++;
-			if (recordedDOMActions["getElementsByClassName called on document, Class: "+arguments[0]]!=true)
+			if (recordedDOMActions["getElementsByClassName called on document, Class: "+arguments[0]+callerInfo]!=true)
 			{
-				recordedDOMActions["getElementsByClassName called on document, Class: "+arguments[0]]=true;
+				recordedDOMActions["getElementsByClassName called on document, Class: "+arguments[0]+callerInfo]=true;
 				record[DOMRecord].push({what:"getElementsByClassName called on document, Class: "+arguments[0], when:seqID,who:callerInfo});
 			}
 		}
@@ -326,9 +326,9 @@ if (oldGetTagName)
 		var callerInfo = getCallerInfo("getElementsByTagName");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions["getElementsByTagName called on document, Tag: "+arguments[0]]!=true)
+			if (recordedDOMActions["getElementsByTagName called on document, Tag: "+arguments[0]+callerInfo]!=true)
 			{
-				recordedDOMActions["getElementsByTagName called on document, Tag: "+arguments[0]]=true;
+				recordedDOMActions["getElementsByTagName called on document, Tag: "+arguments[0]+callerInfo]=true;
 				record[DOMRecord].push({what:"getElementsByTagName called on document, Tag: "+arguments[0], when:seqID,who:callerInfo});
 			}
 		}
@@ -346,9 +346,9 @@ if (oldGetTagNameNS)
 		var callerInfo = getCallerInfo("getElementsByTagNameNS");	
 		if (callerInfo!=null){
 		seqID++;
-		if (recordedDOMActions["getElementsByTagNameNS called on document, NS: "+arguments[0]+" Tag: "+arguments[1]]!=true)
+		if (recordedDOMActions["getElementsByTagNameNS called on document, NS: "+arguments[0]+" Tag: "+arguments[1]+callerInfo]!=true)
 			{
-				recordedDOMActions["getElementsByTagNameNS called on document, NS: "+arguments[0]+" Tag: "+arguments[1]]=true;
+				recordedDOMActions["getElementsByTagNameNS called on document, NS: "+arguments[0]+" Tag: "+arguments[1]+callerInfo]=true;
 				record[DOMRecord].push({what:"getElementsByTagNameNS called on document: NS: "+arguments[0]+" Tag: "+arguments[1], when:seqID,who:callerInfo});
 			}
 		}
@@ -366,9 +366,9 @@ if (oldGetName)
 		var callerInfo = getCallerInfo("getElementsByName");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions["getElementsByName called on document, Name: "+arguments[0]]!=true)
+			if (recordedDOMActions["getElementsByName called on document, Name: "+arguments[0]+callerInfo]!=true)
 			{
-				recordedDOMActions["getElementsByName called on document, Name: "+arguments[0]]=true;
+				recordedDOMActions["getElementsByName called on document, Name: "+arguments[0]+callerInfo]=true;
 				record[DOMRecord].push({what:"getElementsByName called on document, Name: "+arguments[0], when:seqID,who:callerInfo});
 			}
 		}
@@ -405,9 +405,9 @@ if (old_cookie_getter)
 		var callerInfo = getCallerInfo("cookie_getter");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.cookie read!']!=true)
+			if (recordedDOMActions['document.cookie read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.cookie read!'] = true;
+				recordedDOMActions['document.cookie read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.cookie read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -420,9 +420,9 @@ if (old_cookie_setter)
 		var callerInfo = getCallerInfo("cookie_setter");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.cookie set!']!=true)
+			if (recordedDOMActions['document.cookie set!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.cookie set!'] = true;
+				recordedDOMActions['document.cookie set!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.cookie set!',when:seqID,who:callerInfo});
 			}
 		}
@@ -435,9 +435,9 @@ if (oldImages)
 		var callerInfo = getCallerInfo("document.images");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.images read!']!=true)
+			if (recordedDOMActions['document.images read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.images read!'] = true;
+				recordedDOMActions['document.images read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.images read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -450,9 +450,9 @@ if (oldAnchors)
 		var callerInfo = getCallerInfo("document.anchors");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.anchors read!']!=true)
+			if (recordedDOMActions['document.anchors read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.anchors read!'] = true;
+				recordedDOMActions['document.anchors read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.anchors read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -465,9 +465,9 @@ if (oldLinks)
 		var callerInfo = getCallerInfo("document.links");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.links read!']!=true)
+			if (recordedDOMActions['document.links read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.links read!'] = true;
+				recordedDOMActions['document.links read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.links read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -480,9 +480,9 @@ if (oldForms)
 		var callerInfo = getCallerInfo("document.forms");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.forms read!']!=true)
+			if (recordedDOMActions['document.forms read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.forms read!'] = true;
+				recordedDOMActions['document.forms read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.forms read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -495,9 +495,9 @@ if (oldApplets)
 		var callerInfo = getCallerInfo("document.applets");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.applets read!']!=true)
+			if (recordedDOMActions['document.applets read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.applets read!'] = true;
+				recordedDOMActions['document.applets read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.applets read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -510,9 +510,9 @@ if (oldURL)
 		var callerInfo = getCallerInfo("document.URL");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.URL read!']!=true)
+			if (recordedDOMActions['document.URL read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.URL read!'] = true;
+				recordedDOMActions['document.URL read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.URL read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -525,9 +525,9 @@ if (oldDomain)
 		var callerInfo = getCallerInfo("document.domain");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.domain read!']!=true)
+			if (recordedDOMActions['document.domain read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.domain read!'] = true;
+				recordedDOMActions['document.domain read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.domain read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -540,9 +540,9 @@ if (oldTitle)
 		var callerInfo = getCallerInfo("document.title");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.title read!']!=true)
+			if (recordedDOMActions['document.title read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.title read!'] = true;
+				recordedDOMActions['document.title read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.title read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -555,9 +555,9 @@ if (oldReferrer)
 		var callerInfo = getCallerInfo("document.referrer");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.referrer read!']!=true)
+			if (recordedDOMActions['document.referrer read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.referrer read!'] = true;
+				recordedDOMActions['document.referrer read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.referrer read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -570,9 +570,9 @@ if (oldLastModified)
 		var callerInfo = getCallerInfo("document.lastModified");	
 		if (callerInfo!=null){
 			seqID++;
-			if (recordedDOMActions['document.lastModified read!']!=true)
+			if (recordedDOMActions['document.lastModified read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['document.lastModified read!'] = true;
+				recordedDOMActions['document.lastModified read!'+callerInfo] = true;
 				record[documentRecord].push({what:'document.lastModified read!',when:seqID,who:callerInfo});
 			}
 		}
@@ -647,9 +647,9 @@ if (oldUserAgent) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.userAgent read!']!=true)
+			if (recordedDOMActions['navigator.userAgent read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.userAgent read!'] = true;
+				recordedDOMActions['navigator.userAgent read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.userAgent read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -661,9 +661,9 @@ if (oldPlatform) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.platform read!']!=true)
+			if (recordedDOMActions['navigator.platform read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.platform read!'] = true;
+				recordedDOMActions['navigator.platform read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.platform read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -675,9 +675,9 @@ if (oldAppCodeName) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.appCodeName read!']!=true)
+			if (recordedDOMActions['navigator.appCodeName read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.appCodeName read!'] = true;
+				recordedDOMActions['navigator.appCodeName read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.appCodeName read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -689,9 +689,9 @@ if (oldAppVersion) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.appVersion read!']!=true)
+			if (recordedDOMActions['navigator.appVersion read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.appVersion read!'] = true;
+				recordedDOMActions['navigator.appVersion read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.appVersion read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -703,9 +703,9 @@ if (oldAppName) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.appName read!']!=true)
+			if (recordedDOMActions['navigator.appName read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.appName read!'] = true;
+				recordedDOMActions['navigator.appName read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.appName read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -717,9 +717,9 @@ if (oldCookieEnabled) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.cookieEnabled read!']!=true)
+			if (recordedDOMActions['navigator.cookieEnabled read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.cookieEnabled read!'] = true;
+				recordedDOMActions['navigator.cookieEnabled read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.cookieEnabled read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -731,9 +731,9 @@ if (oldAvailWidth) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.availWidth read!']!=true)
+			if (recordedDOMActions['navigator.availWidth read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.availWidth read!'] = true;
+				recordedDOMActions['navigator.availWidth read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.availWidth read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -745,9 +745,9 @@ if (oldAvailHeight) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.availHeight read!']!=true)
+			if (recordedDOMActions['navigator.availHeight read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.availHeight read!'] = true;
+				recordedDOMActions['navigator.availHeight read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.availHeight read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -759,9 +759,9 @@ if (oldColorDepth) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.colorDepth read!']!=true)
+			if (recordedDOMActions['navigator.colorDepth read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.colorDepth read!'] = true;
+				recordedDOMActions['navigator.colorDepth read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.colorDepth read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -773,9 +773,9 @@ if (oldHeight) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.height read!']!=true)
+			if (recordedDOMActions['navigator.height read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.height read!'] = true;
+				recordedDOMActions['navigator.height read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.height read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -787,9 +787,9 @@ if (oldWidth) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.width read!']!=true)
+			if (recordedDOMActions['navigator.width read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.width read!'] = true;
+				recordedDOMActions['navigator.width read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.width read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -801,9 +801,9 @@ if (oldPixelDepth) {
 		var callerInfo = getCallerInfo(""); 
 		if (callerInfo!=null) {
 			seqID++;
-			if (recordedDOMActions['navigator.pixelDepth read!']!=true)
+			if (recordedDOMActions['navigator.pixelDepth read!'+callerInfo]!=true)
 			{
-				recordedDOMActions['navigator.pixelDepth read!'] = true;
+				recordedDOMActions['navigator.pixelDepth read!'+callerInfo] = true;
 				record[windowRecord].push({what:'navigator.pixelDepth read!',when:seqID,who:callerInfo});
 			}
 		} 
@@ -858,19 +858,19 @@ for (; i<allElementsType.length; i++)
 	oldEGetClassName[i] = allElementsType[i].prototype.getElementsByClassName;
 	oldEGetTagNameNS[i] = allElementsType[i].prototype.getElementsByTagNameNS;
 	
-	allElementsType[i].prototype.__defineGetter__('parentNode',function(){var thispath = getXPath(oldParentNode.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath]!=true) { recordedDOMActions[thispath]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldParentNode.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('parentNode',function(){var thispath = getXPath(oldParentNode.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldParentNode.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('nextSibling',function(){var thispath = getXPath(oldNextSibling.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath]!=true) { recordedDOMActions[thispath]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldNextSibling.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('nextSibling',function(){var thispath = getXPath(oldNextSibling.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldNextSibling.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('previousSibling',function(){var thispath = getXPath(oldPreviousSibling.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath]!=true) { recordedDOMActions[thispath]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldPreviousSibling.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('previousSibling',function(){var thispath = getXPath(oldPreviousSibling.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldPreviousSibling.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('firstChild',function(){var thispath = getXPath(oldFirstChild.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath]!=true) { recordedDOMActions[thispath]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldFirstChild.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('firstChild',function(){var thispath = getXPath(oldFirstChild.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldFirstChild.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('lastChild',function(){var thispath = getXPath(oldLastChild.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath]!=true) { recordedDOMActions[thispath]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldLastChild.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('lastChild',function(){var thispath = getXPath(oldLastChild.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldLastChild.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('children',function(){var thispath = getXPath(this); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions["Children called on: "+thispath]!=true) { recordedDOMActions["Children called on: "+thispath]=true; record[DOMRecord].push({what:"Children called on: "+ thispath,when:seqID,who:callerInfo});}} return oldChildren.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('children',function(){var thispath = getXPath(this); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions["Children called on: "+thispath+callerInfo]!=true) { recordedDOMActions["Children called on: "+thispath+callerInfo]=true; record[DOMRecord].push({what:"Children called on: "+ thispath,when:seqID,who:callerInfo});}} return oldChildren.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('childNodes',function(){var thispath = getXPath(this); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions["childNodes called on: "+thispath]!=true) { recordedDOMActions["childNodes called on: "+thispath]=true; record[DOMRecord].push({what:"childNodes called on: "+thispath,when:seqID,who:callerInfo});}} return oldChildNodes.apply(this);});	
+	allElementsType[i].prototype.__defineGetter__('childNodes',function(){var thispath = getXPath(this); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions["childNodes called on: "+thispath+callerInfo]!=true) { recordedDOMActions["childNodes called on: "+thispath+callerInfo]=true; record[DOMRecord].push({what:"childNodes called on: "+thispath,when:seqID,who:callerInfo});}} return oldChildNodes.apply(this);});	
 }
 //assign element.getElementsByTagName to new value
 for (i=0; i<allElementsType.length; i++)
@@ -891,9 +891,9 @@ for (i=0; i<allElementsType.length; i++)
 		if ((thispath!="")&&(callerInfo!=null))
 		{
 			seqID++;
-			if (recordedDOMActions["getElementsByTagName called on "+thispath+" Tag: "+arguments[0]]!=true) 
+			if (recordedDOMActions["getElementsByTagName called on "+thispath+" Tag: "+arguments[0]+callerInfo]!=true) 
 			{ 
-				recordedDOMActions["getElementsByTagName called on "+thispath+" Tag: "+arguments[0]]=true; 
+				recordedDOMActions["getElementsByTagName called on "+thispath+" Tag: "+arguments[0]+callerInfo]=true; 
 				record[DOMRecord].push({what:"getElementsByTagName called on "+thispath+" Tag: "+arguments[0],when:seqID,who:callerInfo});			
 			}
 		}
@@ -912,9 +912,9 @@ for (i=0; i<allElementsType.length; i++)
 		if ((thispath!="")&&(callerInfo!=null))
 		{
 			seqID++;
-			if (recordedDOMActions["getElementsByClassName called on "+thispath+" Class: "+arguments[0]]!=true) 
+			if (recordedDOMActions["getElementsByClassName called on "+thispath+" Class: "+arguments[0]+callerInfo]!=true) 
 			{ 
-				recordedDOMActions["getElementsByClassName called on "+thispath+" Class: "+arguments[0]]=true; 
+				recordedDOMActions["getElementsByClassName called on "+thispath+" Class: "+arguments[0]+callerInfo]=true; 
 				record[DOMRecord].push({what:"getElementsByClassName called on "+thispath+" Class: "+arguments[0],when:seqID,who:callerInfo});
 			}
 		}
@@ -933,9 +933,9 @@ for (i=0; i<allElementsType.length; i++)
 		if ((thispath!="")&&(callerInfo!=null))
 		{
 			seqID++;
-			if (recordedDOMActions["getElementsByTagNameNS called on "+thispath+" NS: "+arguments[0]+" Tag: "+arguments[1]]!=true) 
+			if (recordedDOMActions["getElementsByTagNameNS called on "+thispath+" NS: "+arguments[0]+" Tag: "+arguments[1]+callerInfo]!=true) 
 			{ 
-				recordedDOMActions["getElementsByTagNameNS called on "+thispath+" NS: "+arguments[0]+" Tag: "+arguments[1]]=true; 
+				recordedDOMActions["getElementsByTagNameNS called on "+thispath+" NS: "+arguments[0]+" Tag: "+arguments[1]+callerInfo]=true; 
 				record[DOMRecord].push({what:"getElementsByTagNameNS called on "+thispath+" NS: "+arguments[0]+" Tag: "+arguments[1],when:seqID,who:callerInfo});
 			}
 		}
@@ -949,9 +949,9 @@ for (i=0; i<allElementsType.length; i++)
 		if ((thispath!="")&&(callerInfo!=null))
 		{
 			seqID++;
-			if (recordedDOMActions['Read innerHTML of this element: '+thispath+'!']!=true) 
+			if (recordedDOMActions['Read innerHTML of this element: '+thispath+'!'+callerInfo]!=true) 
 			{ 
-				recordedDOMActions['Read innerHTML of this element: '+thispath+'!']=true; 
+				recordedDOMActions['Read innerHTML of this element: '+thispath+'!'+callerInfo]=true; 
 				record[DOMRecord].push({what:'Read innerHTML of this element: '+thispath+'!',when:seqID,who:callerInfo});
 			}
 		}
