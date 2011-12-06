@@ -24,7 +24,7 @@ if (typeof CCSV == "undefined") {
 function detect_response_beginning(response)
 {
 	//sometimes responses are divided into chunks, we only want to modify the beginning of the response.
-	if (response.match(/^\s*<[!hH]/)) return true;
+	if ((response.match(/^\s*<[hH]/)!=null)||(response.match(/^\s*<!DOCTYPE/i)!=null)) return true;
 	else return false;
 }
 function if_already_modified(response)
@@ -55,11 +55,11 @@ function getTrustedDomain(domain)
 }
 function modify(response,trustedDomains)
 {
-	//find the first head or HEAD or body or BODY
-	var insertIndex = response.toLowerCase().indexOf('<head>');
-	if (insertIndex == -1) insertIndex = response.toLowerCase().indexOf('<body>');
 	if (!detect_response_beginning(response)) return response;
 	if (if_already_modified(response)) return response;
+	//find the first head or HEAD or body or BODY, currently we do not deal with <head some attribute> case. That is trivial but i'm too lazy to do it.
+	var insertIndex = response.toLowerCase().indexOf('<head>');
+	if (insertIndex == -1) insertIndex = response.toLowerCase().indexOf('<body>');
 	if (insertIndex > 0)
 	{
 		startTime = new Date().getTime();

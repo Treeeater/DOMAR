@@ -29,7 +29,7 @@ class Nytimes < Test::Unit::TestCase
 	puts "opened!"
 	sleep(8)
 	errcount = 0
-	while (count<200)
+	while (count<800)
 		count = count+1
 		while (!@selenium.element? "link=Today's Paper")
 			puts "needs refresh!"
