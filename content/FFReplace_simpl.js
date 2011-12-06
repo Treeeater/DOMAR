@@ -737,7 +737,7 @@ if (oldAvailWidth) {
 				record[windowRecord].push({what:'navigator.availWidth read!',when:seqID,who:callerInfo});
 			}
 		} 
-		return oldAvailWidth.apply(navigator);
+		return oldAvailWidth.apply(screen);
 	};
 }
 if (oldAvailHeight) { 
@@ -751,7 +751,7 @@ if (oldAvailHeight) {
 				record[windowRecord].push({what:'navigator.availHeight read!',when:seqID,who:callerInfo});
 			}
 		} 
-		return oldAvailHeight.apply(navigator);
+		return oldAvailHeight.apply(screen);
 	};
 }
 if (oldColorDepth) { 
@@ -765,7 +765,7 @@ if (oldColorDepth) {
 				record[windowRecord].push({what:'navigator.colorDepth read!',when:seqID,who:callerInfo});
 			}
 		} 
-		return oldColorDepth.apply(navigator);
+		return oldColorDepth.apply(screen);
 	};
 }
 if (oldHeight) { 
@@ -779,7 +779,7 @@ if (oldHeight) {
 				record[windowRecord].push({what:'navigator.height read!',when:seqID,who:callerInfo});
 			}
 		} 
-		return oldHeight.apply(navigator);
+		return oldHeight.apply(screen);
 	};
 }
 if (oldWidth) { 
@@ -793,7 +793,7 @@ if (oldWidth) {
 				record[windowRecord].push({what:'navigator.width read!',when:seqID,who:callerInfo});
 			}
 		} 
-		return oldWidth.apply(navigator);
+		return oldWidth.apply(screen);
 	};
 }
 if (oldPixelDepth) { 
@@ -807,7 +807,7 @@ if (oldPixelDepth) {
 				record[windowRecord].push({what:'navigator.pixelDepth read!',when:seqID,who:callerInfo});
 			}
 		} 
-		return oldPixelDepth.apply(navigator);
+		return oldPixelDepth.apply(screen);
 	};
 }
 //override the old window special property accessors:
