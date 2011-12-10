@@ -1,3 +1,11 @@
+def permute_array(a)
+	1.upto(a.length - 1) do |i|
+		j = rand(i + 1)
+		a[i], a[j] = a[j], a[i]
+	end
+	a
+end
+
 def rLoad(requestRecordFile)
 	#load from recordings of a single request into accessArray
 	accessArray = Hash.new
@@ -34,19 +42,15 @@ def cleanDirectory(param)
 	end 
 end
 
-def exportDiffArray(diffRecords, hostD)
+def exportDiffArray(diffRecords, hostD, tld)
 	#store diffrecords into hard drive (CRootDir).
-	cleanDirectory(CRootDir)
+	#cleanDirectory(CRootDir)
 	diffRecords.records.each_key{|fileName|
 		outputFileName = CRootDir+"diff"+fileName+".txt"
-		outputFile = File.open(outputFileName, 'w')
-		diffRecords.records[fileName].each_key{|tld|
-			if (diffRecords.records[fileName][tld].length>0)
-				outputFile.puts("-----"+tld+"------")
-				diffRecords.records[fileName][tld].each{|what|
-					outputFile.puts(what.to_s)
-				}
-			end
+		outputFile = File.open(outputFileName, 'a')
+		outputFile.puts("-----"+tld+"------")
+		diffRecords.records[fileName].each{|what|
+			outputFile.puts(what.to_s)
 		}
 		outputFile.close()
 	}

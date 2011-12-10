@@ -1,4 +1,4 @@
-def exportStrictModel(extractedRecords, hostD)
+def exportAllRecords(extractedRecords, hostD)
 	pFolder = PRootDir+hostD
 	cleanDirectory(pFolder)
 	accessArray = extractedRecords.records
@@ -11,29 +11,24 @@ def exportStrictModel(extractedRecords, hostD)
 	}
 end
 
-def compareStrictModel(pArray, aArray)
+def buildStrictModel(accesses, tld)
+	return StrictModel.new(accesses, tld)
+end
+
+def compareStrictModel(strictModel, aArray)
 	#aArray is the actual new recordings, pArray is stored policies. Our job is to find the elements that's inside aArray but not inside pArray.
-	diffArray = Hash.new
+	diffArray = Array.new
 	diff = false
-	aArray.each_key{|tld|
-		if (pArray[tld]==nil)
-			#script from new source detected. We want to copy all accesses from this script to diff.
+	if (!aArray.key? strictModel.tld)
+		#this particular test case does not include this src file. we skip and return 'same'.
+		return 0
+	end
+	aArray[strictModel.tld].each{|what|
+		if (!strictModel.accesses.include?(what))
+			#This access has never happened before
+			#This is illegal, record
 			diff = true
-			diffArray[tld] = Array.new
-			aArray[tld].each{|what|
-				diffArray[tld].push(what)
-			}
-		else
-			#we have policies for this script's source domain
-			diffArray[tld]=Array.new
-			aArray[tld].each{|what|
-				if (!pArray[tld].include?(what))
-					#This access has never happened before
-					#This is illegal, record
-					diff = true
-					diffArray[tld].push(what)
-				end
-			}
+			diffArray.push(what)
 		end
 	}
 	if diff == true
@@ -43,10 +38,10 @@ def compareStrictModel(pArray, aArray)
 	end
 end
 
-def isTrainingData?(file,strictModel,rFolder)
+def isTrainingData?(file,extractedRecords,rFolder)
 	i = 0
-	while (i < strictModel.trainingData.length)
-		if (file == rFolder+"record"+strictModel.trainingData[i].to_s+".txt")
+	while (i < extractedRecords.trainingData.length)
+		if (file == rFolder+"record"+extractedRecords.trainingData[i].to_s+".txt")
 			return true
 		end
 		i+=1
@@ -54,7 +49,7 @@ def isTrainingData?(file,strictModel,rFolder)
 	return false
 end
 
-def checkStrictModel(strictModel, hostD)
+def checkStrictModel(strictModel, hostD, extractedRecords)
 	pFolder = PRootDir+hostD
 	rFolder = RRootDir+hostD
 	testingFiles = Dir.glob(rFolder+"*")
@@ -63,13 +58,13 @@ def checkStrictModel(strictModel, hostD)
 	diffRecords = DiffRecords.new(Hash.new, 0.0)
 	testingFiles.each{|file|
 		fileNo = file.to_s.chomp.gsub(/.*record(\d*)\.txt$/,'\1')
-		if (isTrainingData?(file,strictModel,rFolder))
+		if (isTrainingData?(file,extractedRecords,rFolder))
 			#we cannot use training data to test the model
 			next
 		end
 		numberOfCheckedRecords += 1
 		accessArray = rLoad(file)
-		diffArray = compareStrictModel(strictModel.records,accessArray)
+		diffArray = compareStrictModel(strictModel,accessArray)
 		if (diffArray!=0)
 			#There is difference in this record, we need to push into the diffRecords!
 			numberOfDifferentRecords += 1

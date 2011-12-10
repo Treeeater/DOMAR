@@ -17,6 +17,7 @@ end
 def getNecessaryFile(hostD)
 	hostDir = RRootDir+hostD
 	files = Dir.glob(hostDir+"*")
+	files = permute_array(files)
 	existingDomains = Hash.new
 	returnList = Array.new
 	files.each{|file|
@@ -42,7 +43,7 @@ def getNecessaryFile(hostD)
 	return returnList
 end
 
-def extractRecordsFromFile(hostD, necFileList)
+def extractRecordsFromTrainingData(hostD, necFileList)
 # This function extracts data from files to an associative array randomly, given the P_inst.
 	accessArray = Hash.new
 	pFolder = PRootDir+hostD
@@ -128,24 +129,36 @@ end
 puts ""
 puts "Initialized directory configuration, starting to run model building..."
 puts ""
+cleanDirectory(CRootDir)
+puts "Cleaned diff dir..."
 #For now we make sure training data includes traces from all possible sources.
-necessaryFileList = Alldomain ? getNecessaryFile(workingDir) : Array.new
+#necessaryFileList = Alldomain ? getNecessaryFile(workingDir) : Array.new
 
 #
-strictModelAvgResult = 0.0
-for i in (1..3)
-	necFileList = Alldomain ? necessaryFileList : Array.new
-	extractedRecords = extractRecordsFromFile(workingDir, necFileList)
-	strictModel = extractedRecords 	#strictest model is actually just extractedRecord
-	exportStrictModel(extractedRecords,workingDir)
-	strictModelTestResult = checkStrictModel(strictModel, workingDir)
-	strictModelAvgResult += strictModelTestResult.percentage
-	p strictModelTestResult.percentage
-	exportDiffArray(strictModelTestResult, workingDir)
+for i in (1..Running_times)
+	strictModelTotalResult = 1.0
+	puts "Running for the #{i}th time"
+	#necFileList = Alldomain ? necessaryFileList : Array.new
+	necFileList = Alldomain ? getNecessaryFile(workingDir) : Array.new
+	extractedRecords = extractRecordsFromTrainingData(workingDir, necFileList)
+	exportAllRecords(extractedRecords,workingDir)
+	model = Model.new
+	extractedRecords.records.each_key{|tld|
+		tempModel = buildStrictModel(extractedRecords.records[tld], tld) 	#strictest model is actually just extractedRecord
+		strictModelTestResult = checkStrictModel(tempModel, workingDir, extractedRecords)
+		strictModelTotalResult *= (1-strictModelTestResult.percentage)
+		p "Difference at #{tld} domain is :"
+		p strictModelTestResult.percentage.to_s
+		model.adoptTLD(tld,tempModel)
+		exportDiffArray(strictModelTestResult, workingDir, tld)
+	}
+	p strictModelTotalResult.to_s
 end
-strictModelAvgResult = strictModelAvgResult / 3.0
+=begin
+strictModelAvgResult = strictModelAvgResult / Running_times.to_f
 if (strictModelAvgResult<Thres)
 	p "done! Strictest model suffice. Average result is "+strictModelAvgResult.to_s
 else
 	p "Strictest model gives bad result, average is "+strictModelAvgResult.to_s
 end
+=end
