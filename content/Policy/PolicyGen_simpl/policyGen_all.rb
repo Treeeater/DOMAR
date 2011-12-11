@@ -150,7 +150,8 @@ for i in (1..Running_times)
 		p "Difference at #{tld} domain is :"
 		p strictModelTestResult.percentage.to_s
 		model.adoptTLD(tld,tempModel)
-		exportDiffArray(strictModelTestResult, workingDir, tld)
+		#exportDiffArray(strictModelTestResult, workingDir, tld)
+		exportDiffArrayToSingleFile(strictModelTestResult, workingDir, tld)
 	}
 	p strictModelTotalResult.to_s
 end

@@ -42,11 +42,17 @@ def cleanDirectory(param)
 	end 
 end
 
-def exportDiffArray(diffRecords, hostD, tld)
+def exportDiffArrayToFiles(diffRecords, hostD, tld)
 	#store diffrecords into hard drive (CRootDir).
 	#cleanDirectory(CRootDir)
+	if (diffRecords.records.length == 0)
+		return
+	end
+	if (!File.directory? CRootDir+tld)
+		Dir.mkdir(CRootDir+tld)
+	end
 	diffRecords.records.each_key{|fileName|
-		outputFileName = CRootDir+"diff"+fileName+".txt"
+		outputFileName = CRootDir+tld+"/diff"+fileName+".txt"
 		outputFile = File.open(outputFileName, 'a')
 		outputFile.puts("-----"+tld+"------")
 		diffRecords.records[fileName].each{|what|
@@ -54,4 +60,21 @@ def exportDiffArray(diffRecords, hostD, tld)
 		}
 		outputFile.close()
 	}
+end
+
+def exportDiffArrayToSingleFile(diffRecords, hostD, tld)
+	#store diffrecords into hard drive (CRootDir).
+	#cleanDirectory(CRootDir)
+	if (diffRecords.records.length == 0)
+		return
+	end
+	outputFileName = CRootDir+tld+".txt"
+	outputFile = File.open(outputFileName, 'w')
+	diffRecords.records.each_key{|fileName|
+		outputFile.puts("-----"+fileName+"------")
+		diffRecords.records[fileName].each{|what|
+			outputFile.puts(what.to_s)
+		}
+	}
+	outputFile.close()
 end
