@@ -3,6 +3,7 @@ require_relative 'conf'
 require_relative 'model'
 require_relative 'utils'
 require_relative 'naive'
+require_relative 'children'
 
 PRootDir=ENV["Desktop"]+"DOMAR/policy/"		#root directory for generated policy
 RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
@@ -45,7 +46,7 @@ end
 
 def extractRecordsFromTrainingData(hostD, necFileList)
 # This function extracts data from files to an associative array randomly, given the P_inst.
-	accessArray = Hash.new
+	accessHash = Hash.new
 	pFolder = PRootDir+hostD
 	rFolder = RRootDir+hostD
 	#files = Dir.glob(hostDir+"/*")
@@ -79,21 +80,25 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 				_what = line[0, _wholoc]
 				_who = line[_wholoc+1,line.length]
 				_tld = getTLD(_who)
-				if (accessArray[_tld]==nil)
+				if (accessHash[_tld]==nil)
 					#2-level array
-					#accessArray[_tld] = Hash.new
-					accessArray[_tld] = Array.new
+					#accessHash[_tld] = Hash.new
+					accessHash[_tld] = Array.new
 				end
 				#If we want to care about the number of accesses of each node, we uncomment the next line and make necessary changes
-				#accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
-				if (!accessArray[_tld].include? _what)
-					accessArray[_tld].push(_what)
+				#accessHash[_tld][_what] = (accessHash[_tld][_what]==nil) ? 1 : accessHash[_tld][_what]+1
+				if (!accessHash[_tld].include? _what)
+					accessHash[_tld].push(_what)
 				end
 			end
 		end
 		f.close()
 	end
-	temp = ExtractedRecords.new(accessArray, indexOfTrainingSamples)
+	#sort accessHash in an alphebatically order
+	accessHash.each_key{|_tld|
+		accessHash[_tld] = accessHash[_tld].sort
+	}
+	temp = ExtractedRecords.new(accessHash, indexOfTrainingSamples)
 	return temp
 end
 
@@ -146,6 +151,10 @@ for i in (1..Running_times)
 	extractedRecords.records.each_key{|tld|
 		tempModel = buildStrictModel(extractedRecords.records[tld], tld) 	#strictest model is actually just extractedRecord
 		strictModelTestResult = checkStrictModel(tempModel, workingDir, extractedRecords)
+		if (strictModelTestResult.percentage > StrictModelThreshold)
+			#we need a more relaxed model
+			relaxedModel = learnRelaxedModel(tempModel)
+		end
 		strictModelTotalResult *= (1-strictModelTestResult.percentage)
 		p "Difference at #{tld} domain is :"
 		p strictModelTestResult.percentage.to_s

@@ -10,3 +10,4 @@ Thres = 0.1									#allowed maximum false positive
 Alldomain = true							#allow the model builder to first scan all records and record all files that contain a previously unrecorded domain. Those files will be automatically considered in training phase.
 MinRep = 5									#Only effective when Alldomain is set to true. Instead of having one representative for each domain, a minimum number of representatives are required for each domain.
 Running_times = 1							#how many times we are going to run the whole program
+StrictModelThreshold = 0.01					#the maximum accepted FP threshold per-page per-TLD.
