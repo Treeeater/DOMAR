@@ -130,7 +130,9 @@ workingDir = hostDomain+"/"+hostURL+"/"
 if (!File.directory? PRootDir+workingDir)
 	Dir.mkdir(PRootDir+workingDir)
 end
-
+if (File.directory? PRootDir+workingDir+"relaxed/")
+	cleanDirectory(PRootDir+workingDir+"relaxed/")
+end
 puts ""
 puts "Initialized directory configuration, starting to run model building..."
 puts ""
@@ -141,7 +143,7 @@ puts "Cleaned diff dir..."
 
 #
 for i in (1..Running_times)
-	strictModelTotalResult = 1.0
+	modelTotalResult = 1.0
 	puts "Running for the #{i}th time"
 	#necFileList = Alldomain ? necessaryFileList : Array.new
 	necFileList = Alldomain ? getNecessaryFile(workingDir) : Array.new
@@ -151,18 +153,26 @@ for i in (1..Running_times)
 	extractedRecords.records.each_key{|tld|
 		tempModel = buildStrictModel(extractedRecords.records[tld], tld) 	#strictest model is actually just extractedRecord
 		strictModelTestResult = checkStrictModel(tempModel, workingDir, extractedRecords)
-		if (strictModelTestResult.percentage > StrictModelThreshold)
+		if ((strictModelTestResult.percentage > StrictModelThreshold) && (RelaxedModeEnabled))
 			#we need a more relaxed model
 			relaxedModel = learnRelaxedModel(tempModel)
+			exportRelaxedModel(relaxedModel, workingDir)
+			relaxedModelTestResult = checkRelaxedModel(relaxedModel, workingDir, extractedRecords, strictModelTestResult)
+			modelTotalResult *= (1-relaxedModelTestResult.percentage)
+			p "Relaxed Model : Difference at #{tld} domain is :"
+			p relaxedModelTestResult.percentage.to_s
+			model.adoptTLD(tld,relaxedModel)
+			exportDiffArrayToSingleFile(relaxedModelTestResult, workingDir, tld)
+		else
+			modelTotalResult *= (1-strictModelTestResult.percentage)
+			model.adoptTLD(tld,tempModel)
+			exportDiffArrayToSingleFile(strictModelTestResult, workingDir, tld)
 		end
-		strictModelTotalResult *= (1-strictModelTestResult.percentage)
-		p "Difference at #{tld} domain is :"
+		p "Strict Model : Difference at #{tld} domain is :"
 		p strictModelTestResult.percentage.to_s
-		model.adoptTLD(tld,tempModel)
 		#exportDiffArray(strictModelTestResult, workingDir, tld)
-		exportDiffArrayToSingleFile(strictModelTestResult, workingDir, tld)
 	}
-	p strictModelTotalResult.to_s
+	p modelTotalResult.to_s
 end
 =begin
 strictModelAvgResult = strictModelAvgResult / Running_times.to_f

@@ -55,7 +55,7 @@ def checkStrictModel(strictModel, hostD, extractedRecords)
 	testingFiles = Dir.glob(rFolder+"*")
 	numberOfCheckedRecords = 0
 	numberOfDifferentRecords = 0
-	diffRecords = DiffRecords.new(Hash.new, 0.0)
+	diffRecords = DiffRecords.new(Hash.new, 0.0, Array.new)
 	testingFiles.each{|file|
 		fileNo = file.to_s.chomp.gsub(/.*record(\d*)\.txt$/,'\1')
 		if (isTrainingData?(file,extractedRecords,rFolder))
@@ -69,6 +69,7 @@ def checkStrictModel(strictModel, hostD, extractedRecords)
 			#There is difference in this record, we need to push into the diffRecords!
 			numberOfDifferentRecords += 1
 			diffRecords.records[fileNo] = diffArray
+			diffRecords.diffFileNo.push(fileNo)
 		end
 	}
 	if (numberOfCheckedRecords == 0)

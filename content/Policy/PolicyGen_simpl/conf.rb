@@ -11,3 +11,5 @@ Alldomain = true							#allow the model builder to first scan all records and re
 MinRep = 5									#Only effective when Alldomain is set to true. Instead of having one representative for each domain, a minimum number of representatives are required for each domain.
 Running_times = 1							#how many times we are going to run the whole program
 StrictModelThreshold = 0.01					#the maximum accepted FP threshold per-page per-TLD.
+RelaxedModelThreshold = 4					#the maximum accepted distance of indices to deem two records as the same
+RelaxedModeEnabled = true					#to enable relaxed mode

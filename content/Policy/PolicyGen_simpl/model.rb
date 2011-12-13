@@ -29,19 +29,21 @@ class StrictModel										#accesses: just all the accesses seen.
 	end
 end
 
-class RelaxedModel										#accesses: learns the structures but ignore some of the numbers.
-	attr_accessor :structure, :type, :tld				#type = 2
-	def initialize(structure, tld)
+class RelaxedModel														#learns the structures but ignore some of the numbers.
+	attr_accessor :structure, :relaxedModelHash, :type, :tld			#type = 2 structure: string data. relaxedModelHash: see children.rb
+	def initialize(structure, relaxedModelHash, tld)
 		@structure = structure
+		@relaxedModelHash = relaxedModelHash
 		@type = 2
 		@tld = tld
 	end
 end
 
 class DiffRecords
-	attr_accessor :records, :percentage
-	def initialize(records, percentage)
+	attr_accessor :records, :percentage, :diffFileNo
+	def initialize(records, percentage, diffFileNo)
 		@records = records
 		@percentage = percentage
+		@diffFileNo = diffFileNo
 	end
 end
