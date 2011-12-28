@@ -3,6 +3,96 @@ Components.utils.import("resource://gre/modules/NetUtil.jsm");
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
 var startTime;
 var endTime;
+
+//getXPath necessities
+//These need to be here because getXPath relies on this.
+var oldParentNode = Element.prototype.__lookupGetter__('parentNode');
+var oldNextSibling = Element.prototype.__lookupGetter__('nextSibling');
+var oldPreviousSibling = Element.prototype.__lookupGetter__('previousSibling');
+
+//XPATH getter: usage: getXPath(document.getElementById('something'))
+/*
+//this one uses jQuery, however jQuery uses nextSibling. dead lock.
+
+function getXPath( element )
+{
+    var xpath = '';
+	if (element)
+	{
+		if (element.item)		
+		{
+			//this is a collection, we return all xpaths accessed, separated by semicolons.
+			var i = 0;
+			for (; i < element.length; i++)
+			{
+				cur_element = element.item(i);
+				cur_xpath = '';
+				for ( ; cur_element && cur_element.nodeType == 1; cur_element = oldParentNode.apply(cur_element) )
+				{
+					var id = $(oldParentNode.apply(cur_element)).children(cur_element.tagName).index(cur_element) + 1;
+					id > 1 ? (id = '[' + id + ']') : (id = '');
+					cur_xpath = '/' + cur_element.tagName.toLowerCase() + id + cur_xpath;
+				}
+				xpath += cur_xpath + ';';
+			}
+		}
+		else {
+			//this is an element
+			for ( ; element && element.nodeType == 1; element = oldParentNode.apply(element) )
+			{
+				var id = $(oldParentNode.apply(element)).children(element.tagName).index(element) + 1;
+				id > 1 ? (id = '[' + id + ']') : (id = '');
+				xpath = '/' + element.tagName.toLowerCase() + id + xpath;
+			}
+		}
+		return xpath;
+	}
+};	*/
+var getXPath = function(elt)
+{
+     var path = "";
+     for (; elt && (elt.nodeType == 1||elt.nodeType == 3||elt.nodeType == 2); elt = oldParentNode.apply(elt))
+     {
+		idx = getElementIdx(elt);
+		if (elt.nodeType ==1) xname = elt.tagName;
+		else if (elt.nodeType == 3) xname = "TEXT";
+		else if (elt.nodeType == 2) xname = "ATTR";
+		if (idx > 1) xname += "[" + idx + "]";
+		path = "/" + xname + path;
+     }
+	 //if ((path=="")&&(elt!=null)) alert(elt);		//for debug purposes.
+     if (path.substr(0,5)!="/HTML") return "";		//right now, if this node is not originated from HTMLDocument (e.g., some script calls createElement which does not contain any private information, we do not record this access.
+	 return path;
+};
+
+var getElementIdx = function(elt)
+{
+    var count = 1;
+	if (elt.nodeType==1)
+	{
+		for (var sib = oldPreviousSibling.apply(elt); sib ; sib = oldPreviousSibling.apply(sib))
+		{
+			if(sib.nodeType == 1 && sib.tagName == elt.tagName)	count++;
+		}
+	}
+	else if (elt.nodeType==3)
+	{
+		for (var sib = oldPreviousSibling.apply(elt); sib ; sib = oldPreviousSibling.apply(sib))
+		{
+			if(sib.nodeType == 3)	count++;
+		}
+	}
+	else if (elt.nodeType==2)
+	{
+		for (var sib = oldPreviousSibling.apply(elt); sib ; sib = oldPreviousSibling.apply(sib))
+		{
+			if(sib.nodeType == 2)	count++;
+		}
+	}
+    return count;
+};
+//end of getXPath necessities
+
 function TracingListener() {
     //this.receivedData = [];
 }
@@ -330,7 +420,17 @@ function writePolicy()
 				rawstring = rawstring + rawdata[2][i].what+" |:=> "+rawdata[2][i].who+"\n";
 			}
 		}
-		rawstring = rawstring + "\nEnd of document special property access\n---------------------------------------\n";
+		rawstring = rawstring + "\nEnd of document special property access\n--------------DOMAR_Separator---------------\n";
+		//record the embedding location of all scripts
+		var scripts = win.document.getElementsByTagName('script');
+		for (i = 0; i < scripts.length; i++)
+		{
+			if (scripts[i].src!="")
+			{
+				//record all non-inlined scripts
+				rawstring = rawstring + scripts[i].src + " <=|=> " + getXPath(scripts[i]) + "\n";
+			}
+		}
 		var data = rawstring;
 		// You can also optionally pass a flags parameter here. It defaults to
 		// FileUtils.MODE_WRONLY | FileUtils.MODE_CREATE | FileUtils.MODE_TRUNCATE;

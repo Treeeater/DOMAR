@@ -198,7 +198,14 @@ def compareRelaxedModel(relaxedModel, accessArray)
 					exit 0
 				else
 					policyArray.each_index{|i|
-						if ((policyArray[i]-currentArray[i]).abs>RelaxedModelThreshold)
+						if (policyArray[i].to_i.to_s==policyArray[i].to_s)
+							#policyArray is integer, we should not apply relaxed checking here
+							if (policyArray[i]!=currentArray[i])
+								diff = true
+								diffArray.push(what + ", difference happens at index #{i}, because relaxed model learnt is strict on this access (consistent).")
+								break
+							end
+						elsif ((policyArray[i]-currentArray[i]).abs>RelaxedModelThreshold)
 							#p "violation still happens at threshold = #{RelaxedModelThreshold}, current diff is #{(policyArray[i]-currentArray[i]).abs}"
 							diff = true
 							diffArray.push(what + ", difference happens at index #{i}, difference is #{(policyArray[i]-currentArray[i]).abs.round()}.")
