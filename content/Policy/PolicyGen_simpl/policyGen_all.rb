@@ -76,6 +76,10 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 		while (line = f.gets)
 			line=line.chomp
 			_wholoc = line.index(" |:=> ")
+			_scriptLocation = line.index(" <=|=> ")
+			if (_scriptLocation!=nil)
+				
+			end
 			if (_wholoc!=nil)
 				_what = line[0, _wholoc]
 				_who = line[_wholoc+1,line.length]
@@ -90,7 +94,7 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 				if (!accessHash[_tld].include? _what)
 					accessHash[_tld].push(_what)
 				end
-			end
+			end		
 		end
 		f.close()
 	end

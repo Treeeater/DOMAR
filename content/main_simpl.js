@@ -420,18 +420,19 @@ function writePolicy()
 				rawstring = rawstring + rawdata[2][i].what+" |:=> "+rawdata[2][i].who+"\n";
 			}
 		}
-		rawstring = rawstring + "\nEnd of document special property access\n--------------DOMAR_Separator---------------\n";
+		rawstring = rawstring + "\nEnd of document special property access\n";
 		//record the embedding location of all scripts
+		scriptLoc = ""
 		var scripts = win.document.getElementsByTagName('script');
 		for (i = 0; i < scripts.length; i++)
 		{
 			if (scripts[i].src!="")
 			{
 				//record all non-inlined scripts
-				rawstring = rawstring + scripts[i].src + " <=|=> " + getXPath(scripts[i]) + "\n";
+				scriptLoc = scriptLoc + scripts[i].src + " <=|=> " + getXPath(scripts[i]) + "\n";
 			}
 		}
-		var data = rawstring;
+		var data = scriptLoc + "\n--------------DOMAR_Separator---------------\n\n" + rawstring;
 		// You can also optionally pass a flags parameter here. It defaults to
 		// FileUtils.MODE_WRONLY | FileUtils.MODE_CREATE | FileUtils.MODE_TRUNCATE;
 		var ostream = FileUtils.openSafeFileOutputStream(file)
