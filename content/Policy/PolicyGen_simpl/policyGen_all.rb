@@ -47,6 +47,7 @@ end
 def extractRecordsFromTrainingData(hostD, necFileList)
 # This function extracts data from files to an associative array randomly, given the P_inst.
 	accessHash = Hash.new
+	locationHash = Hash.new			#This hash is used to store the embedding location of scripts for each individual tld.
 	pFolder = PRootDir+hostD
 	rFolder = RRootDir+hostD
 	#files = Dir.glob(hostDir+"/*")
@@ -75,11 +76,14 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 		f = File.open(fileName, 'r')
 		while (line = f.gets)
 			line=line.chomp
-			_wholoc = line.index(" |:=> ")
 			_scriptLocation = line.index(" <=|=> ")
 			if (_scriptLocation!=nil)
+				_who = line[0, _scriptLocation]
+				_where = line[_scriptLocation+1,line.length]
+				_tld = getTLD(_who)
 				
 			end
+			_wholoc = line.index(" |:=> ")
 			if (_wholoc!=nil)
 				_what = line[0, _wholoc]
 				_who = line[_wholoc+1,line.length]
