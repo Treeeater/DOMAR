@@ -385,6 +385,7 @@ var oldChildNodes = Element.prototype.__lookupGetter__('childNodes');
 var oldAttributes = Element.prototype.__lookupGetter__('attributes');
 //innerHTML
 oldInnerHTMLGetter = HTMLElement.prototype.__lookupGetter__('innerHTML');
+oldTextContentGetter = HTMLElement.prototype.__lookupGetter__('textContent');
 //Get original DOM special properties
 var old_cookie_setter = HTMLDocument.prototype.__lookupSetter__ ('cookie');
 var old_cookie_getter = HTMLDocument.prototype.__lookupGetter__ ('cookie');
@@ -956,6 +957,23 @@ for (i=0; i<allElementsType.length; i++)
 			}
 		}
 		return oldInnerHTMLGetter.call(this,str);
+		});
+	}
+	if (oldTextContentGetter)
+	{
+		allElementsType[i].prototype.__defineGetter__('textContent',function(str){
+		var thispath = getXPath(this);
+		var callerInfo = getCallerInfo();
+		if ((thispath!="")&&(callerInfo!=null))
+		{
+			seqID++;
+			if (recordedDOMActions['Read textContent of this element: '+thispath+'!'+callerInfo]!=true) 
+			{ 
+				recordedDOMActions['Read textContent of this element: '+thispath+'!'+callerInfo]=true; 
+				record[DOMRecord].push({what:'Read textContent of this element: '+thispath+'!',when:seqID,who:callerInfo});
+			}
+		}
+		return oldTextContentGetter.call(this,str);
 		});
 	}
 	//allElementsType[i].prototype.__defineGetter__('attributes',function(){record.push(getXPathCollection(oldAttributes.apply(this)));return oldAttributes.apply(this);});		//attribute nodes are detached from the DOM tree. Currently we do not support mediation of this.
