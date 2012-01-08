@@ -147,16 +147,18 @@ function modify(response,trustedDomains)
 {
 	if (!detect_response_beginning(response)) return response;
 	if (if_already_modified(response)) return response;
-	//find the first head or HEAD or body or BODY, currently we do not deal with <head some attribute> case. That is trivial but i'm too lazy to do it.
-	var insertIndex = response.toLowerCase().indexOf('<head>');
-	if (insertIndex == -1) insertIndex = response.toLowerCase().indexOf('<body>');
+	//FIXED:find the first head or HEAD or body or BODY, currently we do not deal with <head some attribute> case. That is trivial but i'm too lazy to do it.
+	var lowerResponse = response.toLowerCase();
+	var insertIndex = lowerResponse.indexOf('<head');
+	if (insertIndex == -1) insertIndex = lowerResponse.indexOf('<body');
+	insertIndex = lowerResponse.indexOf('>',insertIndex);
 	if (insertIndex > 0)
 	{
 		startTime = new Date().getTime();
 		if (!mainControl.getStatus()) {
 			return response;
 		}
-		var headpos = insertIndex+6;
+		var headpos = insertIndex+1;
 		var firstportion = response.substr(0,headpos);
 		var lastportion = response.substr(headpos,response.length);
 		//var middleportion = "<script src='http://www.cs.virginia.edu/~yz8ra/FFReplace.js'></script>";

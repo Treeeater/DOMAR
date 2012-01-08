@@ -35,7 +35,7 @@ if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent))
 if (!ffversion||(ffversion<5)) return null;
 //private variable: records all DOM accesses
 var record = new Array(new Array(), new Array(), new Array());
-var trustedDomains = [];
+var trustedDomains = ["0.1"];
 var DOMRecord = 0;
 var windowRecord = 1;
 var documentRecord = 2;
@@ -979,7 +979,7 @@ for (i=0; i<allElementsType.length; i++)
 	//allElementsType[i].prototype.__defineGetter__('attributes',function(){record.push(getXPathCollection(oldAttributes.apply(this)));return oldAttributes.apply(this);});		//attribute nodes are detached from the DOM tree. Currently we do not support mediation of this.
 }
 //document.head.removeChild(oldGetTagName.call(document,'script')[0]);			//remove myself
-return (function(){this.getRecord = function(){return record;}; this.Push = function(a){trustedDomains.push(a)}; this.Get = function() {return trustedDomains}; return this;});
+return (function(){this.getRecord = function(){return record;}; this.Push = function(a){if (a!="") trustedDomains.push(a)}; this.Get = function() {return trustedDomains}; return this;});
 }
 
 __record = new ___record();
