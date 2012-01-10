@@ -3,14 +3,17 @@
 #HostURL = "httpwwwyelpcomcharlottesvilleva"
 #HostURL = "httpwwwyelpcomuserdetails"
 #------------------------------------------------------
-#HostDomain = "nytimescom"
+HostDomain = "nytimescom"
 #HostURL = "httpwwwnytimescom20111205technologyxboxlivechallengesthecablebo"
+HostURL = "httpthecaucusblogsnytimescom20120109daleytostepdownwhitehouseof"
 #HostDomain = "techcrunchcom"
 #HostURL = "httptechcrunchcom"
 #HostDomain = "overstockcom"
 #HostURL = "httpwwwoverstockcom"
-HostDomain = "slashdotorg"
-HostURL = "httpslashdotorg"
+#HostDomain = "slashdotorg"
+#HostURL = "httpslashdotorg"
+#HostDomain = "wsjcom"
+#HostURL = "httpblogswsjcomdeals20120109freshlowforzyngashares"
 P_inst = 0.05								#instrumentation frequency: when Alldomain is set to true, this maybe overriden to a higher value.
 Thres = 0.1									#allowed maximum false positive
 Alldomain = true							#allow the model builder to first scan all records and record all files that contain a previously unrecorded domain. Those files will be automatically considered in training phase.
