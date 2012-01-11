@@ -27,9 +27,9 @@ class Nytimes < Test::Unit::TestCase
     @selenium.execution_delay = "20"
     @selenium.open "/2012/01/09/daley-to-step-down-white-house-officials-say/?hp"
 	puts "opened!"
-	sleep(10)
+	sleep(8)
 	errcount = 0
-	while (count<800)
+	while (count<8000)
 		count = count+1
 		#To make sure this page loads first
 		while (!@selenium.element? "//img[@id='NYTLogo']")
@@ -39,10 +39,10 @@ class Nytimes < Test::Unit::TestCase
 				exit 2
 			end
 			@selenium.refresh
-			sleep(6)
+			sleep(8)
 		end
 		@selenium.refresh
-		sleep(10)
+		sleep(8)
 		errcount = 0
 		puts count
 	end

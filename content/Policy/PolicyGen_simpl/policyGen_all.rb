@@ -48,6 +48,7 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 # This function extracts data from files to an associative array randomly, given the P_inst.
 	accessHash = Hash.new
 	locationHash = Hash.new			#This hash is used to store the embedding location of scripts for each individual tld.
+	tlds = Array.new
 	pFolder = PRootDir+hostD
 	rFolder = RRootDir+hostD
 	#files = Dir.glob(hostDir+"/*")
@@ -81,13 +82,15 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 				_who = line[0, _scriptLocation]
 				_where = line[_scriptLocation+1,line.length]
 				_tld = getTLD(_who)
-				
 			end
 			_wholoc = line.index(" |:=> ")
 			if (_wholoc!=nil)
 				_what = line[0, _wholoc]
 				_who = line[_wholoc+1,line.length]
 				_tld = getTLD(_who)
+				if (!tlds.include? _tld) 
+					tlds.push _tld
+				end
 				if (accessHash[_tld]==nil)
 					#2-level array
 					#accessHash[_tld] = Hash.new
@@ -106,7 +109,7 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 	accessHash.each_key{|_tld|
 		accessHash[_tld] = accessHash[_tld].sort
 	}
-	temp = ExtractedRecords.new(accessHash, indexOfTrainingSamples)
+	temp = ExtractedRecords.new(accessHash, indexOfTrainingSamples,tlds)
 	return temp
 end
 
@@ -158,6 +161,7 @@ for i in (1..Running_times)
 	extractedRecords = extractRecordsFromTrainingData(workingDir, necFileList)
 	exportAllRecords(extractedRecords,workingDir)
 	model = Model.new
+	tlds = Array.new
 	extractedRecords.records.each_key{|tld|
 		tempModel = buildStrictModel(extractedRecords.records[tld], tld) 	#strictest model is actually just extractedRecord
 		strictModelTestResult = checkStrictModel(tempModel, workingDir, extractedRecords)
@@ -178,8 +182,23 @@ for i in (1..Running_times)
 		end
 		p "Strict Model : Difference at #{tld} domain is :"
 		p strictModelTestResult.percentage.to_s
+		tlds.push tld			#to record what tld(s) have been checked.
 		#exportDiffArray(strictModelTestResult, workingDir, tld)
 	}
+	if (!Alldomain)
+		#if alldomain option is off, we need to check if any other domain exists besides the domains existing in training data.
+		p "All domain is set to false, we will check for potential domain lost in training data..."
+		flag = false
+		extractedRecords.tlds.each{|tld|
+			if (!extractedRecords.records.keys.include? tld)
+				p tld + " not found in training data."
+				flag = true
+			end
+		}
+		if (!flag)
+			p "Good, no domain is lost in training data!"
+		end
+	end
 	p modelTotalResult.to_s
 end
 =begin
