@@ -119,8 +119,8 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 	end
 	i = 0
 	while (i < numberOfRecords)
-		fileName = rFolder+"record"+indexOfTrainingSamples[i].to_s+".txt"
 		i += 1
+		fileName = rFolder+"record"+i.to_s+".txt"
 		f = File.open(fileName, 'r')
 		while (line = f.gets)
 			line=line.chomp
