@@ -103,9 +103,6 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 				_what = line[0, _wholoc]
 				_who = line[_wholoc+1,line.length]
 				_tld = getTLD(_who)
-				if (!tlds.include? _tld) 
-					tlds.push _tld
-				end
 				if (accessHash[_tld]==nil)
 					#2-level array
 					#accessHash[_tld] = Hash.new
@@ -117,6 +114,24 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 					accessHash[_tld].push(_what)
 				end
 			end		
+		end
+		f.close()
+	end
+	i = 0
+	while (i < numberOfRecords)
+		fileName = rFolder+"record"+indexOfTrainingSamples[i].to_s+".txt"
+		i += 1
+		f = File.open(fileName, 'r')
+		while (line = f.gets)
+			line=line.chomp
+			_wholoc = line.index(" |:=> ")
+			if (_wholoc!=nil)
+				_who = line[_wholoc+1,line.length]
+				_tld = getTLD(_who)
+				if (!tlds.include? _tld) 
+					tlds.push _tld
+				end
+			end
 		end
 		f.close()
 	end
