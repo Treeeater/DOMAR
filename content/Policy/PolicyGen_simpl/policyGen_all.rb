@@ -15,6 +15,21 @@ def getTLD(url)
 	return tld
 end
 
+def getSequentialFile(hostD)
+	hostDir = RRootDir+hostD
+	files = Dir.glob(hostDir+"*")
+	#assuming file id is from 1 to N.
+	numberOfRecords = Dir.entries(hostDir).length-2					#Total number of records
+	numberOfTrainingSamples = (numberOfRecords * P_inst).round		#Total training cases
+	i = 1
+	returnList = Array.new
+	while (i <= numberOfTrainingSamples)
+		returnList.push(i)
+		i+=1
+	end
+	return returnList
+end
+
 def getNecessaryFile(hostD)
 	hostDir = RRootDir+hostD
 	files = Dir.glob(hostDir+"*")
@@ -157,7 +172,7 @@ for i in (1..Running_times)
 	modelTotalResult = 1.0
 	puts "Running for the #{i}th time"
 	#necFileList = Alldomain ? necessaryFileList : Array.new
-	necFileList = Alldomain ? getNecessaryFile(workingDir) : Array.new
+	necFileList = Alldomain ? getNecessaryFile(workingDir) : (Sequential ? getSequentialFile(workingDir) : Array.new)
 	extractedRecords = extractRecordsFromTrainingData(workingDir, necFileList)
 	exportAllRecords(extractedRecords,workingDir)
 	model = Model.new
