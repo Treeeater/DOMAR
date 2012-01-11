@@ -63,7 +63,6 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 # This function extracts data from files to an associative array randomly, given the P_inst.
 	accessHash = Hash.new
 	locationHash = Hash.new			#This hash is used to store the embedding location of scripts for each individual tld.
-	tlds = Array.new
 	pFolder = PRootDir+hostD
 	rFolder = RRootDir+hostD
 	#files = Dir.glob(hostDir+"/*")
@@ -118,6 +117,7 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 		f.close()
 	end
 	i = 0
+	tldsDetails = Hash.new
 	while (i < numberOfRecords)
 		i += 1
 		fileName = rFolder+"record"+i.to_s+".txt"
@@ -128,8 +128,13 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 			if (_wholoc!=nil)
 				_who = line[_wholoc+1,line.length]
 				_tld = getTLD(_who)
-				if (!tlds.include? _tld) 
-					tlds.push _tld
+				if (!tldsDetails.key? _tld) 
+					tldsDetails[_tld] = Array.new
+					tldsDetails[_tld].push(i)
+				else
+					if (!tldsDetails[_tld].include? i)
+						tldsDetails[_tld].push(i)
+					end
 				end
 			end
 		end
@@ -139,7 +144,7 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 	accessHash.each_key{|_tld|
 		accessHash[_tld] = accessHash[_tld].sort
 	}
-	temp = ExtractedRecords.new(accessHash, indexOfTrainingSamples,tlds)
+	temp = ExtractedRecords.new(accessHash, indexOfTrainingSamples, tldsDetails)
 	return temp
 end
 
@@ -219,9 +224,11 @@ for i in (1..Running_times)
 		#if alldomain option is off, we need to check if any other domain exists besides the domains existing in training data.
 		p "All domain is set to false, we will check for potential domain lost in training data..."
 		flag = false
-		extractedRecords.tlds.each{|tld|
+		extractedRecords.tldsDetails.each_key{|tld|
 			if (!extractedRecords.records.keys.include? tld)
 				p tld + " not found in training data."
+				p "total numbers of records containing this domain is " + extractedRecords.tldsDetails[tld].length.to_s
+				p "they are:" + extractedRecords.tldsDetails[tld].to_s
 				flag = true
 			end
 		}
