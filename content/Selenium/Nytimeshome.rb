@@ -29,7 +29,7 @@ class Nytimes < Test::Unit::TestCase
 	puts "opened!"
 	sleep(6)
 	errcount = 0
-	while (count<800)
+	while (count<10000)
 		count = count+1
 		#To make sure this page loads first
 		while (!@selenium.element? "//ul[@id='mainTabs']/li/a")

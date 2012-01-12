@@ -228,7 +228,11 @@ for i in (1..Running_times)
 			if (!extractedRecords.records.keys.include? tld)
 				p tld + " not found in training data."
 				p "total numbers of records containing this domain is " + extractedRecords.tldsDetails[tld].length.to_s
-				p "they are:" + extractedRecords.tldsDetails[tld].to_s
+				if (extractedRecords.tldsDetails[tld].length<100)
+					p "they are:" + extractedRecords.tldsDetails[tld].to_s
+				else
+					p "too many of them, won't emnumerate here."
+				end
 				flag = true
 			end
 		}

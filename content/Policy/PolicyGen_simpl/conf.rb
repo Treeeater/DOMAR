@@ -3,18 +3,19 @@
 #HostURL = "httpwwwyelpcomcharlottesvilleva"
 #HostURL = "httpwwwyelpcomuserdetails"
 #------------------------------------------------------
-#HostDomain = "nytimescom"
+HostDomain = "nytimescom"
+HostURL = "httpwwwnytimescom"
 #HostURL = "httpwwwnytimescom20111205technologyxboxlivechallengesthecablebo"
 #HostURL = "httpthecaucusblogsnytimescom20120109daleytostepdownwhitehouseof"
-HostDomain = "techcrunchcom"
-HostURL = "httptechcrunchcom"
+#HostDomain = "techcrunchcom"
+#HostURL = "httptechcrunchcom"
 #HostDomain = "overstockcom"
 #HostURL = "httpwwwoverstockcom"
 #HostDomain = "slashdotorg"
 #HostURL = "httpslashdotorg"
 #HostDomain = "wsjcom"
 #HostURL = "httpblogswsjcomdeals20120109freshlowforzyngashares"
-P_inst = 0.02								#instrumentation frequency: when Alldomain is set to true, this maybe overriden to a higher value.
+P_inst = 0.05								#instrumentation frequency: when Alldomain is set to true, this maybe overriden to a higher value.
 Thres = 0.1									#allowed maximum false positive
 Alldomain = false							#allow the model builder to first scan all records and record all files that contain a previously unrecorded domain. Those files will be automatically considered in training phase.  *After discussing with Dave this option should be set to false all the time.*
 Sequential = true							#set to true if we need to sample training data sequentially, i.e. 1, 2, 3....
