@@ -25,21 +25,22 @@ class Yelp < Test::Unit::TestCase
   def test_yelp
     count = 0
 	errcount = 0
+	@selenium.open "/fairfax-va"
 	while (count<10000)
 		count = count+1
-		@selenium.execution_delay = "2000"
-		@selenium.open "/charlottesville-va"
-		#sleep(8)
+		#@selenium.execution_delay = "3000"
 		while (!@selenium.element? "id=about_me")
 			puts "needs refresh!"
 			@selenium.refresh
 			errcount += 1
 			if (errcount > 100)
 				exit 2
-			#sleep(8)
+			end
+			sleep(5)
 		end
+		p count
 		@selenium.refresh
-		#sleep(8)
+		sleep(5)
 	end
   end
 end
