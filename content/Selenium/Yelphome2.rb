@@ -3,15 +3,15 @@ require "rubygems"
 gem "selenium-client"
 require "selenium/client"
 
-class Nytimes < Test::Unit::TestCase
+class Yelp < Test::Unit::TestCase
 
   def setup
     @verification_errors = []
     @selenium = Selenium::Client::Driver.new \
-	  :host => "chromium.cs.virginia.edu", #:host => "localhost", #
-      :port => 12345,
+      :host => "chromium.cs.virginia.edu",
+      :port => 12344,
       :browser => "*chrome",
-      :url => "http://www.nytimes.com/",
+      :url => "http://www.yelp.com/",
       :timeout_in_second => 60
 
     @selenium.start_new_browser_session
@@ -22,29 +22,24 @@ class Nytimes < Test::Unit::TestCase
     assert_equal [], @verification_errors
   end
   
-  def test_nytimes
+  def test_yelp
     count = 0
-    @selenium.execution_delay = "20"
-    @selenium.open "/"
-	puts "opened!"
-	sleep(6)
 	errcount = 0
 	while (count<10000)
 		count = count+1
-		#To make sure this page loads first
-		while (!@selenium.element? "//ul[@id='mainTabs']/li/a")
+		@selenium.execution_delay = "2000"
+		@selenium.open "/charlottesville-va"
+		#sleep(8)
+		while (!@selenium.element? "id=about_me")
 			puts "needs refresh!"
-			errcount += 1
-			if (errcount > 100) 
-				exit 2
-			end
 			@selenium.refresh
-			sleep(6)
+			errcount += 1
+			if (errcount > 100)
+				exit 2
+			#sleep(8)
 		end
-		@selenium.click "//ul[@id='mainTabs']/li/a"
-		sleep(6)
-		errcount = 0
-		puts count
+		@selenium.refresh
+		#sleep(8)
 	end
   end
 end
