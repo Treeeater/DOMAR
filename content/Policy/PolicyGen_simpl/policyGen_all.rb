@@ -16,15 +16,28 @@ def getTLD(url)
 end
 
 def getSequentialFile(hostD)
+	#based on last modified date.
+	returnList = Array.new
 	hostDir = RRootDir+hostD
 	files = Dir.glob(hostDir+"*")
+	#p files
+	#sorted_files = files.sort_by {|filename| File.mtime(filename) }
+	#p sorted_files
+	times = Array.new
+	lookupTable = Hash.new
+	files.each{|file|
+		modtime = File.mtime(file)
+		times.push(modtime)
+		lookupTable[modtime]=file
+	}
+	times = times.sort
 	#assuming file id is from 1 to N.
 	numberOfRecords = Dir.entries(hostDir).length-2					#Total number of records
 	numberOfTrainingSamples = (numberOfRecords * P_inst).round		#Total training cases
-	i = 1
-	returnList = Array.new
-	while (i <= numberOfTrainingSamples)
-		returnList.push(i)
+	i = 0
+	while (i < numberOfTrainingSamples)
+		fileNo = (lookupTable[times[i]].to_s.chomp.gsub(/.*record(\d*)\.txt$/,'\1')).to_i
+		returnList.push(fileNo)
 		i+=1
 	end
 	return returnList
@@ -65,6 +78,7 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 	locationHash = Hash.new			#This hash is used to store the embedding location of scripts for each individual tld.
 	pFolder = PRootDir+hostD
 	rFolder = RRootDir+hostD
+	files = Dir.glob(rFolder+"*")
 	#files = Dir.glob(hostDir+"/*")
 	numberOfRecords = Dir.entries(rFolder).length-2					#Total number of records
 	numberOfTrainingSamples = (numberOfRecords * P_inst).round		#Total training cases
@@ -118,16 +132,15 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 	end
 	i = 0
 	tldsDetails = Hash.new
-	while (i < numberOfRecords)
-		i += 1
-		fileName = rFolder+"record"+i.to_s+".txt"
-		f = File.open(fileName, 'r')
+	files.each{|file|
+		f = File.open(file, 'r')
 		while (line = f.gets)
 			line=line.chomp
 			_wholoc = line.index(" |:=> ")
 			if (_wholoc!=nil)
 				_who = line[_wholoc+1,line.length]
 				_tld = getTLD(_who)
+				i = (file.to_s.chomp.gsub(/.*record(\d*)\.txt$/,'\1')).to_i
 				if (!tldsDetails.key? _tld) 
 					tldsDetails[_tld] = Array.new
 					tldsDetails[_tld].push(i)
@@ -139,7 +152,7 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 			end
 		end
 		f.close()
-	end
+	}
 	#sort accessHash in an alphebatically order
 	accessHash.each_key{|_tld|
 		accessHash[_tld] = accessHash[_tld].sort
