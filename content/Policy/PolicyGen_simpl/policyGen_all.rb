@@ -164,18 +164,22 @@ end
 #main training program
 hostDomain = ""
 hostURL = ""
-if ARGV.length==2
+if ARGV.length==1
 	#arguments provided
-	hostDomain = ARGV[0]
-	hostURL=ARGV[1]
+	domainOfInterest = ARGV[0]
+	hostDomain = HostDomain
+	hostURL = HostURL
+=begin
 elsif ARGV.length == 0
 	puts "What is the intended host domain to generate policy?"
 	hostDomain = gets.chomp
 	puts "What is the intended host URL to generate policy?"
 	hostURL = gets.chomp
+=end
 else
 	#puts "Either give me no arguments or give me two, the first one is host domain and the second one is third party domain. Other arguments are not accepted."
 	#Process.exit
+	domainOfInterest = ""			#interested in all domains
 	hostDomain = HostDomain
 	hostURL = HostURL
 end
@@ -211,6 +215,9 @@ for i in (1..Running_times)
 	model = Model.new
 	tlds = Array.new
 	extractedRecords.records.each_key{|tld|
+		if ((domainOfInterest!="")&&(domainOfInterest!=tld)) 
+			next
+		end
 		tempModel = buildStrictModel(extractedRecords.records[tld], tld) 	#strictest model is actually just extractedRecord
 		strictModelTestResult = checkStrictModel(tempModel, workingDir, extractedRecords)
 		if ((strictModelTestResult.percentage > StrictModelThreshold) && (RelaxedModeEnabled))
@@ -233,7 +240,7 @@ for i in (1..Running_times)
 		tlds.push tld			#to record what tld(s) have been checked.
 		#exportDiffArray(strictModelTestResult, workingDir, tld)
 	}
-	if (!Alldomain)
+	if ((!Alldomain)&&(domainOfInterest==""))
 		#if alldomain option is off, we need to check if any other domain exists besides the domains existing in training data.
 		p "All domain is set to false, we will check for potential domain lost in training data..."
 		flag = false
