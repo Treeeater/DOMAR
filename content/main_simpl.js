@@ -114,7 +114,7 @@ if (typeof CCSV == "undefined") {
 function detect_response_beginning(response)
 {
 	//sometimes responses are divided into chunks, we only want to modify the beginning of the response.
-	if ((response.match(/^\s*<[hH]/)!=null)||(response.match(/^\s*<!DOCTYPE/i)!=null)) return true;
+	if ((response.match(/^\s*<[hH]/)!=null)||(response.match(/^\s*<!DOCTYPE/i)!=null)||(response.match(/^\s*<!--/i)!=null)) return true;
 	else return false;
 }
 function if_already_modified(response)
