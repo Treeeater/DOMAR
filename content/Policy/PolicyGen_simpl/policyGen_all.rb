@@ -214,6 +214,7 @@ for i in (1..Running_times)
 	exportAllRecords(extractedRecords,workingDir)
 	model = Model.new
 	tlds = Array.new
+	p "done extracting records."
 	extractedRecords.records.each_key{|tld|
 		if ((domainOfInterest!="")&&(domainOfInterest!=tld)) 
 			next
