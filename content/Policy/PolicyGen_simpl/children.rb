@@ -206,9 +206,8 @@ def compareRelaxedModel(relaxedModel, accessArray)
 								break
 							end
 						elsif ((policyArray[i]-currentArray[i]).abs>RelaxedModelThreshold)
-							#p "violation still happens at threshold = #{RelaxedModelThreshold}, current diff is #{(policyArray[i]-currentArray[i]).abs}"
 							diff = true
-							diffArray.push(what + ", difference happens at index #{i}, difference is #{(policyArray[i]-currentArray[i]).abs.round()}.")
+							diffArray.push(what + ", difference happens at index #{i}, difference is more than #{RelaxedModelThreshold}: #{(policyArray[i]-currentArray[i]).abs.round()}.")
 							break
 						end
 					}

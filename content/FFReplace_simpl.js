@@ -85,6 +85,22 @@ function getXPath( element )
 		return xpath;
 	}
 };	*/
+
+findPos = function(obj) 
+{
+	var curleft = curtop = 0;
+	var width = height = 0;
+	if (obj.offsetWidth) width = obj.offsetWidth;
+	if (obj.offsetHeight) height = obj.offsetHeight;
+	if (obj.offsetParent) {	
+		do {
+			curleft += obj.offsetLeft;
+			curtop += obj.offsetTop;	
+		} while (obj = obj.offsetParent);
+	}
+	return [curleft,curtop,width,height];
+};
+	
 var getXPath = function(elt)
 {
      var path = "";

@@ -130,9 +130,11 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 		end
 		f.close()
 	end
-	i = 0
+	p "done learning basic model."
+	j = 0
 	tldsDetails = Hash.new
 	files.each{|file|
+		j = j + 1
 		f = File.open(file, 'r')
 		while (line = f.gets)
 			line=line.chomp
@@ -145,18 +147,25 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 					tldsDetails[_tld] = Array.new
 					tldsDetails[_tld].push(i)
 				else
-					if (!tldsDetails[_tld].include? i)
+					#if (!tldsDetails[_tld].include? i)
+						#performance reasons: this significantly slows down the process, making it O(N2) instead of linear.
+						#memory is not a issue, we just gonna push the elements.
 						tldsDetails[_tld].push(i)
-					end
+					#end
 				end
 			end
 		end
 		f.close()
 	}
+	tldsDetails.each_key{|_tld|
+		tldsDetails[_tld] = tldsDetails[_tld].uniq
+	}
+	p "done extracting all tlds."
 	#sort accessHash in an alphebatically order
 	accessHash.each_key{|_tld|
 		accessHash[_tld] = accessHash[_tld].sort
 	}
+	p "done sorting all tlds."
 	temp = ExtractedRecords.new(accessHash, indexOfTrainingSamples, tldsDetails)
 	return temp
 end

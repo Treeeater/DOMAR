@@ -1,3 +1,57 @@
+#require 'amatch'
+
+def relaxedCompare(what,accesses)
+	#'what' is the acutal recording, accesses contains the model information
+	#return false on a match
+	if (accesses.include? what) 
+		return false
+	end
+	whatstructure = what.gsub(/\[\d*\]/,'')
+	whatIndex = what.gsub(/\]\//,'').gsub(/\[/,'').gsub(/\]$/,'').gsub(/\//,'1').split(/\D+/)
+	accesses.each{|acc|
+		matched = false
+		accstructure = acc.gsub(/\[\d*\]/,'')
+		if (accstructure == whatstructure)
+=begin
+			accArr = acc.split('/')
+			accArrI = Array.new
+			whatArrI = Array.new
+			accArr.each{|a|
+				temp = a.gsub(/.*\[(\d*)\]/,'\1')
+				if (temp == a)
+					accArrI.push(1)
+				else
+					accArrI.push(temp.to_i)
+				end
+			}
+			whatArr = what.split('/')
+			whatArr.each{|a|
+				temp = a.gsub(/.*\[(\d*)\]/,'\1')
+				if (temp == a)
+					whatArrI.push(1)
+				else
+					whatArrI.push(temp.to_i)
+				end
+			}
+=end
+			accIndex = acc.gsub(/\]\//,'').gsub(/\[/,'').gsub(/\]$/,'').gsub(/\//,'1').split(/\D+/)
+			min = DiffTolerance
+			accIndex.each_index{|i|
+				if (accIndex[i]!=whatIndex[i])
+					min -= 1
+					if (min < 0)
+						break
+					end
+				end
+			}
+			if (min >= 0) 
+				return false
+			end
+		end
+	}
+	return true
+end
+
 def permute_array(a)
 	1.upto(a.length - 1) do |i|
 		j = rand(i + 1)

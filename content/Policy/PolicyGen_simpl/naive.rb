@@ -24,7 +24,13 @@ def compareStrictModel(strictModel, aArray)
 		return 0
 	end
 	aArray[strictModel.tld].each{|what|
-		if (!strictModel.accesses.include?(what))
+		if (DiffTolerance>0)
+			#relaxed mode 2
+			if (relaxedCompare(what,strictModel.accesses))
+				diff = true
+				diffArray.push(what)
+			end
+		elsif (!strictModel.accesses.include?(what))
 			#This access has never happened before
 			#This is illegal, record
 			diff = true
