@@ -65,7 +65,7 @@ findPos = function(obj)
 };
 var getV = function(elt)
 {
-	result = "}-";
+	result = "";
 	eltC = oldChildNodes.apply(elt);
 	i = 0;
 	if (eltC&&(eltC.length>0))

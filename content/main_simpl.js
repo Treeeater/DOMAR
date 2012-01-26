@@ -401,7 +401,9 @@ function writePolicy()
 				//so we ignore it here.
 				//We also ignore sequence info now.
 				//rawstring = rawstring + "When = "+rawdata[0][i].when+" What = "+rawdata[0][i].what+" Who = "+rawdata[0][i].who+"\n";
-				rawstring = rawstring + rawdata[0][i].what+" |:=> "+rawdata[0][i].who+"\n";
+				rawstring = rawstring + rawdata[0][i].what+" |:=> "+rawdata[0][i].who;
+				if ((rawdata[0][i].v)&&(rawdata[0][i].v!="")) rawstring = rawstring +"<=:| "+rawdata[0][i].v;
+				rawstring += "\n";
 			}
 		}
 		rawstring = rawstring + "\nEnd of DOM node access\n---------------------------------------\n";
