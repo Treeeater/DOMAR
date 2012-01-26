@@ -205,7 +205,7 @@ var getCallerInfo = function() {
 };
 */
 //if getCallerInfo returns null, all recording functions will not record current access.
-var getCallerInfo = function() {
+var getCallerInfo = function(caller) {
     try {
         this.undef();
         return null;
@@ -661,7 +661,7 @@ oldWidth = Screen.prototype.__lookupGetter__("width");
 //define new window special property accessors:
 if (oldUserAgent) { 
 	var newUserAgent = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("userAgent"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.userAgent read!'+callerInfo]!=true)
@@ -675,7 +675,7 @@ if (oldUserAgent) {
 }
 if (oldPlatform) { 
 	var newPlatform = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("platform"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.platform read!'+callerInfo]!=true)
@@ -689,7 +689,7 @@ if (oldPlatform) {
 }
 if (oldAppCodeName) { 
 	var newAppCodeName = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("appCodeName"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.appCodeName read!'+callerInfo]!=true)
@@ -703,7 +703,7 @@ if (oldAppCodeName) {
 }
 if (oldAppVersion) { 
 	var newAppVersion = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("appVersion"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.appVersion read!'+callerInfo]!=true)
@@ -717,7 +717,7 @@ if (oldAppVersion) {
 }
 if (oldAppName) { 
 	var newAppName = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("appName"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.appName read!'+callerInfo]!=true)
@@ -731,7 +731,7 @@ if (oldAppName) {
 }
 if (oldCookieEnabled) { 
 	var newCookieEnabled = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("cookieEnabled"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.cookieEnabled read!'+callerInfo]!=true)
@@ -745,7 +745,7 @@ if (oldCookieEnabled) {
 }
 if (oldAvailWidth) { 
 	var newAvailWidth = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("availWidth"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.availWidth read!'+callerInfo]!=true)
@@ -759,7 +759,7 @@ if (oldAvailWidth) {
 }
 if (oldAvailHeight) { 
 	var newAvailHeight = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("availHeight"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.availHeight read!'+callerInfo]!=true)
@@ -773,7 +773,7 @@ if (oldAvailHeight) {
 }
 if (oldColorDepth) { 
 	var newColorDepth = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("colorDepth"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.colorDepth read!'+callerInfo]!=true)
@@ -787,7 +787,7 @@ if (oldColorDepth) {
 }
 if (oldHeight) { 
 	var newHeight = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("height"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.height read!'+callerInfo]!=true)
@@ -801,7 +801,7 @@ if (oldHeight) {
 }
 if (oldWidth) { 
 	var newWidth = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("width"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.width read!'+callerInfo]!=true)
@@ -815,7 +815,7 @@ if (oldWidth) {
 }
 if (oldPixelDepth) { 
 	var newPixelDepth = function(){ 
-		var callerInfo = getCallerInfo(""); 
+		var callerInfo = getCallerInfo("pixeldepth"); 
 		if (callerInfo!=null) {
 			seqID++;
 			if (recordedDOMActions['navigator.pixelDepth read!'+callerInfo]!=true)
@@ -875,19 +875,19 @@ for (; i<allElementsType.length; i++)
 	oldEGetClassName[i] = allElementsType[i].prototype.getElementsByClassName;
 	oldEGetTagNameNS[i] = allElementsType[i].prototype.getElementsByTagNameNS;
 	
-	allElementsType[i].prototype.__defineGetter__('parentNode',function(){var thispath = getXPath(oldParentNode.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldParentNode.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('parentNode',function(){var thispath = getXPath(oldParentNode.apply(this)); var callerInfo = getCallerInfo("parentNode"); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldParentNode.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('nextSibling',function(){var thispath = getXPath(oldNextSibling.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldNextSibling.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('nextSibling',function(){var thispath = getXPath(oldNextSibling.apply(this)); var callerInfo = getCallerInfo("nextSibling"); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldNextSibling.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('previousSibling',function(){var thispath = getXPath(oldPreviousSibling.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldPreviousSibling.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('previousSibling',function(){var thispath = getXPath(oldPreviousSibling.apply(this)); var callerInfo = getCallerInfo("previousSibling"); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldPreviousSibling.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('firstChild',function(){var thispath = getXPath(oldFirstChild.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldFirstChild.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('firstChild',function(){var thispath = getXPath(oldFirstChild.apply(this)); var callerInfo = getCallerInfo("firstChild"); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldFirstChild.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('lastChild',function(){var thispath = getXPath(oldLastChild.apply(this)); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldLastChild.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('lastChild',function(){var thispath = getXPath(oldLastChild.apply(this)); var callerInfo = getCallerInfo("lastChild"); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions[thispath+callerInfo]!=true) { recordedDOMActions[thispath+callerInfo]=true; record[DOMRecord].push({what:thispath,when:seqID,who:callerInfo});}} return oldLastChild.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('children',function(){var thispath = getXPath(this); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions["Children called on: "+thispath+callerInfo]!=true) { recordedDOMActions["Children called on: "+thispath+callerInfo]=true; record[DOMRecord].push({what:"Children called on: "+ thispath,when:seqID,who:callerInfo});}} return oldChildren.apply(this);});
+	allElementsType[i].prototype.__defineGetter__('children',function(){var thispath = getXPath(this); var callerInfo = getCallerInfo("children"); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions["Children called on: "+thispath+callerInfo]!=true) { recordedDOMActions["Children called on: "+thispath+callerInfo]=true; record[DOMRecord].push({what:"Children called on: "+ thispath,when:seqID,who:callerInfo});}} return oldChildren.apply(this);});
 	
-	allElementsType[i].prototype.__defineGetter__('childNodes',function(){var thispath = getXPath(this); var callerInfo = getCallerInfo(); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions["childNodes called on: "+thispath+callerInfo]!=true) { recordedDOMActions["childNodes called on: "+thispath+callerInfo]=true; record[DOMRecord].push({what:"childNodes called on: "+thispath,when:seqID,who:callerInfo});}} return oldChildNodes.apply(this);});	
+	allElementsType[i].prototype.__defineGetter__('childNodes',function(){var thispath = getXPath(this); var callerInfo = getCallerInfo("childNodes"); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions["childNodes called on: "+thispath+callerInfo]!=true) { recordedDOMActions["childNodes called on: "+thispath+callerInfo]=true; record[DOMRecord].push({what:"childNodes called on: "+thispath,when:seqID,who:callerInfo});}} return oldChildNodes.apply(this);});	
 }
 //assign element.getElementsByTagName to new value
 for (i=0; i<allElementsType.length; i++)
@@ -904,7 +904,7 @@ for (i=0; i<allElementsType.length; i++)
 		}
 		//record.push('Called someElement.getElementsByTagName('+arguments[0]+');');	//This is only going to add a English prose to record.
 		var thispath = getXPath(this);
-		var callerInfo = getCallerInfo();
+		var callerInfo = getCallerInfo("getElementsByTagName");
 		if ((thispath!="")&&(callerInfo!=null))
 		{
 			seqID++;
@@ -925,7 +925,7 @@ for (i=0; i<allElementsType.length; i++)
 		}
 		//record.push('Called someElement.getElementsByClassName('+arguments[0]+');');	//This is only going to add a English prose to record.
 		var thispath = getXPath(this);
-		var callerInfo = getCallerInfo();
+		var callerInfo = getCallerInfo("getElementsByClassName");
 		if ((thispath!="")&&(callerInfo!=null))
 		{
 			seqID++;
@@ -946,7 +946,7 @@ for (i=0; i<allElementsType.length; i++)
 		}
 		//record.push('Called someElement.getElementsByTagNameNS('+arguments[0]+');');	//This is only going to add a English prose to record.
 		var thispath = getXPath(this);
-		var callerInfo = getCallerInfo();
+		var callerInfo = getCallerInfo("getElementsByTagNameNS");
 		if ((thispath!="")&&(callerInfo!=null))
 		{
 			seqID++;
@@ -962,7 +962,7 @@ for (i=0; i<allElementsType.length; i++)
 	{
 		allElementsType[i].prototype.__defineGetter__('innerHTML',function(str){
 		var thispath = getXPath(this);
-		var callerInfo = getCallerInfo();
+		var callerInfo = getCallerInfo("innerHTML");
 		if ((thispath!="")&&(callerInfo!=null))
 		{
 			seqID++;
@@ -979,7 +979,7 @@ for (i=0; i<allElementsType.length; i++)
 	{
 		allElementsType[i].prototype.__defineGetter__('textContent',function(str){
 		var thispath = getXPath(this);
-		var callerInfo = getCallerInfo();
+		var callerInfo = getCallerInfo("textContent");
 		if ((thispath!="")&&(callerInfo!=null))
 		{
 			seqID++;
