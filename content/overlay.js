@@ -23,5 +23,19 @@ var mainC = function() {
 	}
 };
 
+var trainingC = function() {
+	var enabled = false;
+	this.loadP = function(){
+	};
+	this.toggleP = function(){
+		enabled = !enabled;
+		document.getElementById('training').label = enabled ? "Training":"Checking";
+	};
+	this.getStatus = function(){
+		return enabled;
+	}
+};
+
 var mainControl = new mainC();
+var trainingControl = new trainingC();
 window.addEventListener("load", function(e) { DOMAccessRecorder.onLoad(e); }, false);

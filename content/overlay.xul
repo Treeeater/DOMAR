@@ -13,5 +13,6 @@
   <statusbar id="status-bar">
   <statusbarpanel class="statusbarpanel-iconic" context="Menu" onclick="DOMAccessRecorder.onMenuItemCommand(event);" tooltip="DOMAccessRecorder" id="DOMAR-panel"  />
   <statusbarpanel id = "enabled" label="Enabled" onload = "mainControl.loadP()" onclick = "mainControl.toggleP()"/>
+  <statusbarpanel id = "training" label="Checking" onload = "trainingControl.loadP()" onclick = "trainingControl.toggleP()"/>
   </statusbar> 
 </overlay>

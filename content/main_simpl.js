@@ -3,7 +3,7 @@ Components.utils.import("resource://gre/modules/NetUtil.jsm");
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
 var startTime;
 var endTime;
-
+var globalNodeIdCount = 0;
 //getXPath necessities
 //These need to be here because getXPath relies on this.
 var oldParentNode = Element.prototype.__lookupGetter__('parentNode');
@@ -48,6 +48,70 @@ function getXPath( element )
 		return xpath;
 	}
 };	*/
+var addSpecialAttrs = function(response)
+{
+//	In fact, this function does not work very well, only because firefox divide the traffic into chunks (and reconstruct them later).
+/*
+	globalNodeIdCount = 0;
+	var pointer = 0;
+	var responseL = response.toLowerCase();
+	var startingTag = response.indexOf('<',pointer);
+	while (startingTag!=-1)
+	{
+		pointer = startingTag+1;
+		while (response[pointer]==" ") pointer++;		//skip spaces
+		if ((response[pointer]=='!')||(response[pointer]=='/'))					//skip comment nodes/doctype declaration and closing tags
+		{
+			startingTag = response.indexOf('<',pointer);
+			continue;
+		}
+		if (responseL.substr(pointer+1,pointer+6) == "script")		//skip chunks of scripts
+		{
+			var selfClosingTag = response.indexOf('/'+'>',pointer);
+			selfClosingTag = (selfClosingTag == -1) ? 9999999 : selfClosingTag;
+			var closingTag = responseL.indexOf('</scr'+'ipt>',pointer);
+			closingTag = (closingTag == -1) ? 9999999 : closingTag;
+			pointer = (closingTag < selfClosingTag) ? closingTag + 1 : selfClosingTag + 1;
+			startingTag = response.indexOf('<',pointer);
+			continue;
+		}
+		//we need to add special attrs, now we should find the closing greater than for this opening tag.
+		gt = response.indexOf('>',pointer);
+		//FIXME: we cannot deal with situations like: onclick="a>b"> 
+		if (gt==-1) break;
+		globalNodeIdCount++;
+		if (response[gt-1]=='/') response = response.substr(0,gt-1) + " specialId = \'" + globalNodeIdCount + "\'" + response.substr(gt-1,response.length);		//self closing tags
+		else response = response.substr(0,gt) + " specialId = \'" + globalNodeIdCount + "\'" + response.substr(gt,response.length);
+		startingTag = response.indexOf('<',pointer);
+	}
+
+*/
+	var historycount = 1;
+	var file = FileUtils.getFile("Desk", ["DOMAR","traffic","traffic"+historycount+".txt"]);
+	while (file.exists()==true) 
+	{
+		historycount++;
+		file = FileUtils.getFile("Desk", ["DOMAR","traffic","traffic"+historycount+".txt"]);
+	}
+	file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);		//Create different file each time.
+	var ostream = FileUtils.openSafeFileOutputStream(file)
+
+	var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"].
+					createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
+	converter.charset = "UTF-8";
+	var istream = converter.convertToInputStream(response);
+	// The last argument (the callback) is optional.
+	NetUtil.asyncCopy(istream, ostream, function(status) {
+	  istream.close();
+	  if (!Components.isSuccessCode(status)) {
+		// Handle error!
+		alert("error writing policy to disk!");
+		return;
+	  }
+	  // Data has been written to the file.
+	});
+	//return response;
+}
 var getXPath = function(elt)
 {
      var path = "";
@@ -148,6 +212,9 @@ function modify(response,trustedDomains)
 	if (!detect_response_beginning(response)) return response;
 	if (if_already_modified(response)) return response;
 	//FIXED:find the first head or HEAD or body or BODY, currently we do not deal with <head some attribute> case. That is trivial but i'm too lazy to do it.
+	if ((mainControl.getStatus())&&(trainingControl.getStatus())) {
+		//addSpecialAttrs(response);			//now this is used to record traffic only
+	}
 	var lowerResponse = response.toLowerCase();
 	var insertIndex = lowerResponse.indexOf('<head');
 	if (insertIndex == -1) insertIndex = lowerResponse.indexOf('<body');

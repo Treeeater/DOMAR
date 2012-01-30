@@ -26,7 +26,10 @@ document.images/anchors/links/applets/forms
 node.innerHTML
 */
 function ___record(){
-var enableV = true;						//used to remember the vicinity of the accessed nodes for automatic policy relearning.
+var training = false;
+if (document.head.getAttribute('specialId')!=null) training = true;
+alert(training);
+var enableV = false;						//used to remember the vicinity of the accessed nodes for automatic policy relearning.
 var seqID = 0;
 var recordedDOMActions = new Array();		//used to remember what we have already recorded to avoid duplicants.
 if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent))
@@ -97,7 +100,8 @@ var getV = function(elt)
 	
 	return result;
 }
-var getXPath = function(elt)
+ 
+var getTrueXPath = function(elt)
 {
      var path = "";
      for (; elt && (elt.nodeType == 1||elt.nodeType == 3||elt.nodeType == 2); elt = oldParentNode.apply(elt))
@@ -113,6 +117,29 @@ var getXPath = function(elt)
      if (path.substr(0,5)!="/HTML") return "";		//right now, if this node is not originated from HTMLDocument (e.g., some script calls createElement which does not contain any private information, we do not record this access.
 	 return path;
 };
+
+var getXPath = function(elt)
+{
+	if (!training) return getTrueXPath(elt);
+	var path = "";
+    for (; elt && (elt.nodeType == 1||elt.nodeType == 3||elt.nodeType == 2); elt = oldParentNode.apply(elt))
+    {
+		if ((elt.nodeType ==1)&&(elt.getAttribute('specialId')!=null))
+		{
+			path = "//" + elt.getAttribute('specialId') + path;
+			break;
+		}
+		idx = getElementIdx(elt);
+		if (elt.nodeType ==1) xname = elt.tagName;
+		else if (elt.nodeType == 3) xname = "TEXT";
+		else if (elt.nodeType == 2) xname = "ATTR";
+		if (idx > 1) xname += "[" + idx + "]";
+		path = "/" + xname + path;
+    }
+	//if ((path=="")&&(elt!=null)) alert(elt);		//for debug purposes.
+    if (!((path.substr(0,5)=="/HTML")||(path.substr(0,2)=="//"))) return "";		//right now, if this node is not originated from HTMLDocument (e.g., some script calls createElement which does not contain any private information, we do not record this access.
+	return path;
+}
 
 var getElementIdx = function(elt)
 {
