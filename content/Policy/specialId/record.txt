@@ -1,0 +1,190 @@
+http://admin.brightcove.com/js/BrightcoveExperiences_all.js <=|=> /HTML/HEAD/SCRIPT
+http://127.0.0.1/FFReplace_simpl.js <=|=> /HTML/HEAD/SCRIPT[2]
+http://cdn.krxd.net/kruxcontent/releases/krux-4.7.2.js <=|=> /HTML/HEAD/SCRIPT[5]
+http://cdn.krxd.net/config/?pubid=79816aa8-435a-471a-be83-4b3e0946daf2&site=NYTimes&callback=KRUX.configOnload <=|=> /HTML/HEAD/SCRIPT[6]
+http://meter-svc.nytimes.com/meter.js?url=http%3A%2F%2Fwww.nytimes.com%2F&referer=http%3A%2F%2Fwww.nytimes.com%2F2012%2F01%2F31%2Fworld%2Fmiddleeast%2Ffighting-in-syria-escalates.html%3F_r%3D1%26hp&callback=j1327951979253 <=|=> /HTML/HEAD/SCRIPT[7]
+http://markets.on.nytimes.com/research/modules/home/home.asp?0.3959729662929651 <=|=> /HTML/HEAD/SCRIPT[8]
+http://pagead2.googlesyndication.com/pagead/osd.js <=|=> /HTML/HEAD/SCRIPT[9]
+http://js.nyt.com/js/app/analytics/controller_v1.1.js <=|=> /HTML/HEAD/SCRIPT[10]
+http://js.nyt.com/js/app/analytics/gw.js?csid=H07707 <=|=> /HTML/HEAD/SCRIPT[11]
+http://js.nyt.com/js/app/analytics/revenuescience.js <=|=> /HTML/HEAD/SCRIPT[12]
+http://js.nyt.com/js/app/analytics/wtinit.js <=|=> /HTML/HEAD/SCRIPT[13]
+http://js.nyt.com/js/app/analytics/wtbase.js <=|=> /HTML/HEAD/SCRIPT[14]
+http://connect.facebook.net/en_US/all.js <=|=> /HTML/BODY/SCRIPT
+http://js.nyt.com/js2/build/sitewide/sitewide.js <=|=> /HTML/BODY/SCRIPT[2]
+http://js.nyt.com/js/mtr.js <=|=> /HTML/BODY/SCRIPT[3]
+http://js.nyt.com/js2/build/timespeople/build.js <=|=> /HTML/BODY/SCRIPT[4]
+http://js.nyt.com/js2/build/homepage/top.js <=|=> /HTML/BODY/SCRIPT[5]
+http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&c=28&pli=3806002&PluID=0&w=336&h=280&ord=2012.01.30.19.32.57&ucm=true&z=1 <=|=> /HTML/BODY/DIV[4]/DIV[2]/DIV[4]/DIV/DIV[2]/DIV/DIV[2]/DIV[3]/DIV/DIV/SCRIPT
+http://ds.serving-sys.com/BurstingCachedScripts//SBTemplates_2_4_24/StdBanner.js?ai=7816037 <=|=> /HTML/BODY/DIV[4]/DIV[2]/DIV[4]/DIV/DIV[2]/DIV/DIV[2]/DIV[3]/DIV/DIV/SCRIPT[2]
+http://js.nyt.com/js/app/recommendations/recommendationsModule.js <=|=> /HTML/BODY/DIV[4]/DIV[2]/DIV[4]/DIV[3]/DIV/DIV/DIV/DIV[2]/DIV[2]/SCRIPT
+http://graphics8.nytimes.com/js/app/lib/NYTD/0.0.1/tabset.js <=|=> /HTML/BODY/DIV[4]/DIV[2]/DIV[4]/DIV[3]/DIV/DIV/DIV/DIV[2]/DIV[5]/SCRIPT
+http://js.nyt.com/js2/build/homepage/bottom.js <=|=> /HTML/BODY/SCRIPT[7]
+http://graphics8.nytimes.com/js/app/analytics/trackingTags_v1.1.js <=|=> /HTML/BODY/SCRIPT[9]
+http://b.scorecardresearch.com/beacon.js <=|=> /HTML/BODY/SCRIPT[10]
+http://static.chartbeat.com/js/chartbeat.js <=|=> /HTML/BODY/SCRIPT[12]
+
+--------------DOMAR_Separator---------------
+
+getElementsByTagName called on document, Tag: script |:=> http://cdn.krxd.net/kruxcontent/releases/krux-4.7.2.js:36
+
+getElementsByTagName called on document, Tag: head |:=> http://connect.facebook.net/en_US/all.js:17
+; stack trace > 3000 chars.
+getElementsByTagName called on document, Tag: script |:=> http://connect.facebook.net/en_US/all.js:36
+
+getElementsByTagName called on document, Tag: script |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:9
+
+//1579 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:9
+
+//1579/SPAN |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:36
+
+//1578 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//1449 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//1057 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//1056 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//1055 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//1054 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//94 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//48 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//25 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//23 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//1 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//1579 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:39
+
+getElementsByTagName called on document, Tag: head |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:10
+; stack trace > 3000 chars.
+//1579 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:27
+
+//327 |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:68
+
+//328 |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:3
+
+getElementsByTagName called on //328 Tag: param |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:15
+
+//327 |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:52
+
+//461 |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:68
+
+//462 |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:3
+
+getElementsByTagName called on //462 Tag: param |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:15
+
+//461 |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:52
+
+getElementsByTagName called on document, Tag: img |:=> http://cdn.krxd.net/kruxcontent/releases/krux-4.7.2.js:32
+
+getElementsByTagName called on document, Tag: a |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+//1579/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD/DIV |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+Read innerHTML of this element: //1579/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD/DIV! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+//1579/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+Read innerHTML of this element: //1579/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+//1579/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+Read innerHTML of this element: //1579/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+//1579/TABLE/TBODY/TR[2]/TD/TABLE/TBODY |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+Read innerHTML of this element: //1579/TABLE/TBODY/TR[2]/TD/TABLE/TBODY! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+getElementsByTagName called on document, Tag: script |:=> http://static.chartbeat.com/js/chartbeat.js:4
+
+//461/OBJECT |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:95
+
+//327/OBJECT |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:95
+
+
+End of DOM node access
+---------------------------------------
+navigator.userAgent read! |:=> http://cdn.krxd.net/kruxcontent/releases/krux-4.7.2.js:6
+
+navigator.colorDepth read! |:=> http://cdn.krxd.net/kruxcontent/releases/krux-4.7.2.js:7
+
+navigator.width read! |:=> http://cdn.krxd.net/kruxcontent/releases/krux-4.7.2.js:7
+
+navigator.height read! |:=> http://cdn.krxd.net/kruxcontent/releases/krux-4.7.2.js:7
+
+navigator.userAgent read! |:=> http://pagead2.googlesyndication.com/pagead/show_ads.js:12
+
+navigator.userAgent read! |:=> http://connect.facebook.net/en_US/all.js:13
+
+navigator.userAgent read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:35
+
+navigator.platform read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:35
+
+navigator.userAgent read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:11
+
+navigator.height read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:14
+
+navigator.width read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:14
+
+navigator.availHeight read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:14
+
+navigator.availWidth read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:14
+
+navigator.colorDepth read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:14
+
+navigator.userAgent read! |:=> http://pagead2.googlesyndication.com/pagead/osd.js:5
+
+navigator.userAgent read! |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:3
+
+navigator.userAgent read! |:=> http://admin.brightcove.com/js/BrightcoveExperiences_all.js:72
+
+
+End of window special property access
+---------------------------------------
+document.domain read! |:=> http://cdn.krxd.net/kruxcontent/releases/krux-4.7.2.js:35
+
+document.referrer read! |:=> http://cdn.krxd.net/kruxcontent/releases/krux-4.7.2.js:35
+
+document.cookie read! |:=> http://connect.facebook.net/en_US/all.js:25
+
+document.URL read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:85
+
+document.URL read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:55
+
+document.referrer read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:55
+
+document.domain read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:80
+
+document.cookie read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:80
+
+document.referrer read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:80
+
+document.URL read! |:=> http://b.scorecardresearch.com/beacon.js:1
+
+document.cookie read! |:=> http://b.scorecardresearch.com/beacon.js:1
+
+document.title read! |:=> http://b.scorecardresearch.com/beacon.js:1
+
+document.referrer read! |:=> http://b.scorecardresearch.com/beacon.js:1
+
+document.images read! |:=> http://b.scorecardresearch.com/beacon.js:1
+
+document.domain read! |:=> http://cdn.krxd.net/kruxcontent/releases/krux-4.7.2.js:39
+
+document.title read! |:=> http://static.chartbeat.com/js/chartbeat.js:4
+
+document.cookie read! |:=> http://static.chartbeat.com/js/chartbeat.js:12
+
+document.cookie set! |:=> http://static.chartbeat.com/js/chartbeat.js:12
+
+document.referrer read! |:=> http://static.chartbeat.com/js/chartbeat.js:9
+
+
+End of document special property access

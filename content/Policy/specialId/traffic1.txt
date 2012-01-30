@@ -1,0 +1,1212 @@
+<!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 13:43:20 2012 <![endif]-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://developers.facebook.com/schema/" xmlns:og="http://opengraphprotocol.org/schema/" specialId = '1'>
+
+<head specialId = '2'>
+	<title specialId = '3'>Breaking News, Analysis, Politics, Blogs, News Photos, Video, Tech Reviews - TIME.com</title>
+	<link rel="shortcut icon" href="http://img.timeinc.net/time/favicon.ico"  specialId = '4'/>
+	<meta http-equiv="refresh" content="1200"  specialId = '5'/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"  specialId = '6'/>
+	<meta name="description" content="Breaking news and analysis from TIME.com. Politics, world news, photos, video, tech reviews, health, science and entertainment news. Free archive of TIME magazine since 1923."  specialId = '7'/>
+	<meta name="keywords" content="TIME.com, Daily News, Deraa, Syria, Protests,,Libya, rebels, National Transitional Council,"  specialId = '8'/>
+	<meta name="object_type" content="website"  specialId = '9'/>
+	<meta name="verify-v1" content="Wj+aWkJe3nKllHuGJutD0L5Tk2aDdQcLI15gunF9slM="  specialId = '10'/>
+	<link rel="stylesheet" type="text/css" href="http://img.timeinc.net/time/rd/trunk/www/web/feds/c/v1/main.css" media="all"  specialId = '11'/>
+	<link rel="stylesheet" type="text/css" href="http://img.timeinc.net/time/rd/trunk/www/web/feds/c/v1/home.css" media="all"  specialId = '12'/>
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://rss.time.com/web/time/rss/top/index.xml"  specialId = '13'/>
+	<link rel="canonical" href="http://www.time.com/time"  specialId = '14'/>
+	<meta property="og:type" content="website"  specialId = '15'/>
+	<meta property="og:url" content="http://www.time.com/time"  specialId = '16'/>
+	<meta property="fb:admins" content="1124331582,512158401,808970553,100000018008769"  specialId = '17'/>
+	<meta property="fb:page_id" content="10606591490"  specialId = '18'/>
+	<meta property="fb:app_id" content="53177223193"  specialId = '19'/>
+	<script type="text/javascript" language="javascript" src="http://img.timeinc.net/shared/static/js/tii_ads.js"></script>
+	<script type="text/javascript" language="javascript" src="http://img.timeinc.net/time/rd/trunk/www/web/feds/j/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="http://img.timeinc.net/time/rd/trunk/www/web/feds/j/main.js"></script>
+	<script type="text/javascript" language="javascript" src="http://img.timeinc.net/time/rd/trunk/www/web/feds/j/home.js"></script>
+	<script type="text/javascript" language="javascript" src="http://img.timeinc.net/time/rd/trunk/www/web/feds/j/videos.js"></script>
+	<script type="text/javascript" language="javascript" src="http://img.timeinc.net/time/rd/trunk/www/web/feds/j/showLinks.js"></script>
+	<script type="text/javascript" language="javascript" src="http://img.timeinc.net/time/js/swfobject.js"></script>
+	<script type="text/javascript" language="javascript" src="http://img.timeinc.net/time/js/poll_util.js"></script>
+	<script type="text/javascript" language="javascript">
+var adFactory = new TiiAdFactory(adConfig, "homepage");
+adFactory.setChannel("home");
+adFactory.setSubchannel("");
+adFactory.setChannelPage();
+
+	</script>
+</head>
+
+<body specialId = '20'>
+<script type='text/javascript' src='http://img.timeinc.net/time/rd/trunk/www/web/feds/j/mobileExperience.js'></script> 
+<script type='text/javascript' src='http://img.timeinc.net/time/rd/trunk/www/web/feds/j/MobileCompatibility.js'></script>
+<div id="omniture" style="display:none" specialId = '21'>
+<script type="text/javascript">
+var s_account="timecom";
+</script>
+	<script type="text/javascript" src="http://img.timeinc.net/tii/omniture/h/common.js"></script>
+	<script type="text/javascript" src="http://img.timeinc.net/tii/omniture/h/config/time.js"></script>	
+<script type="text/javascript">
+
+s_time.channel = 'time';
+s_time.pageName = 'time|home|main';
+s_time.prop7 = 'section front';
+s_time.prop16 = 'home';
+
+s_time.prop17 = location.href;
+
+
+if (typeof(catsCSV) == "string") s_time.prop13 = catsCSV;
+if (typeof(omnitureHookFunction) == "function") eval("omnitureHookFunction();");
+var s_code=s_time.t();if(s_code)document.write(s_code)
+</script>
+</div>
+ <div class="wrap wrap-new" id="home" specialId = '22'>
+<!--[if IE 5]> Vignette StoryServer 5.0 Thu Jan 26 11:47:35 2012 <![endif]-->
+<!--[if IE 5]> Vignette StoryServer 5.0 Wed Aug 24 18:06:56 2011 <![endif]-->
+<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script> <div id="header-new" specialId = '23'>
+        <div id="nav-top" role="navigation" specialId = '24'>
+			<ul id="nav" specialId = '25'>
+				
+					  <li class="sel" specialId = '26'><a title="" href="http://www.time.com/time/" specialId = '27'>TIME</a></li> 
+					
+				
+					  <li  specialId = '28'><a title="TIME Magazine - US edition - TIME.com" href="http://www.time.com/time/magazine" specialId = '29'>Magazine</a></li> 
+					
+				
+					  <li  specialId = '30'><a title="" href="https://subscription.time.com/storefront/subscribe-to-time/link/1004495.html" specialId = '31'>Subscribe</a></li> 
+					
+				
+					  <li  specialId = '32'><a title="Photos, Slideshows, Galleries, Photoessays - TIME.com" href="http://lightbox.time.com/" specialId = '33'>Photos</a></li> 
+					
+				
+					  <li  specialId = '34'><a title="" href="http://www.time.com/time/video/" specialId = '35'>Videos</a></li> 
+					
+				
+					  <li  specialId = '36'><a title="Best and Worst Lists - TIME.com" href="http://www.time.com/time/specials" specialId = '37'>Lists</a></li> 
+					
+				
+					  <li  specialId = '38'><a title="" href="http://www.time.com/time/mobile" specialId = '39'>Apps</a></li> 
+					
+				
+					  <li  specialId = '40'><a title="" href="http://www.time.com/time/topics" specialId = '41'>Topics</a></li> 
+					
+				 </ul>
+			 <div class="follow-time" specialId = '42'>
+				<h4 specialId = '43'><em specialId = '44'>Follow</em> TIME</h4>
+            
+			<ul id="share-nav" specialId = '45'>
+				<li specialId = '46'><a class="facebook" title="Follow us on Facebook" target="_blank" href="http://www.facebook.com/time" specialId = '47'>Facebook</a></li>
+				<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+				<li specialId = '48'><a class="twitter" title="Follow us on Twitter" target="_blank" href="http://twitter.com/time" specialId = '49'>Twitter</a></li>
+
+				<li specialId = '50'><a class="google" title="Follow us on Google +" target="_blank" href="https://plus.google.com/110038350445855508357/posts" specialId = '51'>Google +</a></li>              
+				<li specialId = '52'><a class="tumblr" title="Follow us on Tumblr" target="_blank" href="http://timemagazine.tumblr.com/" specialId = '53'>Tumblr</a></li>                              
+			</ul>            
+            </div>
+		</div>
+		
+		  <div id="vertical-nav" role="navigation" specialId = '54'>
+			<ul specialId = '55'>
+				
+					   <li  specialId = '56'><a title="NewsFeed" href="http://newsfeed.time.com/" specialId = '57'>NewsFeed</a></li>
+
+				
+					   <li  specialId = '58'><a title="U.S. News  - Headlines, Stories and Video from around nation - TIME.com" href="http://www.time.com/time/nation" specialId = '59'>U.S.</a></li>
+
+				
+					   <li  specialId = '60'><a title="Political insight from the Beltway and beyond" href="http://swampland.time.com/" specialId = '61'>Politics</a></li>
+
+				
+					   <li  specialId = '62'><a title="World News, International Headlines, Stories, Slideshows and Video - TIME.com" href="http://www.time.com/time/world" specialId = '63'>World</a></li>
+
+				
+					   <li  specialId = '64'><a title="Business and Technology News - TIME.com" href="http://business.time.com/" specialId = '65'>Business</a></li>
+
+				
+					   <li  specialId = '66'><a title="Moneyland | Financial insights from your wallet to Wall Street" href="http://moneyland.time.com" specialId = '67'>Money</a></li>
+
+				
+					   <li  specialId = '68'><a title="" href="http://techland.com" specialId = '69'>Tech</a></li>
+
+				
+					   <li  specialId = '70'><a title="Health,  Science, Medicine, Fitness News - TIME.com" href="http://healthland.time.com/" specialId = '71'>Health</a></li>
+
+				
+					   <li  specialId = '72'><a title="" href="http://www.time.com/time/science" specialId = '73'>Science</a></li>
+
+				
+					   <li  specialId = '74'><a title="Reviews, Music, Books Arts, Entertainment News -TIME.com" href="http://entertainment.time.com/" specialId = '75'>Entertainment</a></li>
+
+				
+					   <li  specialId = '76'><a title="" href="http://ideas.time.com/" specialId = '77'>Opinion</a></li>
+
+				 </ul>
+		</div>
+      </div> <!-- /div#header -->
+<div id="content" specialId = '78'>
+	<script type="text/javascript">
+		    adFactory.getAd(101, 1).write();
+		</script>
+		<!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 15:03:59 2012 <![endif]-->
+
+<div id="insideTime" specialId = '79'>
+    	<div class="tout" specialId = '80'>
+								<div class="thumb" specialId = '81'>
+									<a href="http://ideas.time.com/2012/01/30/can-obama-really-lower-the-cost-of-college/" specialId = '82'><img src="http://img.timeinc.net/time/daily/2012/1201/77_ideas_rotterham_0129.jpg" alt="" width="77" height="50" border="0"  specialId = '83'/></a>
+								</div> 
+								<h4 specialId = '84'><a href="http://ideas.time.com/2012/01/30/can-obama-really-lower-the-cost-of-college/" specialId = '85'>Can Obama Really Lower the Cost of College?</a></h4>
+							</div>	<div class="tout" specialId = '86'>
+								<div class="thumb" specialId = '87'>
+									<a href="http://lightbox.time.com/2012/01/30/on-the-wires-silhouettes-in-january/" specialId = '88'><img src="http://img.timeinc.net/time/daily/2012/1201/77_lb_silhouettes_0130.jpg" alt="" width="77" height="50" border="0"  specialId = '89'/></a>
+								</div> 
+								<h4 specialId = '90'><a href="http://lightbox.time.com/2012/01/30/on-the-wires-silhouettes-in-january/" specialId = '91'>On the Wires: Silhouettes in January</a></h4>
+							</div>	<div class="tout" specialId = '92'>
+								<div class="thumb" specialId = '93'>
+									<a href="http://ideas.time.com/2012/01/30/there-is-no-war-on-religion/?iid=op-main-lede" specialId = '94'><img src="http://img.timeinc.net/time/daily/2012/1201/77_ideas_meacham_0129.jpg" alt="" width="77" height="50" border="0"  specialId = '95'/></a>
+								</div> 
+								<h4 specialId = '96'><a href="http://ideas.time.com/2012/01/30/there-is-no-war-on-religion/?iid=op-main-lede" specialId = '97'>Jon Meacham: The Myth of an American 'War on Religion'</a></h4>
+							</div>	<div class="tout" specialId = '98'>
+								<div class="thumb" specialId = '99'>
+									<a href="http://healthland.time.com/2012/01/30/fat-doctors-are-less-likely-to-help-patients-lose-weight/" specialId = '100'><img src="http://img.timeinc.net/time/daily/2012/1201/77_hl_weigh_0130.jpg" alt="" width="77" height="50" border="0"  specialId = '101'/></a>
+								</div> 
+								<h4 specialId = '102'><a href="http://healthland.time.com/2012/01/30/fat-doctors-are-less-likely-to-help-patients-lose-weight/" specialId = '103'>Fat Doctors Are Less Likely to Help Patients Lose Weight</a></h4>
+							</div>  </div>
+ <div id="header-sub" class="clearfix" specialId = '104'>
+
+      <div id="subsDate" specialId = '105'>
+        <div class="tout" specialId = '106'>
+          <script type="text/javascript">
+            adFactory.getCmAd(115, 42, "homepage", "tout").write();
+          </script>
+        </div>
+        <div class="date" specialId = '107'>Monday, January 30, 2012</div>
+      </div>
+
+      <div class="logoTime" specialId = '108'>
+        <h1 specialId = '109'>
+        	<span class="logoTime" specialId = '110'>
+          	<a href="/time/" specialId = '111'><img src="http://img.timeinc.net/time/rd/trunk/www/web/feds/i/logo_time_home.gif" alt="TIME.com" width="238" height="70" title="TIME.com"  specialId = '112'/></a>
+          </span> 
+         </h1>
+	  </div>
+	 <div class="search" specialId = '113'>
+          <table specialId = '114'> 
+          <tbody specialId = '115'> 
+            <tr specialId = '116'> 
+              <td class="headerAdTd" specialId = '117'>
+			  <div class="ad88" specialId = '118'>
+					<script type="text/javascript">
+						var ad = adFactory.getAd(88, 31);
+						ad.setPosition(1)
+						ad.write();
+					</script>
+				</div>
+			  
+			  </td> 
+              <td class="frmSearchTd" specialId = '119'><form id="frmSearchArticle" method="get" action="http://search.time.com/results.html" onsubmit="omniSearch(this.Ntt.value);" autocomplete="off" specialId = '120'>
+
+              <label for="query" specialId = '121'>SEARCH TIME.COM</label>
+              <input type="hidden" name="N" value="0"  specialId = '122'/>
+              <input type="hidden" name="Nty" value="1"  specialId = '123'/>
+              <input type="hidden" name="p" value="0"  specialId = '124'/>
+              <input type="hidden" name="cmd" value="tags"  specialId = '125'/>
+              <ul id="searchCat" specialId = '126'> 
+                <li specialId = '127'><input name="srchCat" value="Full Archive" type="radio" checked="checked"  specialId = '128'/>Full Archive</li>
+                <li specialId = '129'><input name="srchCat" class="cvrInput" value="Covers" type="radio"  specialId = '130'/>Covers</li>
+
+                <li specialId = '131'><input type="radio" name="srchCat" class="vidInput" title="#videoAction" specialId = '132'/>Videos</li> 
+              </ul> 
+              <input type="text" value="SEARCH TIME.COM" name="Ntt" id="query" specialId = '133'/> 
+              <input type="image" src="http://img.timeinc.net/time/rd/trunk/www/web/feds/i/btn_search.png" alt="Go" class="magnify"  specialId = '134'/> 
+                </form>
+              </td> 
+            </tr> 
+          </tbody> 
+          </table>          
+          </div>
+		<div class="topBannerAd" specialId = '135'>
+	  	  <script type="text/javascript">
+				adFactory.getMultiAd(new Array('728x90','101x1')).write();
+		  </script>
+	  </div>	
+	  	
+      
+
+	</div>
+		
+
+	
+
+	<div class="ltCol" specialId = '136'>
+	 <div class="ltColA" specialId = '137'>
+			<!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 16:03:01 2012 <![endif]-->
+
+		<!-- Begin: Must Reads -->
+	<div class="reads" specialId = '138'>
+		
+		  <h2 specialId = '139'>Editor's Picks</h2>
+		 				
+				<p class="eyebrow" specialId = '140'><a href="http://newsfeed.time.com/" specialId = '141'>Internet</a>  &raquo;</p>
+			  <div class="tout" specialId = '142'>			  
+			    <div class="thumb" specialId = '143'><a href="http://newsfeed.time.com/2012/01/30/30-must-see-tumblr-blogs/" specialId = '144'><img src="http://img.timeinc.net/time/daily/2012/1201/50_tumblr_tout.jpg" alt="" width="50" height="50" border="0"  specialId = '145'/></a></div>
+			    <h3 specialId = '146'><a href="http://newsfeed.time.com/2012/01/30/30-must-see-tumblr-blogs/"  specialId = '147'>Check Out the 30 Must-See Tumblr Blogs</a></h3>
+			    <p class="byline" specialId = '148'>By TIME Staff</p>									
+			  </div>						
+							
+				<p class="eyebrow" specialId = '149'><a href="http://business.time.com" specialId = '150'>Business</a>  &raquo;</p>
+			  <div class="tout" specialId = '151'>			  
+			    <div class="thumb" specialId = '152'><a href="http://business.time.com/2012/01/27/are-companies-more-powerful-than-countries/" specialId = '153'><img src="http://img.timeinc.net/time/daily/2012/1201/50_biz_davos_3_0127.jpg" alt="" width="50" height="50" border="0"  specialId = '154'/></a></div>
+			    <h3 specialId = '155'><a href="http://business.time.com/2012/01/27/are-companies-more-powerful-than-countries/"  specialId = '156'>Davos: Are Companies More Powerful Than Countries?</a></h3>
+			    <p class="byline" specialId = '157'>By Rana Foroohar</p>									
+			  </div>						
+							
+				<p class="eyebrow" specialId = '158'><a href="http://newsfeed.time.com/" specialId = '159'>World</a>  &raquo;</p>
+			  <div class="tout" specialId = '160'>			  
+			    <div class="thumb" specialId = '161'><a href="http://newsfeed.time.com/2012/01/30/what-could-a-weekend-of-violence-mean-for-the-occupy-movement/" specialId = '162'><img src="http://img.timeinc.net/time/daily/2012/1201/50_nf_occupy_0130.jpg" alt="" width="50" height="50" border="0"  specialId = '163'/></a></div>
+			    <h3 specialId = '164'><a href="http://newsfeed.time.com/2012/01/30/what-could-a-weekend-of-violence-mean-for-the-occupy-movement/"  specialId = '165'>The 'Occupy' Movement Tries to Recover from a Weekend of Violence</a></h3>
+			    <p class="byline" specialId = '166'>By Megan Gibson</p>									
+			  </div>						
+							
+				<p class="eyebrow" specialId = '167'><a href="http://ideas.time.com/" specialId = '168'>Opinion</a>  &raquo;</p>
+			  <div class="tout" specialId = '169'>			  
+			    <div class="thumb" specialId = '170'><a href="http://ideas.time.com/2012/01/30/birth-control-could-it-be-illegal-again/" specialId = '171'><img src="http://img.timeinc.net/time/daily/2012/1201/50_ideas_cohen_0129.jpg" alt="" width="50" height="50" border="0"  specialId = '172'/></a></div>
+			    <h3 specialId = '173'><a href="http://ideas.time.com/2012/01/30/birth-control-could-it-be-illegal-again/"  specialId = '174'>Birth Control: Could It Be Illegal Again?</a></h3>
+			    <p class="byline" specialId = '175'>By Adam Cohen</p>									
+			  </div>						
+							
+				<p class="eyebrow" specialId = '176'><a href="http://ideas.time.com/" specialId = '177'>Opinion</a>  &raquo;</p>
+			  <div class="tout" specialId = '178'>			  
+			    <div class="thumb" specialId = '179'><a href="http://ideas.time.com/2012/01/30/downton-abbey-is-a-soap/" specialId = '180'><img src="http://img.timeinc.net/time/daily/2012/1201/50_ideas_abbey_0130.jpg" alt="" width="50" height="50" border="0"  specialId = '181'/></a></div>
+			    <h3 specialId = '182'><a href="http://ideas.time.com/2012/01/30/downton-abbey-is-a-soap/"  specialId = '183'>Is <i specialId = '184'>Downton Abbey</i> Just a Soap Opera in Nicer Clothes?</a></h3>
+			    <p class="byline" specialId = '185'>By Ruth Davis Konigsberg</p>									
+			  </div>						
+							
+				<p class="eyebrow" specialId = '186'><a href="http://techland.time.com/" specialId = '187'>Tech</a>  &raquo;</p>
+			  <div class="tout" specialId = '188'>			  
+			    <div class="thumb" specialId = '189'><a href="http://techland.time.com/2012/01/30/no-thanks-facebook-poll-suggests-users-dont-want-timeline/" specialId = '190'><img src="http://img.timeinc.net/time/daily/2012/1201/50_tl_facebook_timeline_0126.jpg" alt="" width="50" height="50" border="0"  specialId = '191'/></a></div>
+			    <h3 specialId = '192'><a href="http://techland.time.com/2012/01/30/no-thanks-facebook-poll-suggests-users-dont-want-timeline/"  specialId = '193'>Facebook Timeline: Most Users Say, 'No Thanks'</a></h3>
+			    <p class="byline" specialId = '194'>By Matt Peckham</p>									
+			  </div>						
+							
+				<p class="eyebrow" specialId = '195'><a href="http://moneyland.time.com/" specialId = '196'>Money</a>  &raquo;</p>
+			  <div class="tout" specialId = '197'>			  
+			    <div class="thumb" specialId = '198'><a href="http://moneyland.time.com/2012/01/30/citi-customers-learn-bonus-airline-miles-have-a-high-price/" specialId = '199'><img src="http://img.timeinc.net/time/daily/2012/1201/50_ml_citibank_0130.jpg" alt="" width="50" height="50" border="0"  specialId = '200'/></a></div>
+			    <h3 specialId = '201'><a href="http://moneyland.time.com/2012/01/30/citi-customers-learn-bonus-airline-miles-have-a-high-price/"  specialId = '202'>Can You Really Owe Taxes on Frequent Flyer Miles?</a></h3>
+			    <p class="byline" specialId = '203'>By Martha C. White</p>									
+			  </div>						
+			 </div>
+		  <!-- End: Must Reads -->		
+ </div><!-- /div.ltColA -->
+<div class="ltColB" specialId = '204'>
+	<div class="featNews" specialId = '205'>
+	
+		<!-- Begin Main story module -->
+		
+			
+			
+		
+		
+		<div class="img" specialId = '206'><a href="/time/world/article/0,8599,2105691,00.html" specialId = '207'><img src="http://img.timeinc.net/time/daily/2012/1201/307_intl_syria_0130.jpg" width="307" alt="" border="0"  specialId = '208'/></a></div>
+		<div class="tout first" specialId = '209'>
+		
+			<div class="credit" specialId = '210'>AP</div>
+			<h3 specialId = '211'><a  href="/time/world/article/0,8599,2105691,00.html" specialId = '212'>Dispatch from Syria: The Brutal, Shadowy War for Hearts and Minds</a></h3>
+			
+			<div class="byline" specialId = '213'>By <span class="name" specialId = '214'>Ayman Mohyeldin / Deraa</span></div>
+			
+			<ul class="rel" specialId = '215'>
+				<li specialId = '216'><a href="/time/photogallery/0,29307,2061413,00.html"  class="slideshow"  specialId = '217'>Photos: Free Syrian Army Joins Anti-Assad Protests
+</a></li><li specialId = '218'><a href="/time/world/article/0,8599,2105618,00.html"   specialId = '219'>Arab League Halts Observation in Syria</a></li>
+			</ul>
+		
+		</div>
+		
+		
+		
+		<!-- End Main story module -->	
+	 
+		<!-- Begin Main story module -->
+		
+			
+		<div class="tout" specialId = '220'>
+		
+			<h3 specialId = '221'><a  href="http://swampland.time.com/2012/01/30/why-romney-is-winning-in-florida-and-what-comes-next-for-the-once-and-future-front-runner/
+" specialId = '222'> Mitt Romney: The Once and Future Front Runner Looks Beyond Florida
+</a></h3>
+			<div class="byline" specialId = '223'>By <span class="name" specialId = '224'>Mark Halperin</span></div>
+			
+				<ul class="rel" specialId = '225'>
+				<li specialId = '226'><a href="http://swampland.time.com/2012/01/30/out-stumped-and-out-spent-newt-gingrich-flounders-in-florida/"   specialId = '227'>On the Campaign Trail: Out-Stumped and Out-Spent, Gingrich Flounders</a></li> </ul> 
+		</div>
+		
+		
+		<div class="tout" specialId = '228'>
+		
+			<h3 specialId = '229'><a  href="http://globalspin.blogs.time.com/2012/01/30/mission-accomplished-in-libya-not-so-fast/" specialId = '230'> Is It 'Mission Accomplished' in Libya? Not So Fast</a></h3>
+			<div class="byline" specialId = '231'>By <span class="name" specialId = '232'>Tony Karon</span></div>
+			
+				<ul class="rel" specialId = '233'>
+				<li specialId = '234'><a href="/time/magazine/article/0,9171,2104842,00.html"  class="lock"  specialId = '235'>Obama's World View</a></li> </ul> 
+		</div>
+		
+		
+		
+		<!-- End Main story module -->	
+	 </div>
+</div>
+ <div class="sep" specialId = '236'><br  specialId = '237'/></div>
+<div class="dbrf" specialId = '238'>
+	<h2 specialId = '239'>Inside TIME.com</h2>
+	<div class="ad" specialId = '240'>
+		  <script type="text/javascript">
+			    adFactory.getAd(135, 21).write();
+		  </script>
+	 </div>
+	<div class="dbrf2" specialId = '241'>
+		
+		<!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 15:28:21 2012 <![endif]-->
+<div class='single' specialId = '242'><h3 specialId = '243'><a href='http://healthland.time.com/' target='_blank' specialId = '244'>HEALTH</a></h3>
+										            <div class='tout' specialId = '245'>
+										              <div class='loc' specialId = '246'></div>										
+										              <div class='imgcont' specialId = '247'><a href='http://healthland.time.com/2012/01/30/rick-santorums-daughters-diagnosis-what-is-trisomy-18/?iid=hl-main-lede' specialId = '248'><img src='http://img.timeinc.net/time/daily/2012/1201/147_hl_bsantorum_0130.jpg' width='147' alt=''  specialId = '249'/></a></div>
+										              <div class='title' specialId = '250'><a href='http://healthland.time.com/2012/01/30/rick-santorums-daughters-diagnosis-what-is-trisomy-18/?iid=hl-main-lede' specialId = '251'>Trisomy 18: Rick Santorum's Daughter's Diagnosis
+
+</a></div>
+										            </div><div class='tout' specialId = '252'>
+										              <div class='loc' specialId = '253'></div>
+										              <div class='title' specialId = '254'><a href='http://healthland.time.com/2012/01/30/why-parents-who-carpool-tend-not-to-use-booster-seats/' specialId = '255'>Why Carpooling Parents Don't Use Booster Seats
+
+</a></div>
+										            </div><div class='tout' specialId = '256'>
+										              <div class='loc' specialId = '257'></div>
+										              <div class='title' specialId = '258'><a href='http://healthland.time.com/2012/01/27/why-home-births-are-on-the-rise/' specialId = '259'>Study: Home Births on the Rise
+
+</a></div>
+										            </div></div><div class='single' specialId = '260'><h3 specialId = '261'><a href='http://moneyland.time.com/' target='_blank' specialId = '262'>MONEY</a></h3>
+										            <div class='tout' specialId = '263'>
+										              <div class='loc' specialId = '264'></div>										
+										              <div class='imgcont' specialId = '265'><a href='http://moneyland.time.com/2012/01/30/10-unusual-places-that-are-open-all-night/' specialId = '266'><img src='http://img.timeinc.net/time/daily/2012/1201/147_ml_24_0129.jpg' width='147' alt=''  specialId = '267'/></a></div>
+										              <div class='title' specialId = '268'><a href='http://moneyland.time.com/2012/01/30/10-unusual-places-that-are-open-all-night/' specialId = '269'>10 Surprising Businesses That Are Open All Night</a></div>
+										            </div><div class='tout' specialId = '270'>
+										              <div class='loc' specialId = '271'></div>
+										              <div class='title' specialId = '272'><a href='http://wp.me/pxxA6-84e' specialId = '273'>Why Aren't Patriots Fans Paying Up to Go to the Super Bowl?</a></div>
+										            </div><div class='tout' specialId = '274'>
+										              <div class='loc' specialId = '275'></div>
+										              <div class='title' specialId = '276'><a href='http://moneyland.time.com/2012/01/27/romneys-tax-returns-show-he-paid-more-in-taxes-than-he-owed/' specialId = '277'>How Mitt Romney Overpaid His Taxes
+
+
+</a></div>
+										            </div></div><div class='single' specialId = '278'><h3 specialId = '279'><a href='http://entertainment.time.com' target='_blank' specialId = '280'>Entertainment</a></h3>
+										            <div class='tout' specialId = '281'>
+										              <div class='loc' specialId = '282'></div>										
+										              <div class='imgcont' specialId = '283'><a href='http://entertainment.time.com/2012/01/29/2012-sag-awards-the-best-and-worst-dressed/' specialId = '284'><img src='http://img.timeinc.net/time/daily/2012/0101/147_sag_awards_fashion_0129.jpg' width='147' alt=''  specialId = '285'/></a></div>
+										              <div class='title' specialId = '286'><a href='http://entertainment.time.com/2012/01/29/2012-sag-awards-the-best-and-worst-dressed/' specialId = '287'>2012 SAG Awards: The Best and Worst Dressed</a></div>
+										            </div><div class='tout' specialId = '288'>
+										              <div class='loc' specialId = '289'></div>
+										              <div class='title' specialId = '290'><a href='http://entertainment.time.com/2012/01/30/video-game-of-thrones-reloads-for-season-2/' specialId = '291'>Watch: <i specialId = '292'>Game of Thrones</i> Season 2 Trailer</a></div>
+										            </div><div class='tout' specialId = '293'>
+										              <div class='loc' specialId = '294'></div>
+										              <div class='title' specialId = '295'><a href='http://entertainment.time.com/2012/01/30/downton-abbey-watch-house-of-despair/?iid=ent-main-lede' specialId = '296'><i specialId = '297'>Downton Abbey</i> Watch: House of Despair</a></div>
+										            </div></div><div class='single' specialId = '298'><h3 specialId = '299'><a href='http://techland.time.com/' target='_blank' specialId = '300'>Tech</a></h3>
+										            <div class='tout' specialId = '301'>
+										              <div class='loc' specialId = '302'></div>										
+										              <div class='imgcont' specialId = '303'><a href='http://techland.time.com/2012/01/30/15-must-have-gadgets-for-super-bowl-sunday/' specialId = '304'><img src='http://img.timeinc.net/time/daily/2012/1201/147_tl_superbowl_gadgets_0127.jpg' width='147' alt=''  specialId = '305'/></a></div>
+										              <div class='title' specialId = '306'><a href='http://techland.time.com/2012/01/30/15-must-have-gadgets-for-super-bowl-sunday/' specialId = '307'>15 Must-Have Gadgets for Super Bowl Sunday</a></div>
+										            </div><div class='tout' specialId = '308'>
+										              <div class='loc' specialId = '309'></div>
+										              <div class='title' specialId = '310'><a href='http://techland.time.com/2012/01/30/pay-me-my-money-down-contractors-could-wipe-megaupload-user-data-thursday/
+' specialId = '311'>Clock Is Ticking for Megaupload.com Data
+
+
+
+
+
+
+
+</a></div>
+										            </div><div class='tout' specialId = '312'>
+										              <div class='loc' specialId = '313'></div>
+										              <div class='title' specialId = '314'><a href='http://techland.time.com/2012/01/30/new-nook-rumored-for-springtime/' specialId = '315'>New Nook Rumored for Springtime
+
+
+</a></div>
+										            </div></div> <div class="end" specialId = '316'></div>
+	</div>
+	 <div id="dbAd" specialId = '317'>
+	 	<script type="text/javascript">
+			    adFactory.getAd(622, 30).write();
+		 </script>
+	 </div>
+</div><!-- /div.dbrf -->
+
+		<div class="sep" specialId = '318'><br  specialId = '319'/></div>
+
+ <div class="ltColA" specialId = '320'>
+ 		<div id="videoUrl" specialId = '321'>/time/includes/homepage_video.xml</div>
+        <div id="multimedia" specialId = '322'>
+          <h3 specialId = '323'>Multimedia</h3>
+          <div id="tab1" class="on" specialId = '324'><a id="tabChange1" specialId = '325'>Videos</a></div>
+		   <div id="tab3" specialId = '326'><a id="tabChange3" specialId = '327'>Photos</a></div>
+          <div id="more" specialId = '328'><a href="/time/video" specialId = '329'>More Videos &raquo;</a></div>
+          <div id="tabContent1" specialId = '330'>
+            <!-- Start of Brightcove Player -->
+            <div style="display:none" specialId = '331'> Player for home page rail </div>
+				 <!--
+					By use of this code snippet, I agree to the Brightcove Publisher T and C 
+					found at http://corp.brightcove.com/legal/terms_publisher.cfm. 
+					-->
+		            <script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+		            <script type="text/javascript" language="javascript" src="http://admin.brightcove.com/js/APIModules_all.js"></script>
+		            <object id="myExperience" class="BrightcoveExperience" specialId = '332'>
+		              <param name="bgcolor" value="#FFFFFF"  specialId = '333'/>
+		              <param name="width" value="288"  specialId = '334'/>
+		              <param name="height" value="398"  specialId = '335'/>
+		              <param name="playerID" value="29710121001"  specialId = '336'/>
+					  <param name="wmode" value="transparent"  specialId = '337'/>
+		
+		              <param name="publisherID" value="293884104" specialId = '338'/>
+		              <param name="isVid" value="true"  specialId = '339'/>
+		              <param name="isUI" value="true"  specialId = '340'/>
+		            </object>
+		            <script type="text/javascript" language="javascript" src="http://img.timeinc.net/time/rd/trunk/www/web/feds/j/bcad.js"></script>
+		            <!-- End of Brightcove Player -->            				  
+	        </div>
+          <div id="tabContent2" class="off" specialId = '341'>
+            <script type="text/javascript">
+							var so = new SWFObject("http://img.timeinc.net/time/podcast/players/hp_podcast_player.swf", "player", "288", "393", "8");
+							so.addParam("quality", "best");
+							so.addParam("bgcolor", "#FFFFFF");
+							so.addParam("wmode", "transparent");
+							so.write("tabContent2");
+						</script>
+          </div>
+		<!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 13:22:11 2012 <![endif]-->
+  <!-- Photoessays -->			
+	<div id="tabContent3" class="off" specialId = '342'>
+			
+				<div class="tout1" specialId = '343'>
+      				<div class="thumb" specialId = '344'><a href="/time/photogallery/0,29307,2061413,00.html" specialId = '345'><img src="http://img.timeinc.net/time/photoessays/2011/syria_0130/307_syria_tout.jpg" alt="" width="307" height="200" border="0" title=""  specialId = '346'/></a></div>
+      				<h4 specialId = '347'><a href="/time/photogallery/0,29307,2061413,00.html" specialId = '348'>Protests in Syria</a></h4>
+      				<div class="link" specialId = '349'><a href="/time/photogallery/0,29307,2061413,00.html" specialId = '350'>View &raquo;</a></div>
+    			</div>
+				<div class="tout2" specialId = '351'>
+      				<div class="thumb" specialId = '352'><a href="/time/photogallery/0,29307,2105644,00.html" specialId = '353'><img src="http://img.timeinc.net/time/photoessays/2012/oakland_0129/77_oakland_0129_tout.jpg" alt="" width="77" height="50" border="0" title=""  specialId = '354'/></a></div>
+     				<h4 specialId = '355'><a href="/time/photogallery/0,29307,2105644,00.html" specialId = '356'>Protesters and Police Clash at Occupy Oakland</a></h4>
+					<div class="link" specialId = '357'><a href="/time/photogallery/0,29307,2105644,00.html" specialId = '358'>View &raquo;</a></div>
+   				</div>
+				<div class="tout2" specialId = '359'>
+      				<div class="thumb" specialId = '360'><a href="/time/photogallery/0,29307,2105587,00.html" specialId = '361'><img src="http://img.timeinc.net/time/photoessays/2012/open_0129/77_open_0129_tout.jpg" alt="" width="77" height="50" border="0" title=""  specialId = '362'/></a></div>
+     				<h4 specialId = '363'><a href="/time/photogallery/0,29307,2105587,00.html" specialId = '364'>Scenes from the Australian Open</a></h4>
+					<div class="link" specialId = '365'><a href="/time/photogallery/0,29307,2105587,00.html" specialId = '366'>View &raquo;</a></div>
+   				</div>
+				<div class="tout2" specialId = '367'>
+      				<div class="thumb" specialId = '368'><a href="/time/photogallery/0,29307,2105500,00.html" specialId = '369'><img src="http://img.timeinc.net/time/photoessays/2012/paterno_funeral/77_paterno_funeral_tout.jpg" alt="" width="77" height="50" border="0" title=""  specialId = '370'/></a></div>
+     				<h4 specialId = '371'><a href="/time/photogallery/0,29307,2105500,00.html" specialId = '372'>Joe Paterno: Penn State Bids Farewell</a></h4>
+					<div class="link" specialId = '373'><a href="/time/photogallery/0,29307,2105500,00.html" specialId = '374'>View &raquo;</a></div>
+   				</div> </div>
+	
+
+ </div>
+		<div class="sep" specialId = '375'><br  specialId = '376'/>
+        </div>
+		
+		
+
+		<div class="ad300" specialId = '377'>
+			<script type="text/javascript">
+adFactory.getCmAd(300, 250, "global", "tout").write();
+</script> </div>
+		<div class="sep" specialId = '378'><br  specialId = '379'/>
+		</div>	
+		 <!--[if IE 5]> Vignette StoryServer 5.0 Thu Dec 01 14:23:12 2011 <![endif]-->
+<div class="google-sponsored" specialId = '380'>  
+
+	<script language="JavaScript">
+	<!--
+	function google_ad_request_done(google_ads) {
+		if (google_ads.length > 0) {
+			document.write('<h3><a target=_blank href=' + google_info.feedback_url + 
+			'> Sponsored Links</a> </h3><div id="sponsored">');
+			
+		}
+		
+		
+		var i;
+		for(i = 0; i < google_ads.length; ++i) {
+		
+			document.write('<h4><a target=_blank href=' + google_ads[i].url + 
+			'>' + google_ads[i].line1 +
+			'</a></h4><p class="desc">' + google_ads[i].line2 +
+			'&nbsp;' + google_ads[i].line3 +
+			'</p><p class="url"><a target=_blank href=' + google_ads[i].url +
+			'>' + google_ads[i].visible_url + '</a></p>');
+			 }
+						
+		if (google_ads.length > 0) {
+			document.write('</div>');
+		}
+	}
+	
+	
+	// REQUIRED VALUES
+	google_ad_client = 'ca-timeinc-time-bah';
+	google_ad_output = 'js';
+	google_max_num_ads = '3';
+	
+	
+	// OPTIONAL, USED
+	google_ad_type = 'text'; // type of ads to display
+	google_ad_channel = 'home_page';
+	google_safe = 'high';
+	
+	// -->
+	</script>
+	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script> 
+	<!-- google_ad_section_start(name=right_nav, weight=0) -->  
+</div>
+ <div class="sep" specialId = '381'><br  specialId = '382'/>
+		</div>
+
+
+		
+      
+      </div>
+      <!-- /div.ltColA -->
+
+
+		<div class="ltColB" specialId = '383'>
+		 <!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 15:07:04 2012 <![endif]-->
+<!-- Begin: Must Reads -->
+<div class="reads" specialId = '384'>
+		
+			<p class="eyebrow" specialId = '385'><a href="http://globalspin.blogs.time.com" specialId = '386'>World</a>  &raquo;</p>
+		  <div class="tout" specialId = '387'>
+		    <div class="thumb" specialId = '388'><a href="http://globalspin.blogs.time.com/2012/01/26/to-confront-iran-will-the-u-s-risk-relations-with-india/" specialId = '389'><img src="http://img.timeinc.net/time/daily/2012/1201/50_gs_india_iran_0126.jpg" alt="" width="50" height="50" border="0"  specialId = '390'/></a></div>
+		    <h3 specialId = '391'><a href="http://globalspin.blogs.time.com/2012/01/26/to-confront-iran-will-the-u-s-risk-relations-with-india/"  specialId = '392'>To Confront Iran, Will the U.S. Risk Relations with India?
+</a></h3>
+		    <p class="byline" specialId = '393'>By Ishaan Tharoor</p>	
+		  </div> 
+				
+			<p class="eyebrow" specialId = '394'><a href="http://globalspin.blogs.time.com" specialId = '395'>World</a>  &raquo;</p>
+		  <div class="tout" specialId = '396'>
+		    <div class="thumb" specialId = '397'><a href="http://globalspin.blogs.time.com/2012/01/27/an-atomic-shadow-life-inside-a-japanese-nuclear-village/" specialId = '398'><img src="http://img.timeinc.net/time/daily/2012/1201/50_gs_tomari_0127.jpg" alt="" width="50" height="50" border="0"  specialId = '399'/></a></div>
+		    <h3 specialId = '400'><a href="http://globalspin.blogs.time.com/2012/01/27/an-atomic-shadow-life-inside-a-japanese-nuclear-village/"  specialId = '401'>An Atomic Shadow: Life Inside a Japanese Nuclear Village
+
+</a></h3>
+		    <p class="byline" specialId = '402'>By Krista Mahr</p>	
+		  </div> 
+				
+			<p class="eyebrow" specialId = '403'><a href="http://globalspin.blogs.time.com/" specialId = '404'>World</a>  &raquo;</p>
+		  <div class="tout" specialId = '405'>
+		    <div class="thumb" specialId = '406'><a href="http://globalspin.blogs.time.com/2012/01/30/the-people-are-suffocating-west-bank-economy-struggles-under-pressure-from-u-s-congress/" specialId = '407'><img src="http://img.timeinc.net/time/daily/2012/1201/50_gs_west_bank_econ_0127.jpg" alt="" width="50" height="50" border="0"  specialId = '408'/></a></div>
+		    <h3 specialId = '409'><a href="http://globalspin.blogs.time.com/2012/01/30/the-people-are-suffocating-west-bank-economy-struggles-under-pressure-from-u-s-congress/"  specialId = '410'>As U.S. Withholds Aid, Palestinian Economy Hits the Ropes</a></h3>
+		    <p class="byline" specialId = '411'>By Karl Vick</p>	
+		  </div> 
+				
+			<p class="eyebrow" specialId = '412'><a href="/time/nation" specialId = '413'>U.S.</a>  &raquo;</p>
+		  <div class="tout" specialId = '414'>
+		    <div class="thumb" specialId = '415'><a href="/time/nation/article/0,8599,2105063,00.html" specialId = '416'><img src="http://img.timeinc.net/time/daily/2012/1201/50_humanehidden_video_012312.jpg" alt="" width="50" height="50" border="0"  specialId = '417'/></a></div>
+		    <h3 specialId = '418'><a href="/time/nation/article/0,8599,2105063,00.html"  specialId = '419'>Should Undercover Video Be Banned at Livestock Farms?</a></h3>
+		    <p class="byline" specialId = '420'>By Vanessa Carr</p>	
+		  </div> 
+				
+			<p class="eyebrow" specialId = '421'><a href="http://entertainment.time.com/" specialId = '422'>Movies</a>  &raquo;</p>
+		  <div class="tout" specialId = '423'>
+		    <div class="thumb" specialId = '424'><a href="http://entertainment.time.com/2012/01/29/liam-neesons-the-grey-storms-into-the-black/" specialId = '425'><img src="http://img.timeinc.net/time/daily/2012/1201/50_bo_the_grey_0129.jpg" alt="" width="50" height="50" border="0"  specialId = '426'/></a></div>
+		    <h3 specialId = '427'><a href="http://entertainment.time.com/2012/01/29/liam-neesons-the-grey-storms-into-the-black/"  specialId = '428'>Box Office Report: Liam Neeson's <i specialId = '429'>The Grey</i> Storms into the Black
+</a></h3>
+		    <p class="byline" specialId = '430'>By Richard Corliss</p>	
+		  </div> 
+		</div>
+<!-- End: Must Reads --> <div class="sep" specialId = '431'><br  specialId = '432'/></div>
+
+		<!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 12:59:06 2012 <![endif]-->
+<div class="picWeek" specialId = '433'>
+		<h2 specialId = '434'><a href="http://lightbox.time.com/" specialId = '435'>Photos</a></h2>
+							<div class="img" specialId = '436'><a href="/time/photogallery/0,29307,2105644,00.html" specialId = '437'><img src="http://img.timeinc.net/time/photoessays/2012/oakland_0129/307_oakland_0129_tout.jpg" width="307" height="200" alt=""  specialId = '438'/></a></div>
+          					<div class="date" specialId = '439'><a href="/time/photogallery/0,29307,2105644,00.html" specialId = '440'>Protesters and Police Clash at Occupy Oakland</a></div>
+							</div> <div class="sep" specialId = '441'><br  specialId = '442'/>
+        </div>
+        <div class="spons2" specialId = '443'>
+          <div class="spons1" specialId = '444'>
+			  <script type="text/javascript">
+				var ad = adFactory.getAd(120, 90);
+				ad.setPosition(1)
+				ad.write();
+			 </script>
+		</div>
+          <div class="spons1" specialId = '445'>
+			  <script type="text/javascript">
+				var ad = adFactory.getAd(120, 90);
+				ad.setPosition(2)
+				ad.write();
+			 </script>
+		  </div>
+        </div>
+        <div class="sep" specialId = '446'><br  specialId = '447'/>
+        </div>
+        <div class="spons2" specialId = '448'>
+          <div class="spons1" specialId = '449'>
+			 <script type="text/javascript">
+				var ad = adFactory.getAd(120, 90);
+				ad.setPosition(3)
+				ad.write();
+			</script>
+		  </div>
+          <div class="spons1" specialId = '450'>
+			 <script type="text/javascript">
+				var ad = adFactory.getAd(120, 90);
+				ad.setPosition(4)
+				ad.write();
+			 </script>
+		  </div>
+        </div>
+		</div><!-- /div.ltColB -->
+	</div><!-- /div.ltCol -->
+
+
+	<div class="rtCol" specialId = '451'>
+	  <!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 15:51:53 2012 <![endif]-->
+
+		<!-- Begin Latest Headlines -->
+		
+		<div class="lathd" specialId = '452'>
+			<h2 specialId = '453'>Latest Headlines</h2>
+			<div class="date" specialId = '454'><script type="text/javascript">renderTimestamp(2012,0,30,15,50,00);</script></div> 
+		
+			
+			<ul specialId = '455'>
+				
+					<li specialId = '456'><a href="/time/health/article/0,8599,2105718,00.html"  specialId = '457'>Study: Pythons Killing Everglades Wildlife</a></li>
+					<li specialId = '458'><a href="/time/world/article/0,8599,2105704,00.html"  specialId = '459'>Haiti Judge: Try Duvalier on Corruption</a></li>
+					<li specialId = '460'><a href="/time/world/article/0,8599,2105697,00.html"  specialId = '461'>2 Convicted in Norway Paper Terror Plot</a></li>
+					<li specialId = '462'><a href="http://newsfeed.time.com/2012/01/30/it-looked-like-the-end-of-the-world-florida-highway-collision-leaves-10-dead/"  specialId = '463'>Fla. Auto Wreck Kills 10; Cause Sought</a></li>
+					<li specialId = '464'><a href="/time/world/article/0,8599,2105686,00.html"  specialId = '465'>Police: Afghan Mom Killed for Having Girl</a></li>
+					<li specialId = '466'><a href="/time/world/article/0,8599,2105677,00.html"  specialId = '467'>Ministers Seek U.N. Resolution on Syria
+</a></li>
+					<li specialId = '468'><a href="/time/nation/article/0,8599,2105672,00.html"  specialId = '469'>Romney Credits Change in Tactics for Surge</a></li>
+					<li specialId = '470'><a href="/time/world/article/0,8599,2105681,00.html"  specialId = '471'>2 Convicted in Norway of Terror Attack</a></li>
+					<li specialId = '472'><a href="http://globalspin.blogs.time.com/2012/01/30/must-reads-from-around-the-world-jan-30-2012/"  specialId = '473'>Global Briefing: Morning Must-Reads</a></li>
+					<li specialId = '474'><a href="http://healthland.time.com/2012/01/30/updated-guidelines-for-treating-babies-exposed-to-drugs-in-the-womb/"  specialId = '475'>New Guideline for Drug-Exposed Infants</a></li>
+					<li specialId = '476'><a href="http://entertainment.time.com/2012/01/30/the-help-dujardin-win-at-lively-sag-awards/"  specialId = '477'><i specialId = '478'>The Help</i>, Dujardin Win at SAG Awards</a></li>
+					<li specialId = '479'><a href="http://techland.time.com/2012/01/30/bring-your-own-device-how-consumer-products-are-impacting-it/"  specialId = '480'>How Consumer Products Are Impacting IT
+
+
+</a></li>
+					<li specialId = '481'><a href="http://globalpublicsquare.blogs.cnn.com/2012/01/29/zakaria-the-end-of-an-era-in-japan/?hpt=hp_c2"  specialId = '482'>CNN: Zakaria: End of an Era for Japan</a></li>
+					<li specialId = '483'><a href="http://www.cnn.com/2012/01/30/us/california-occupy/index.html?hpt=hp_t3"  specialId = '484'>CNN: Mass Arrests Fire Up Occupy Oakland</a></li>
+					<li specialId = '485'><a href="/time/photogallery/0,29307,2105587,00.html"  class="slideshow" specialId = '486'>Scenes from the Australian Open</a></li>
+			</ul>
+		</div>
+		
+		<!-- End Latest Headlines -->
+	 <div class="sep" specialId = '487'><br  specialId = '488'/></div>
+ 
+	<div class="ad300" specialId = '489'>
+		<script type="text/javascript">
+			adFactory.getMultiAd(new Array("300x250", "300x600")).write();
+		</script>
+
+	</div>
+<div class="sep" specialId = '490'><br  specialId = '491'/></div>
+
+
+<div class="ad300" specialId = '492'>
+	 <script type="text/javascript">
+			adFactory.getCmAd(300, 15, "global", "tout").write();
+	 </script>
+</div>
+		<div class="sep" specialId = '493'><br  specialId = '494'/></div>
+		<!--[if IE 5]> Vignette StoryServer 5.0 Thu Oct 13 10:24:46 2011 <![endif]-->
+<div class="tabsMod" specialId = '495'>
+<h3 specialId = '496'><a href="/time/most_popular" specialId = '497'>Most Popular &raquo;</a></h3>
+<div class="rLinks" specialId = '498'><a href="/time/most_popular" specialId = '499'>Full List &raquo;</a></div>
+<div class="tabsWrap" specialId = '500'>
+  <div id="tab8" specialId = '501'><a id="tabChange8" specialId = '502'><span specialId = '503'>MOST READ</span></a></div>
+  <div id="tab9" class="off" specialId = '504'><a id="tabChange9" specialId = '505'><span specialId = '506'>MOST EMAILED</span></a></div>
+</div>
+<ol id="tabContent8" specialId = '507'>
+   	 <!-- Mon Jan 30 15:15:07 EST 2012 -->
+<li specialId = '508'><a href="http://entertainment.time.com/2012/01/29/2012-sag-awards-the-best-and-worst-dressed/" specialId = '509'>2012 SAG Awards: The Best and Worst Dressed</a>
+</li>
+<li specialId = '510'><a href="http://newsfeed.time.com/2012/01/30/30-must-see-tumblr-blogs/" specialId = '511'>30 Must-See Tumblr Blogs</a>
+</li>
+<li specialId = '512'><a href="http://www.time.com/time/specials/packages/0,28757,1984685,00.html" specialId = '513'>The 2010 TIME 100</a>
+</li>
+<li specialId = '514'><a href="http://swampland.time.com/2012/01/30/why-romney-is-winning-in-florida-and-what-comes-next-for-the-once-and-future-front-runner/" specialId = '515'>The Once and Future Front Runner: Why Romney Is Winning in Florida and What Comes Next </a>
+</li>
+<li specialId = '516'><a href="http://newsfeed.time.com/2012/01/26/megauploads-kim-dotcom-loses-top-ranked-position-in-call-of-duty/" specialId = '517'>Megaupload&#039;s Kim Dotcom Loses Top-Ranked Position in Call of Duty</a>
+</li>
+<li specialId = '518'><a href="http://swampland.time.com/2012/01/30/out-stumped-and-out-spent-newt-gingrich-flounders-in-florida/" specialId = '519'>Out-Stumped and Out-Spent, Newt Gingrich Flounders in Florida</a>
+</li>
+<li specialId = '520'><a href="http://healthland.time.com/2012/01/30/rick-santorums-daughters-diagnosis-what-is-trisomy-18/" specialId = '521'>Rick Santorum&#039;s Daughter&#039;s Diagnosis: What Is Trisomy 18?</a>
+</li>
+<li specialId = '522'><a href="http://ideas.time.com/2012/01/26/dont-call-introverted-children-shy/" specialId = '523'>Don&#039;t Call Introverted Children &#039;Shy&#039;</a>
+</li>
+<li specialId = '524'><a href="http://business.time.com/2012/01/27/are-companies-more-powerful-than-countries/" specialId = '525'>Are Companies More Powerful Than Countries? </a>
+</li>
+<li specialId = '526'><a href="http://www.time.com/time/world/article/0,8599,2105686,00.html" specialId = '527'>Police: Afghan Woman Killed for Having Girl</a>
+</li>
+
+</ol>
+<ol id="tabContent9" class="off" specialId = '528'>
+ <!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 15:20:41 2012 <![endif]-->
+ <li specialId = '529'><a href="http://www.time.com/time/magazine/article/0,9171,2105432,00.html" specialId = '530'>The Upside Of Being An Introvert (And Why Extroverts Are Overrated)</a></li><li specialId = '531'><a href="http://www.time.com/time/world/article/0,8599,2105369,00.html" specialId = '532'>Interview: Lionel Messi on His Sport, Cristiano Ronaldo &#151; and Argentina</a></li><li specialId = '533'><a href="http://www.time.com/time/world/article/0,8599,2105670,00.html" specialId = '534'>Afghan Family Found Guilty in Honor Killings</a></li><li specialId = '535'><a href="http://www.time.com/time/nation/article/0,8599,2105380,00.html" specialId = '536'>The Terrifying Wonder of Journey, California's Lone Wolf</a></li><li specialId = '537'><a href="http://www.time.com/time/health/article/0,8599,2105371,00.html" specialId = '538'>Happy Birthday <i specialId = '539'>Opportunity!</i> The Mars Rover Turns Eight</a></li><li specialId = '540'><a href="http://www.time.com/time/magazine/article/0,9171,2105442,00.html" specialId = '541'>Charms of the Quiet Child</a></li><li specialId = '542'><a href="http://www.time.com/time/world/article/0,8599,2105686,00.html" specialId = '543'>Police: Afghan Mom Killed for Having Girl</a></li><li specialId = '544'><a href="http://www.time.com/time/world/article/0,8599,2105368,00.html" specialId = '545'>The Experts Weigh In: Messi May Be the Best of All Time &#151; Except for One Thing</a></li><li specialId = '546'><a href="http://www.time.com/time/health/article/0,8599,2105366,00.html" specialId = '547'>New Federal Planting Map Reflects Warming</a></li><li specialId = '548'><a href="http://www.time.com/time/magazine/article/0,9171,2104309,00.html" specialId = '549'>Warren Buffett Is on a Radical Track</a></li> 
+
+</ol>
+<div class="ad88" specialId = '550'>
+  <script type="text/javascript">
+		var ad = adFactory.getAd(88, 31);
+	  	ad.setPosition(9);
+	  	ad.write();
+	</script>
+</div>
+
+</div> 
+
+        <div class="trendrr-home" specialId = '551'>
+        <iframe class="trendrr-iframe" src="/time/www/channels/trendrr/trendrr-right-rail-home.html" width="309" height="407" border="0" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" specialId = '552'></iframe>
+        </div>
+		<div class="sep" specialId = '553'><br  specialId = '554'/></div>
+				  
+ <!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 15:28:20 2012 <![endif]-->
+		
+				  
+	  <div class="quoteDay" specialId = '555'>
+	      	 <h3 specialId = '556'><a href="http://www.time.com/time/quotes" specialId = '557'>Quotes of the Day &raquo;</a></h3> 			
+	      	<div class="imgcont" specialId = '558'><a href="http://www.time.com/time/quotes" specialId = '559'><img height="125" width="125" alt="" src="http://img.timeinc.net/time/quotes/2012/01/125_0130_joplin.jpg" alt=""  specialId = '560'/></a></div>
+
+	      	 <div class="txtcont" specialId = '561'>
+		        	<div class="quote" specialId = '562'>"<a href="http://www.time.com/time/quotes" specialId = '563'>Like the rest of the city, we are glad to be moving ahead and looking to the future.
+</a>"</div>
+		        	<div class="attribute" specialId = '564'>Gary Pulsipher, president of St. John's Mercy hospital in Joplin, Mo., which is being demolished in order to rebuild</div>
+		        	<div class="more" specialId = '565'><a href="http://www.time.com/time/quotes" specialId = '566'>More Quotes &raquo;</a></div>
+	      	</div> 
+					
+	  </div>
+		   <div class="ad300" specialId = '567'>
+	<script type="text/javascript">
+adFactory.getAd(300, 100).write();
+</script></div>
+
+		<div class="sep" specialId = '568'><br  specialId = '569'/></div>
+
+
+<div class="google-plus-widget" specialId = '570'></div>
+<div class="covers" specialId = '571'>
+
+	
+	<div class="c1" specialId = '572'>
+		<h2 specialId = '573'><a href="/time/magazine/current" specialId = '574'>Current Issue &raquo;</a></h2>
+		<div class="cov" specialId = '575'><a href="/time/magazine/current" specialId = '576'><img src="http://img.timeinc.net/time/images/covers/20120206_107.jpg" width="107" height="138" border="0" alt="Current Time.com Cover"  specialId = '577'/></a></div>
+		<ul specialId = '578'>
+			<li specialId = '579'><a href="/time/magazine/current" specialId = '580'>Table of Contents</a></li>
+			<li specialId = '581'>
+			<script type="text/javascript">
+				adFactory.getCmAd(88, 31, "homepage", "tout").write();
+		 	</script>
+			</li>
+		</ul>
+	</div>
+		
+	   <div class="c2" specialId = '582'>
+        <h2 specialId = '583'>The Covers Archive: <a href="../../../time/searchresults?N=46&amp;Ntk=NoBody&amp;Nty=1&amp;Ntx=mode%2Bmatchallpartial&amp;Ntt=U.S.+presidents&amp;x=0&amp;y=0" specialId = '584'>U.S. Presidents</a></h2>
+        <ul specialId = '585'>
+            <li specialId = '586'><a href="../../../time/covers/0,16641,20070702,00.html" specialId = '587'><img src="http://img.timeinc.net/time/covers/hp_module/49_20070702_107.jpg" alt="JFK"  specialId = '588'/></a></li>
+            <li specialId = '589'><a href="../../../time/covers/0,16641,20060717,00.html" specialId = '590'><img src="http://img.timeinc.net/time/covers/hp_module/49_20060717_107.jpg" alt="The End of Cowboy Diplomacy"  specialId = '591'/></a></li>
+            <li specialId = '592'><a href="../../../time/covers/0,16641,20060703,00.html" specialId = '593'><img src="http://img.timeinc.net/time/covers/hp_module/49_20060703_107.jpg" alt="Teddy Roosevelt"  specialId = '594'/></a></li>
+            <li specialId = '595'><a href="../../../time/covers/0,16641,20050704,00.html" specialId = '596'><img src="http://img.timeinc.net/time/covers/hp_module/49_20050704_107.jpg" alt="Abe Lincoln"  specialId = '597'/></a></li>
+            <li specialId = '598'><a href="../../../time/covers/0,16641,20041115,00.html" specialId = '599'><img src="http://img.timeinc.net/time/covers/hp_module/49_20041115_107.jpg" alt="George Bush"  specialId = '600'/></a></li>
+            <li specialId = '601'><a href="../../../time/covers/0,16641,20040906,00.html" specialId = '602'><img src="http://img.timeinc.net/time/covers/hp_module/49_20040906_107.jpg" alt="George Bush"  specialId = '603'/></a></li>
+        </ul>
+        <form id="FormName" name="SearchForm" method="get" action="../../../time/searchresults" specialId = '604'>
+			<input type="hidden" name="N" value="46"  specialId = '605'/>
+			<input type="hidden" name="Ntk" value="NoBody"  specialId = '606'/>
+			<input type="hidden" name="Nty" value="1"  specialId = '607'/>
+			<input type="hidden" name="Ntx" value="mode+matchallpartial"  specialId = '608'/>      
+            <label for="searchTerm" specialId = '609'>Search the Covers Archive</label>
+            <input type="text" id="searchTerm" name="Ntt"  specialId = '610'/>
+            <input type="submit" value="Search"  specialId = '611'/>
+        </form>
+    </div> <div class="end" specialId = '612'></div>
+</div><!-- /div.covers -->
+ </div><!-- /div.rtCol -->
+
+<div class="botColA" specialId = '613'>
+	<div id="marketAds" specialId = '614'>
+	<div class="mpAd" specialId = '615'>
+		<script type="text/javascript">
+			var ad = adFactory.getAd(88, 31);
+			ad.setPosition(2)
+			ad.write();
+		</script>
+	</div>
+	<div class="mpAd" specialId = '616'>
+		<script type="text/javascript">
+			var ad = adFactory.getAd(88, 31);
+			ad.setPosition(3)
+			ad.write();
+		</script>
+	</div>
+	<div class="mpAd" specialId = '617'>
+		<script type="text/javascript">
+			var ad = adFactory.getAd(88, 31);
+			ad.setPosition(4)
+			ad.write();
+		</script>
+	</div>
+	<div class="mpAd" specialId = '618'>
+		<script type="text/javascript">
+			var ad = adFactory.getAd(88, 31);
+			ad.setPosition(5)
+			ad.write();
+		</script>
+	</div>
+	<div class="mpAd" specialId = '619'>
+	</div>
+	<div class="mpAd" specialId = '620'>
+
+	</div>
+</div>
+<!-- /div.marketAds -->
+
+</div>
+<!-- /div.botColA -->
+<div class="botColB" specialId = '621'> 
+<!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 30 15:47:45 2012 <![endif]-->
+<!-- Begin: More Inside Time.com -->
+<div id="moreInside" specialId = '622'> 
+  <h2 specialId = '623'>More Inside Time.com</h2>
+  
+  <div id="col1" specialId = '624'>
+	
+		<div class="section" specialId = '625'>
+			
+				<h3 specialId = '626'><a title="U.S. News - Headlines, Stories and Video from around nation - TIME.com" href="http://www.time.com/time/nation" specialId = '627'>U.S. &raquo;</a></h3>
+				<ul specialId = '628'>
+				<li specialId = '629'><a href="/time/nation/article/0,8599,2105690,00.html" specialId = '630'>Mitt Romney: The Once and Future Front Runner Looks Beyond Florida</a></li><li specialId = '631'><a href="http://swampland.time.com/2012/01/30/out-stumped-and-out-spent-newt-gingrich-flounders-in-florida/" specialId = '632'>Out-Stumped and Out-Spent, Newt Gingrich Flounders in Florida</a></li><li specialId = '633'><a href="http://swampland.time.com/2012/01/30/why-romney-is-winning-in-florida-and-what-comes-next-for-the-once-and-future-front-runner/" specialId = '634'>The Once and Future Front Runner: Why Romney Is Winning in Florida and What Comes Next</a></li>
+			</ul>
+		</div>
+	 
+			<div class="section" specialId = '635'>
+				<h3 specialId = '636'><a title="Politics" href="http://swampland.time.com" specialId = '637'>POLITICS &raquo;</a></h3>
+				<ul specialId = '638'>
+				      <li specialId = '639'><a href="http://swampland.time.com/2012/01/30/64861/" specialId = '640'></a></li>
+    <li specialId = '641'><a href="http://swampland.time.com/2012/01/30/obama-wants-to-force-colleges-to-reduce-tuition-but-at-what-cost/" specialId = '642'>Obama Wants to Force Colleges to Reduce Tuition, but at What Cost?</a></li>
+    <li specialId = '643'><a href="http://swampland.time.com/2012/01/30/for-mitt-romney-in-florida-its-all-about-character-attacks/" specialId = '644'>For Mitt Romney in Florida, It&#8217;s All About Character (Attacks)</a></li>
+ 
+				</ul>
+			</div>
+	  
+		<div class="section" specialId = '645'>
+			
+				<h3 specialId = '646'><a title="World News, International Headlines, Stories, Slideshows and Video - TIME.com" href="http://www.time.com/time/world" specialId = '647'>WORLD &raquo;</a></h3>
+				<ul specialId = '648'>
+				<li specialId = '649'><a href="/time/world/article/0,8599,2105691,00.html" specialId = '650'>Report from Syria: The Brutal, Shadowy War for Hearts and Minds</a></li><li specialId = '651'><a href="/time/world/article/0,8599,2105704,00.html" specialId = '652'>Haiti Judge: Try Duvalier on Corruption</a></li><li specialId = '653'><a href="http://globalspin.blogs.time.com/2012/01/30/mission-accomplished-in-libya-not-so-fast/" specialId = '654'>Is It 'Mission Accomplished' in Libya? Not So Fast</a></li>
+			</ul>
+		</div>
+	 </div>
+  
+  <div id="col2" specialId = '655'>
+	
+			<div class="section" specialId = '656'>
+				<h3 specialId = '657'><a title="Business" href="http://business.time.com" specialId = '658'>Business &raquo;</a></h3>
+				<ul specialId = '659'>
+				      <li specialId = '660'><a href="http://business.time.com/2012/01/30/china-state-run-newspaper-praises-twitters-new-censorship-policy/" specialId = '661'>China State-Run Newspaper Praises Twitter&#8217;s New Censorship Policy</a></li>
+    <li specialId = '662'><a href="http://business.time.com/2012/01/30/my-top-five-takeaways-from-davos/" specialId = '663'>My Top Five Takeaways from Davos</a></li>
+    <li specialId = '664'><a href="http://business.time.com/2012/01/30/why-the-eurozone-cant-just-muddle-through/" specialId = '665'>Why the Eurozone Can&#8217;t Just Muddle Through</a></li>
+ 
+				</ul>
+			</div>
+	  
+		<div class="section" specialId = '666'>
+			
+				<h3 specialId = '667'><a title="Health, Science, Medicine, Fitness News - TIME.com" href="http://www.time.com/time/health" specialId = '668'>SCIENCE &raquo;</a></h3>
+				<ul specialId = '669'>
+				<li specialId = '670'><a href="/time/health/article/0,8599,2105371,00.html" specialId = '671'>Happy Birthday <i specialId = '672'>Opportunity!</i> The Mars Rover Turns Eight</a></li><li specialId = '673'><a href="/time/health/article/0,8599,2105718,00.html" specialId = '674'>Study: Pythons Killing Everglades Wildlife</a></li><li specialId = '675'><a href="/time/health/article/0,8599,2105366,00.html" specialId = '676'>New Federal Planting Map Reflects Warming</a></li>
+			</ul>
+		</div>
+	 
+			<div class="section" specialId = '677'>
+				<h3 specialId = '678'><a title="Entertainment" href="http://entertainment.time.com" specialId = '679'>ENTERTAINMENT &raquo;</a></h3>
+				<ul specialId = '680'>
+				      <li specialId = '681'><a href="http://entertainment.time.com/2012/01/30/counting-down-dickens-greatest-novels-number-7-the-pickwick-papers/" specialId = '682'>Counting Down Dickens&#039; Greatest Novels. Number 7: The Pickwick Papers</a></li>
+    <li specialId = '683'><a href="http://entertainment.time.com/2012/01/30/spoiler-alert-on-the-grey-and-the-punching-of-the-wolves/" specialId = '684'>Spoiler Alert: On The Grey and The Punching of the Wolves</a></li>
+    <li specialId = '685'><a href="http://entertainment.time.com/2012/01/30/the-good-wife-watch-whose-side-are-you-on/" specialId = '686'>The Good Wife Watch: Whose Side Are You On?</a></li>
+ 
+				</ul>
+			</div>
+	  </div>
+  
+  <div id="col3" specialId = '687'>
+  	 <div class="section" specialId = '688'>
+				<h3 specialId = '689'>BLOGS &raquo;</h3>
+				<ul specialId = '690'>
+					<li specialId = '691'><a href="http://newsfeed.time.com/" specialId = '692'>NewsFeed</a></li>
+					<li specialId = '693'><a href="http://globalspin.blogs.time.com/" specialId = '694'>Global Spin</a></li>
+					<li specialId = '695'><a href="http://ecocentric.blogs.time.com/" specialId = '696'>Ecocentric</a></li>
+					<li specialId = '697'><a href="http://battleland.blogs.time.com/" specialId = '698'>Battleland</a></li>
+				    <li specialId = '699'><a href="http://moneyland.time.com/" specialId = '700'>Moneyland</a></li>
+					<li specialId = '701'><a href="http://techland.com/" specialId = '702'>Techland</a></li>
+					<li specialId = '703'><a href="http://thepage.time.com/" specialId = '704'>The Page</a></li>								
+					<li specialId = '705'><a href="http://swampland.blogs.time.com/" specialId = '706'>Swampland</a></li>
+					<li specialId = '707'><a href="http://tunedin.blogs.time.com/" specialId = '708'>Tuned In</a></li>
+					<li specialId = '709'><a href="http://healthland.time.com/" specialId = '710'>Healthland</a></li>
+					<li specialId = '711'><a href="http://ideas.time.com/" specialId = '712'>Ideas</a></li>	
+								
+				</ul>
+	</div>
+	
+		<div class="section" specialId = '713'>
+			
+				<h3 specialId = '714'><a title="Photos, Slideshows, Galleries, Photoessays - TIME.com" href="http://www.time.com/time/photoessays" specialId = '715'>PHOTOS &raquo;</a></h3>
+				<ul specialId = '716'>
+				<li specialId = '717'><a href="/time/photogallery/0,29307,2061413,00.html" specialId = '718'>Protests in Syria</a></li><li specialId = '719'><a href="/time/photogallery/0,29307,2105644,00.html" specialId = '720'>Protesters and Police Clash at Occupy Oakland</a></li><li specialId = '721'><a href="/time/photogallery/0,29307,2105587,00.html" specialId = '722'>Scenes from the Australian Open</a></li>
+			</ul>
+		</div>
+	 
+			<div class="section" specialId = '723'>
+				<h3 specialId = '724'><a title="Lightbox" href="http://lightbox.time.com" specialId = '725'>LIGHTBOX &raquo;</a></h3>
+				<ul specialId = '726'>
+				      <li specialId = '727'><a href="http://lightbox.time.com/2012/01/30/on-the-wires-silhouettes-in-january/" specialId = '728'>On the Wires: Silhouettes in January</a></li>
+    <li specialId = '729'><a href="http://lightbox.time.com/2012/01/27/pictures-of-the-week-january-20-january-27/" specialId = '730'>Pictures of the Week, January 20 – January 27</a></li>
+    <li specialId = '731'><a href="http://lightbox.time.com/2012/01/27/on-the-campaign-trail-with-newt-gingrich/" specialId = '732'>On the Campaign Trail with Newt Gingrich</a></li>
+ 
+				</ul>
+			</div>
+	  </div>
+
+  <div id="col4" specialId = '733'>
+	
+		<div class="section" specialId = '734'>
+			
+				<h3 specialId = '735'><a title="Best and Worst Lists - TIME.com" href="http://www.time.com/time/specials" specialId = '736'>BEST &amp; WORST LISTS &raquo;</a></h3>
+				<ul specialId = '737'>
+				<li specialId = '738'><a href="http://www.time.com/time/specials/packages/article/0,28804,2105239_2105240_2105247,00.html" specialId = '739'>Surprise, Still Alive! The Top 10 Not-So-Extinct Animals</a></li><li specialId = '740'><a href="http://entertainment.time.com/2012/01/23/top-10-memorable-movie-character-names/" specialId = '741'>Top 10 Memorable Movie Character Names</a></li><li specialId = '742'><a href="http://newsfeed.time.com/2012/01/18/sneak-peek-7-looks-we-love-by-jason-wu-for-target/#blushing-beauty" specialId = '743'>7 Standout Looks by Jason Wu for Target</a></li>
+			</ul>
+		</div>
+	 
+		<div class="section" specialId = '744'>
+				<h3 specialId = '745'><a href="/time/magazine" specialId = '746'>Magazine &raquo;</a></h3>
+			<ul specialId = '747'>	
+				<li specialId = '748'><a title="TIME Magazine - US Edition - TIME.com" href="/time/magazine/article/0,9171,2105432,00.html?iid=pw-hp" specialId = '749'>The Upside Of Being An Introvert (And Why Extroverts Are Overrated)</a></li><li specialId = '750'><a title="TIME Magazine - US Edition - TIME.com" href="/time/magazine/article/0,9171,2105434,00.html?iid=pw-hp" specialId = '751'>Can Israel Stop Iran's Nuke Effort?</a></li><li specialId = '752'><a title="TIME Magazine - US Edition - TIME.com" href="/time/magazine/article/0,9171,2105433,00.html?iid=pw-hp" specialId = '753'>Rain Forest for Ransom</a></li>				
+			</ul>
+		</div>
+	 
+		<div class="section" specialId = '754'>
+			
+				<h3 specialId = '755'><a title="Vacations, City Guides, Destinations - TIME.com" href="http://www.time.com/time/travel" specialId = '756'>Travel &raquo;</a></h3>
+				<ul specialId = '757'>
+				<li specialId = '758'><a href="/time/magazine/article/0,9171,2105339,00.html" specialId = '759'>David Hockney at Home: Discover the British Artist's Native Yorkshire</a></li><li specialId = '760'><a href="/time/magazine/article/0,9171,2105340,00.html" specialId = '761'>Northern Exposure: How to Get a Feel for Norway in a Single Day</a></li><li specialId = '762'><a href="/time/magazine/article/0,9171,2104769,00.html" specialId = '763'>Strawberry Hill in Jamaica: High but Not Mighty</a></li>
+			</ul>
+		</div>
+	 
+		<div class="section" specialId = '764'>
+			
+				<h3 specialId = '765'><a title="10 Questions - Interviews, Newsmaker Videos, Celebrity Photos - TIME.com" href="http://www.time.com/time/10questions" specialId = '766'>PEOPLE &raquo;</a></h3>
+				<ul specialId = '767'>
+				<li specialId = '768'><a href="/time/magazine/article/0,9171,2105436,00.html" specialId = '769'>10 Questions for Damien Hirst</a></li><li specialId = '770'><a href="/time/magazine/article/0,9171,2104326,00.html" specialId = '771'>10 Questions for Suze Orman</a></li><li specialId = '772'><a href="/time/magazine/article/0,9171,2104278,00.html" specialId = '773'>10 Questions for Benigno "Noynoy" Aquino III</a></li>
+			</ul>
+		</div>
+	 </div>
+  
+</div>
+<!-- End: More Inside Time.com -->
+
+<!-- /div.moreInside -->
+</div>
+<!-- /div.botColB --> 
+
+	<div class="end" specialId = '774'></div>
+</div><!-- /div#content -->
+
+<!--[if IE 5]> Vignette StoryServer 5.0 Mon Jan 23 11:46:34 2012 <![endif]-->
+<div id="footer-new" specialId = '775'>
+	<div id="stayConnected-new" specialId = '776'>
+		<h3 specialId = '777'>Stay Connected with TIME.com</h3>
+		
+		<ul specialId = '778'>
+		<li class="connectFeeds" specialId = '779'><a title="Get Feeds" href="http://www.time.com/time/rss#rssfeeds" specialId = '780'>Subscribe to <br specialId = '781'/>RSS Feeds</a></li>
+		<li class="connectNewsletter" specialId = '782'><a target="_blank" href="http://ebm.cheetahmail.com/r/regf2?a=0&amp;aid=1078532063&amp;n=1&amp;TIME_SOURCE=connected_article_tout" specialId = '783'>Sign Up for <br specialId = '784'/>Newsletters</a></li>
+		<li class="connectWidget" specialId = '785'><a href="http://www.time.com/time/ipad/" specialId = '786'>Get the TIME <br specialId = '787'/>Magazine iPad Edition</a></li>
+		
+		<li class="connectMobile" specialId = '788'><a href="http://www.time.com/time/mobile" specialId = '789'>Read TIME Mobile <br specialId = '790'/>on your Phone</a></li>
+		<li class="connectFacebook" specialId = '791'><a target="_blank" href="http://www.facebook.com/time" specialId = '792'>Become a <br specialId = '793'/>Fan of TIME</a></li>
+		<li class="connectTwitter" specialId = '794'><a target="_blank" href="http://twitter.com/time" specialId = '795'>Get TIME <br specialId = '796'/>Twitter Updates</a></li>
+		</ul>	
+		<div class="ad115" specialId = '797'>
+            <script type="text/javascript">
+          adFactory.getCmAd(115, 42, "globalfooter", "tout").write();
+         </script>
+        </div>
+
+	</div>
+	<div id="footer-vertical-nav" specialId = '798'>
+		<ul specialId = '799'>
+			
+					  <li specialId = '800'><a title="NewsFeed" href="http://newsfeed.time.com/" specialId = '801'>NewsFeed</a></li> 
+					
+				
+					  <li specialId = '802'><a title="" href="http://www.time.com/time/nation" specialId = '803'>U.S.</a></li> 
+					
+				
+					  <li specialId = '804'><a title="" href="http://www.time.com/time/politics" specialId = '805'>Politics</a></li> 
+					
+				
+					  <li specialId = '806'><a title="" href="http://www.time.com/time/world" specialId = '807'>World</a></li> 
+					
+				
+					  <li specialId = '808'><a title="" href="http://www.time.com/time/business" specialId = '809'>Business</a></li> 
+					
+				
+					  <li specialId = '810'><a title="" href="http://moneyland.time.com/" specialId = '811'>Money</a></li> 
+					
+				
+					  <li specialId = '812'><a title="" href="http://healthland.time.com/" specialId = '813'>Health</a></li> 
+					
+				
+					  <li specialId = '814'><a title="" href="http://www.time.com/time/science" specialId = '815'>Science</a></li> 
+					
+				
+					  <li specialId = '816'><a title="" href="http://www.time.com/time/arts/" specialId = '817'>Entertainment</a></li> 
+					
+				
+					  <li specialId = '818'><a title="" href="http://lightbox.time.com/" specialId = '819'>Photos</a></li> 
+					
+				
+					  <li specialId = '820'><a title="" href="http://www.time.com/time/video/" specialId = '821'>Videos</a></li> 
+					
+				
+					  <li specialId = '822'><a title="" href="http://www.time.com/time/specials" specialId = '823'>Specials</a></li> 
+					
+				
+					  <li specialId = '824'><a title="" href="http://www.time.com/time/magazine" specialId = '825'>Magazine</a></li> 
+					
+				 </ul>
+	</div>
+	<div id="footer-new-copy" specialId = '826'>
+		<span specialId = '827'>&copy; 2012 Time Inc. All rights reserved</span>
+		<ul specialId = '828'>
+			<li specialId = '829'><a href="http://cgi.timeinc.net/cgi-bin/mail/dnp/privacy_centralized.cgi/time?dnp_source=E" specialId = '830'>Privacy Policy</a></li>
+			<li specialId = '831'><a href="http://www.time.com/time/rss" specialId = '832'>RSS</a></li>
+			<li specialId = '833'><a href="http://ebm.cheetahmail.com/r/regf2?a=0&amp;aid=1078532063&amp;n=1&amp;TIME_SOURCE=Time_footer" target="_blank" specialId = '834'>Newsletter</a></li>
+			<li specialId = '835'><a href="http://www.time.com/time/mobile/" specialId = '836'>Mobile</a></li>
+			<li specialId = '837'><a href="http://www.timeforkids.com/TFK/" specialId = '838'>TIME For Kids</a></li>
+			<li specialId = '839'><a href="http://www.life.com" specialId = '840'>LIFE.com</a></li>
+		</ul>            
+	</div>
+	<div id="footer-new-link" specialId = '841'>
+		<ul specialId = '842'>
+			<li specialId = '843'><a href="https://subscription.time.com/storefront/subscribe-to-time/link/1002093.html" rel="nofollow" specialId = '844'>Subscribe</a></li>
+			<li specialId = '845'><a href="http://www.time.com/time/contactus/" rel="nofollow" specialId = '846'>Contact Us</a></li>
+			<li specialId = '847'><a href="http://cgi.timeinc.net/cgi-bin/mail/dnp/terms_of_service.cgi/time" rel="nofollow" specialId = '848'>Terms of Use</a></li>
+			<li specialId = '849'><a href="http://www.timemediakit.com/" rel="nofollow" specialId = '850'>Media Kit</a></li>
+			<li specialId = '851'><a href="http://www.time.com/time/reprints" rel="nofollow" specialId = '852'>Reprints &amp; Permissions</a></li>
+			<li specialId = '853'><a href="http://www.time.com/time/faq" rel="nofollow" rel="nofollow" specialId = '854'>Help</a></li>
+			<li specialId = '855'><a href="http://www.time.com/time/static/sitemap/" specialId = '856'>Site Map</a></li>
+			<li class="adchoice" specialId = '857'><a target="_blank" href="http://subscription-assets.timeinc.com/prod/assets/themes/magazines/default/template-resources/html/legal/ti-corp-behavioral.html" specialId = '858'>Ad Choices  <img src="http://img.timeinc.net/time/i/adchoices.png" width="12" height="13" specialId = '859'></a></li>
+			
+		</ul>            
+	</div>
+	<div id="footer-logo" specialId = '860'>
+        	<div id="footer-time-logo" class="logo" specialId = '861'><a href="http://www.time.com/time" specialId = '862'>TIME</a></div>
+          <div id="time-partner" specialId = '863'>
+					<h4 specialId = '864'>Our partners</h4>
+          <ul specialId = '865'>
+
+            <li id="footer-cnn-logo" class="logo" specialId = '866'><a target="_blank" href="http://www.cnn.com" specialId = '867'>CNN</a></li>
+            <li id="footer-cnn-money-logo" class="logo" specialId = '868'><a target="_blank" href="http://money.cnn.com" specialId = '869'>CNN MONEY</a></li>          
+            <li id="footer-life-logo" class="logo" specialId = '870'><a target="_blank" href="http://www.life.com" specialId = '871'>LIFE</a></li>                    
+          </ul>
+          </div>
+
+
+        </div>
+
+
+</div>
+<script type="text/javascript" language="javascript" src="http://js.revsci.net/gateway/gw.js?csid=H07710"></script>
+
+
+<script type="text/javascript">
+	TiiAdTrackRevSci();
+</script>
+
+
+<script type="text/javascript">
+
+function tiQuantcast()
+{
+<!--
+   var lb = "Time Inc News Business and Sports,Time Magazine";
+   if (typeof(adFactory)=="undefined") { return lb; }
+   if (typeof(s_time)=="undefined") { return lb; }
+   lb+=(typeof(adFactory.zone)=="string" && adFactory.zone.length > 0) ? "." + "AdZone" + "." + adFactory.zone + ",":"";
+   lb+=(typeof(s_time.prop6)=="string" && s_time.prop6.length > 0) ? "Time Magazine" + "." + "Subject" + "." + s_time.prop6 + ",":"";
+   lb+=(typeof(s_time.prop12)=="string" && s_time.prop12.length > 0) ? "Time Magazine" + "." + "Packages" + "." + s_time.prop12 + ",":"";
+   lb+=(typeof(s_time.prop16)=="string" && s_time.prop16.length > 0) ? "Time Magazine" + "." + "Channels" + "." + s_time.prop16:"";
+   lb+=(typeof(s_time.prop11)=="string" && s_time.prop11.length > 0) ? "." + s_time.prop11:"";
+   return lb;
+// --> 
+}
+_qoptions={
+   qacct:"p-5dyPa639IrgIw",
+   labels:tiQuantcast()
+}
+
+</script>
+<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+<!--[if IE 5]> Vignette StoryServer 5.0 Wed Aug 24 18:06:54 2011 <![endif]-->
+<script type="text/javascript" src="http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40"></script>
+<!--[if IE 5]> Vignette StoryServer 5.0 Wed Aug 24 18:06:57 2011 <![endif]-->
+
+			
+							<script type="text/javascript">
+								
+								var _sf_async_config = {
+										uid:3088,
+										domain:window.domain,
+										pingServer:"ptimeinc.chartbeat.net",
+										path: $('meta[name="path"]' ).attr('content') == undefined ? "" : $('meta[name="path"]' ).attr('content'),
+										canonical: $('link[rel="canonical"]' ).attr('href') == undefined ? "" : $('link[rel="canonical"]' ).attr('href'),
+										sections:(typeof(s_time.prop16)=="undefined") ? "" : s_time.prop16,
+										authors: $('meta[name="byline"]' ).attr('content') == undefined ? "" : $('meta[name="byline"]' ).attr('content')
+										
+										};
+									
+									
+
+									
+								(function(){
+									function loadChartbeat() {
+									  window._sf_endpt=(new Date()).getTime();
+									  var e = document.createElement('script');
+									  e.setAttribute('language', 'javascript');
+									  e.setAttribute('type', 'text/javascript');
+									  e.setAttribute('src',
+									     (("https:" == document.location.protocol) ?
+									"https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" :
+									"http://static.chartbeat.com/") +
+									     "js/chartbeat_rm.js");
+									  document.body.appendChild(e);
+									}
+
+								 	var oldonload = window.onload;
+									window.onload = (typeof window.onload != 'function') ?
+									   loadChartbeat : function() { oldonload(); loadChartbeat(); };
+									})();
+
+								
+								</script>
+								
+
+			<!--[if IE 5]> Vignette StoryServer 5.0 Wed Aug 24 18:06:56 2011 <![endif]-->
+<script type="text/javascript"> 
+							var gravityInsightsParams = {type:'content', site_guid:'e8fd47ffdc2b5a28d10f29d4dfdf8fb9'}; 
+							document.write(unescape("%3Cscript src='http://cdn.insights.gravity.com/moth-min.js' type='text/javascript'%3E%3C/script%3E")); 
+						</script></div><!-- /div.wrap -->
+
+</body>
+
+</html>

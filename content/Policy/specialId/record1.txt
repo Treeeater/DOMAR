@@ -1,0 +1,353 @@
+https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/ <=|=> /HTML/HEAD/SCRIPT
+https://apis.google.com/js/plusone.js <=|=> /HTML/HEAD/SCRIPT[2]
+http://rma-api.gravity.com/v1/beacons/log?cbust=769-5&site_guid=e8fd47ffdc2b5a28d10f29d4dfdf8fb9&action=beacon&user_guid=d1889b1412d52fa5cd55b43f86cb5a35&referrer=&browser_useragent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64%3B%20rv%3A9.0.1)%20Gecko%2F20100101%20Firefox%2F9.0.1&OS=Windows&href=http%3A%2F%2Fwww.time.com%2Ftime%2F&url=http%3A%2F%2Fwww.time.com%2Ftime&&&&&&&&&article_title=Breaking%20News%2C%20Analysis%2C%20Politics%2C%20Blogs%2C%20News%20Photos%2C%20Video%2C%20Tech%20Reviews%20-%20TIME.com&&&type=content& <=|=> /HTML/HEAD/SCRIPT[3]
+http://b.scorecardresearch.com/beacon.js <=|=> /HTML/HEAD/SCRIPT[4]
+http://127.0.0.1/FFReplace_simpl.js <=|=> /HTML/HEAD/SCRIPT[5]
+http://img.timeinc.net/shared/static/js/tii_ads.js <=|=> /HTML/HEAD/SCRIPT[7]
+http://img.timeinc.net/time/rd/trunk/www/web/feds/j/jquery.js <=|=> /HTML/HEAD/SCRIPT[8]
+http://img.timeinc.net/time/rd/trunk/www/web/feds/j/main.js <=|=> /HTML/HEAD/SCRIPT[9]
+http://img.timeinc.net/time/rd/trunk/www/web/feds/j/home.js <=|=> /HTML/HEAD/SCRIPT[10]
+http://img.timeinc.net/time/rd/trunk/www/web/feds/j/videos.js <=|=> /HTML/HEAD/SCRIPT[11]
+http://img.timeinc.net/time/rd/trunk/www/web/feds/j/showLinks.js <=|=> /HTML/HEAD/SCRIPT[12]
+http://img.timeinc.net/time/js/swfobject.js <=|=> /HTML/HEAD/SCRIPT[13]
+http://img.timeinc.net/time/js/poll_util.js <=|=> /HTML/HEAD/SCRIPT[14]
+http://pagead2.googlesyndication.com/pagead/osd.js <=|=> /HTML/HEAD/SCRIPT[16]
+http://pix04.revsci.net/H07710/b3/0/3/1008211/220056195.js?D=DM_LOC%3Dhttp%253A%252F%252Fwww.time.com%252Ftime%252F%253Freferrer%253Dundefined%2526_rsiL%253D0%26DM_CAT%3Dtime%2520%253E%2520home%2520%253E%2520undefined%26DM_EOM%3D1&C=H07710 <=|=> /HTML/BODY/SCRIPT
+http://img.timeinc.net/time/rd/trunk/www/web/feds/j/mobileExperience.js <=|=> /HTML/BODY/SCRIPT[2]
+http://img.timeinc.net/time/rd/trunk/www/web/feds/j/MobileCompatibility.js <=|=> /HTML/BODY/SCRIPT[3]
+http://img.timeinc.net/tii/omniture/h/common.js <=|=> /HTML/BODY/DIV/SCRIPT[2]
+http://img.timeinc.net/tii/omniture/h/config/time.js <=|=> /HTML/BODY/DIV/SCRIPT[3]
+http://connect.facebook.net/en_US/all.js#xfbml=1 <=|=> /HTML/BODY/DIV[2]/DIV/DIV/DIV/UL/SCRIPT
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=101x1;path=time;dcove=d;dcopt=ist;pgurl=1;tile=1;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/SCRIPT[2]
+http://optimized-by.rubiconproject.com/a/7810/12474/22324-20.js?cb=0.876580635913622 <=|=> /HTML/BODY/DIV[2]/DIV[2]/SCRIPT[4]
+http://as.casalemedia.com/s?s=81846&u=http%3A//www.time.com/time/&f=1&id=865034453.7586712 <=|=> /HTML/BODY/DIV[2]/DIV[2]/SCRIPT[6]
+http://ad.doubleclick.net/adj/cm.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=115x42;path=time;dcove=d;cmpos=homepage;cmtyp=tout;pgurl=1;tile=2;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[4]/DIV/DIV/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=88x31;path=time;dcove=d;pos=1;pgurl=1;tile=3;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[4]/DIV[3]/TABLE/TBODY/TR/TD/DIV/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=728x90%2c101x1;path=time;dcove=d;pgurl=1;tile=4;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[4]/DIV[4]/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=135x21;path=time;dcove=d;pgurl=1;tile=5;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[4]/DIV/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=622x30;path=time;dcove=d;pgurl=1;tile=6;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[4]/DIV[3]/SCRIPT[2]
+http://admin.brightcove.com/js/BrightcoveExperiences.js <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[6]/DIV[2]/DIV[4]/SCRIPT
+http://admin.brightcove.com/js/APIModules_all.js <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[6]/DIV[2]/DIV[4]/SCRIPT[2]
+http://img.timeinc.net/time/rd/trunk/www/web/feds/j/bcad.js <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[6]/DIV[2]/DIV[4]/SCRIPT[3]
+http://ad.doubleclick.net/adj/cm.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=300x250;path=time;dcove=d;cmpos=global;cmtyp=tout;pgurl=1;tile=7;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[6]/DIV[4]/SCRIPT[2]
+http://s0.2mdn.net/879366/flashwrite_1_2.js <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[6]/DIV[4]/SCRIPT[3]
+http://pagead2.googlesyndication.com/pagead/show_ads.js <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[6]/DIV[6]/SCRIPT[2]
+http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[6]/DIV[6]/SCRIPT[3]
+http://googleads.g.doubleclick.net/pagead/ads?client=ca-timeinc-time-bah&output=js&lmt=1327957501&num_ads=3&channel=home_page&ad_type=text&ea=0&flash=11.1.102&url=http%3A%2F%2Fwww.time.com%2Ftime%2F&adsafe=high&dt=1327957503584&shv=r20120125&jsv=r20110914&saldr=1&correlator=1327957503585&frm=20&adk=2496609052&ga_vid=2099013441.1327957504&ga_sid=1327957504&ga_hid=85217778&ga_fc=0&u_tz=-300&u_his=2&u_java=1&u_h=1920&u_w=1080&u_ah=1920&u_aw=1080&u_cd=24&u_nplug=10&u_nmime=51&dff=arial&dfs=12&biw=1080&bih=1801&oid=3&fu=0&ifi=1&dtd=10 <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[6]/DIV[6]/SCRIPT[5]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=120x90;path=time;dcove=d;pos=1;pgurl=1;tile=8;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[7]/DIV[5]/DIV/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=120x90;path=time;dcove=d;pos=2;pgurl=1;tile=9;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[7]/DIV[5]/DIV[2]/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=120x90;path=time;dcove=d;pos=3;pgurl=1;tile=10;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[7]/DIV[7]/DIV/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=120x90;path=time;dcove=d;pos=4;pgurl=1;tile=11;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[5]/DIV[7]/DIV[7]/DIV[2]/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=300x250%2c300x600;path=time;dcove=d;pgurl=1;tile=12;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[6]/DIV[3]/SCRIPT[2]
+http://s0.2mdn.net/879366/flashwrite_1_2.js <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[6]/DIV[3]/SCRIPT[3]
+http://ad.doubleclick.net/adj/cm.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=300x15;path=time;dcove=d;cmpos=global;cmtyp=tout;pgurl=1;tile=13;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[6]/DIV[5]/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=88x31;path=time;dcove=d;pos=9;pgurl=1;tile=14;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[6]/DIV[7]/DIV[3]/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=300x100;path=time;dcove=d;pgurl=1;tile=15;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[6]/DIV[11]/SCRIPT[2]
+http://ad.doubleclick.net/adj/cm.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=88x31;path=time;dcove=d;cmpos=homepage;cmtyp=tout;pgurl=1;tile=16;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[6]/DIV[14]/DIV/UL/LI[2]/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=88x31;path=time;dcove=d;pos=2;pgurl=1;tile=17;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[7]/DIV/DIV/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=88x31;path=time;dcove=d;pos=3;pgurl=1;tile=18;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[7]/DIV/DIV[2]/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=88x31;path=time;dcove=d;pos=4;pgurl=1;tile=19;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[7]/DIV/DIV[3]/SCRIPT[2]
+http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=88x31;path=time;dcove=d;pos=5;pgurl=1;tile=20;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[2]/DIV[7]/DIV/DIV[4]/SCRIPT[2]
+http://ad.doubleclick.net/adj/cm.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=115x42;path=time;dcove=d;cmpos=globalfooter;cmtyp=tout;pgurl=1;tile=21;ord=648841106326? <=|=> /HTML/BODY/DIV[2]/DIV[3]/DIV/DIV/SCRIPT[2]
+http://js.revsci.net/gateway/gw.js?csid=H07710 <=|=> /HTML/BODY/DIV[2]/SCRIPT[2]
+http://pixel.quantserve.com/seg/p-5dyPa639IrgIw.js;fpa=P0-1364744690-1327244996439;r=2213263 <=|=> /HTML/BODY/DIV[2]/SCRIPT[4]
+http://b.scorecardresearch.com/beacon.js?c1=2&c2=6035728 <=|=> /HTML/BODY/DIV[2]/SCRIPT[5]
+http://edge.quantserve.com/quant.js <=|=> /HTML/BODY/DIV[2]/SCRIPT[7]
+http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40 <=|=> /HTML/BODY/DIV[2]/SCRIPT[8]
+http://cdn.insights.gravity.com/moth-min.js <=|=> /HTML/BODY/DIV[2]/SCRIPT[11]
+http://static.chartbeat.com/js/chartbeat_rm.js <=|=> /HTML/BODY/SCRIPT[4]
+
+--------------DOMAR_Separator---------------
+
+getElementsByTagName called on document, Tag: head |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:17
+; stack trace > 3000 chars.
+getElementsByTagName called on document, Tag: script |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:36
+
+getElementsByTagName called on document, Tag: script |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:9
+
+//380 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:9
+
+//380/SPAN |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:36
+
+//320 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//136 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//78 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//22 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//20 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//1 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:15
+
+//380 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:39
+
+getElementsByTagName called on document, Tag: head |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:10
+
+//20/TEXT |:=> http://js.revsci.net/gateway/gw.js?csid=H07710:3
+
+getElementsByTagName called on document, Tag: meta |:=> http://edge.quantserve.com/quant.js:17
+
+getElementsByTagName called on document, Tag: script |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:31
+
+getElementsByTagName called on document, Tag: link |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:8
+
+getElementsByTagName called on document, Tag: base |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:9
+
+getElementsByTagName called on document, Tag: title |:=> http://cdn.insights.gravity.com/moth-min.js:1
+
+Read innerHTML of this element: //3! |:=> http://cdn.insights.gravity.com/moth-min.js:1
+
+getElementsByTagName called on document, Tag: link |:=> http://cdn.insights.gravity.com/moth-min.js:1
+
+getElementsByTagName called on document, Tag: head |:=> http://cdn.insights.gravity.com/moth-min.js:1
+
+//2/SCRIPT |:=> http://cdn.insights.gravity.com/moth-min.js:1
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:activity |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:add-profile-tab |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:add-to-timeline |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:bookmark |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:comments |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:comments-count |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:connect-bar |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:fan |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:like |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:like-box |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:live-stream |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:login |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:login-button |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:facepile |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:friendpile |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:name |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:profile-pic |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:question |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:recommendations |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:recommendations-bar |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:registration |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:send |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:serverfbml |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:share-button |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagNameNS called on //20 NS: http://www.w3.org/1999/xhtml Tag: fb:subscribe |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:31
+
+getElementsByTagName called on document, Tag: object |:=> http://admin.brightcove.com/js/BrightcoveExperiences.js:11
+
+getElementsByTagName called on //332 Tag: param |:=> http://admin.brightcove.com/js/BrightcoveExperiences.js:15
+
+//330 |:=> http://admin.brightcove.com/js/BrightcoveExperiences.js:52
+
+getElementsByTagName called on document, Tag: script |:=> https://apis.google.com/js/plusone.js:24
+
+//2 |:=> https://apis.google.com/js/plusone.js:24
+
+Read innerHTML of this element: //2/SCRIPT[2]! |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:113
+
+getElementsByTagName called on //20 Tag: * |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:242
+
+//570 |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:236
+
+//570/DIV |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:194
+; stack trace > 3000 chars.
+//570/DIV/IFRAME |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:194
+; stack trace > 3000 chars.
+//570/DIV/IFRAME |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:158
+
+getElementsByTagName called on document, Tag: iframe |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:14
+
+getElementsByTagName called on document, Tag: object |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:14
+
+getElementsByTagName called on document, Tag: script |:=> http://static.chartbeat.com/js/chartbeat_rm.js:3
+
+getElementsByTagName called on document, Tag: a |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+//380/DIV/H4 |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+Read innerHTML of this element: //380/DIV/H4! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+//380/DIV |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+Read innerHTML of this element: //380/DIV! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:29
+
+//330/OBJECT |:=> http://admin.brightcove.com/js/APIModules_all.js:16
+
+
+End of DOM node access
+---------------------------------------
+navigator.userAgent read! |:=> http://connect.facebook.net/en_US/all.js#xfbml=1:13
+
+navigator.userAgent read! |:=> http://admin.brightcove.com/js/BrightcoveExperiences.js:3
+
+navigator.userAgent read! |:=> http://admin.brightcove.com/js/BrightcoveExperiences.js:72
+
+navigator.userAgent read! |:=> http://pagead2.googlesyndication.com/pagead/show_ads.js:12
+
+navigator.userAgent read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:35
+
+navigator.platform read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:35
+
+navigator.userAgent read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:11
+
+navigator.appName read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:61
+
+navigator.platform read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:61
+
+navigator.userAgent read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:61
+
+navigator.width read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:61
+
+navigator.height read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:61
+
+navigator.colorDepth read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:61
+
+navigator.height read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:14
+
+navigator.width read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:14
+
+navigator.availHeight read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:14
+
+navigator.availWidth read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:14
+
+navigator.colorDepth read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:14
+
+navigator.userAgent read! |:=> http://pagead2.googlesyndication.com/pagead/osd.js:5
+
+navigator.userAgent read! |:=> http://ad.doubleclick.net/adj/3475.tim/homepage;rsseg=70076;rsseg=10138;rsseg=10064;rsseg=10151;rsseg=10160;rsseg=10515;rsseg=10534;rsseg=10562;rsseg=10458;rsseg=10464;qc=d;ch=home;ptype=channel;sz=300x250%2c300x600;path=time;dcove=d;pgurl=1;tile=12;ord=648841106326?:83
+
+navigator.cookieEnabled read! |:=> http://edge.quantserve.com/quant.js:20
+
+navigator.width read! |:=> http://edge.quantserve.com/quant.js:21
+
+navigator.height read! |:=> http://edge.quantserve.com/quant.js:21
+
+navigator.colorDepth read! |:=> http://edge.quantserve.com/quant.js:21
+
+navigator.userAgent read! |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:17
+
+navigator.userAgent read! |:=> http://cdn.insights.gravity.com/moth-min.js:1
+
+navigator.appVersion read! |:=> http://cdn.insights.gravity.com/moth-min.js:1
+
+navigator.userAgent read! |:=> http://admin.brightcove.com/js/BrightcoveExperiences.js:71
+
+navigator.userAgent read! |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:8
+
+navigator.platform read! |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:19
+
+navigator.appVersion read! |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:20
+
+navigator.width read! |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:121
+
+navigator.height read! |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:121
+
+navigator.userAgent read! |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:237
+
+navigator.userAgent read! |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:194
+; stack trace > 3000 chars.
+
+End of window special property access
+---------------------------------------
+document.referrer read! |:=> http://optimized-by.rubiconproject.com/a/7810/12474/22324-20.js?cb=0.876580635913622:1
+
+document.URL read! |:=> http://b.scorecardresearch.com/beacon.js:1
+
+document.cookie read! |:=> http://b.scorecardresearch.com/beacon.js:1
+
+document.title read! |:=> http://b.scorecardresearch.com/beacon.js:1
+
+document.referrer read! |:=> http://b.scorecardresearch.com/beacon.js:1
+
+document.images read! |:=> http://b.scorecardresearch.com/beacon.js:1
+
+document.URL read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:85
+
+document.domain read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:56
+
+document.URL read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:54
+
+document.URL read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:55
+
+document.lastModified read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:55
+
+document.referrer read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:55
+
+document.domain read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:80
+
+document.cookie read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:80
+
+document.referrer read! |:=> http://pagead2.googlesyndication.com/pagead/js/r20120125/r20110914/show_ads_impl.js:80
+
+document.referrer read! |:=> http://js.revsci.net/gateway/gw.js?csid=H07710:3
+
+document.domain read! |:=> http://pixel.quantserve.com/seg/p-5dyPa639IrgIw.js;fpa=P0-1364744690-1327244996439;r=2213263:2
+
+document.cookie set! |:=> http://pixel.quantserve.com/seg/p-5dyPa639IrgIw.js;fpa=P0-1364744690-1327244996439;r=2213263:16
+
+document.URL read! |:=> http://b.scorecardresearch.com/beacon.js?c1=2&c2=6035728:1
+
+document.cookie read! |:=> http://b.scorecardresearch.com/beacon.js?c1=2&c2=6035728:1
+
+document.title read! |:=> http://b.scorecardresearch.com/beacon.js?c1=2&c2=6035728:1
+
+document.referrer read! |:=> http://b.scorecardresearch.com/beacon.js?c1=2&c2=6035728:1
+
+document.images read! |:=> http://b.scorecardresearch.com/beacon.js?c1=2&c2=6035728:1
+
+document.domain read! |:=> http://edge.quantserve.com/quant.js:3
+
+document.cookie read! |:=> http://edge.quantserve.com/quant.js:2
+
+document.referrer read! |:=> http://edge.quantserve.com/quant.js:23
+
+document.title read! |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:8
+
+document.cookie read! |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:33
+
+document.cookie read! |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:17
+
+document.cookie read! |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:10
+
+document.referrer read! |:=> http://tcr.tynt.com/javascripts/Tracer.js?user=dIY3asR2ir3Ri3ab7jrHtB&s=40:10
+
+document.cookie read! |:=> http://cdn.insights.gravity.com/moth-min.js:1
+
+document.referrer read! |:=> http://cdn.insights.gravity.com/moth-min.js:1
+
+document.cookie read! |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:121
+
+document.cookie read! |:=> https://plus.google.com/_/apps-static/_/js/widget/gcm_ppb,googleapis_client,plusone/rt=j/ver=ZdCc5_4J19o.en_US./sv=1/am=!mERVC2k_3r6Im8QV0w/d=1/:242
+
+document.title read! |:=> http://static.chartbeat.com/js/chartbeat_rm.js:4
+
+document.cookie read! |:=> http://static.chartbeat.com/js/chartbeat_rm.js:12
+
+document.cookie set! |:=> http://static.chartbeat.com/js/chartbeat_rm.js:12
+
+document.referrer read! |:=> http://static.chartbeat.com/js/chartbeat_rm.js:9
+
+
+End of document special property access

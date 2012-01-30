@@ -28,7 +28,6 @@ node.innerHTML
 function ___record(){
 var training = false;
 if (document.head.getAttribute('specialId')!=null) training = true;
-alert(training);
 var enableV = false;						//used to remember the vicinity of the accessed nodes for automatic policy relearning.
 var seqID = 0;
 var recordedDOMActions = new Array();		//used to remember what we have already recorded to avoid duplicants.

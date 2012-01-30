@@ -9,7 +9,7 @@ class Nytimes < Test::Unit::TestCase
     @verification_errors = []
     @selenium = Selenium::Client::Driver.new \
 	  :host => "chromium.cs.virginia.edu", #:host => "localhost", #
-      :port => 12345,
+      :port => 12340,
       :browser => "*chrome",
       :url => "http://www.nytimes.com/",
       :timeout_in_second => 60
@@ -29,7 +29,7 @@ class Nytimes < Test::Unit::TestCase
 	puts "opened!"
 	sleep(6)
 	errcount = 0
-	while (count<3700)
+	while (count<10000)
 		count = count+1
 		#To make sure this page loads first
 		while (!@selenium.element? "//ul[@id='mainTabs']/li/a")
