@@ -111,11 +111,19 @@ def tryToBuildModel(url)
 end
 =end
 
+def approxmatching(a,b)
+	return (a==b)
+end
+
 def convertResponse(response, textPattern)
+	listToAdd = Hash.new
+	vicinityList = Hash.new
+	recordedVicinity = Hash.new
+	id = ""
 	textPattern.each_line{|l|
 		l = l.chomp
 		if (l[0..0]=='<')
-			matches = 0
+			matches = false
 			id = l.gsub(/.*\>(\d+)$/,'\1')
 			tagName = l.gsub(/\<(\w*).*/,'\1')
 			toMatcht = l.gsub(/\<(.*)\>\d*/,'\1')
@@ -128,20 +136,54 @@ def convertResponse(response, textPattern)
 			temp = toMatchGrp.permutation(toMatchGrp.length).to_a
 			temp.each_index{|i|
 				toMatch = '<'+tagName+(temp[i].length==0?"":" ")+temp[i].join(" ")+'>'
-				if (response.index(toMatch)!=nil)
-					matches += response.scan(toMatch).size
-					response.insert(response.index(toMatch)+toMatch.length-1,' specialId="'+id.to_s+'"')
+				matchpoints = response.enum_for(:scan,toMatch).map{Regexp.last_match.begin(0)}
+				i = 0
+				while (i<matchpoints.size)
+					matches = true
+					listToAdd[id] = (listToAdd[id]==nil) ? Array.new([matchpoints[i]+toMatch.length-1]) : listToAdd[id].push(matchpoints[i]+toMatch.length-1)
+					vicinityInfo = (response[matchpoints[i]+toMatch.length,100].gsub(/\n/,''))[0,30]
+					vicinityList[id] = (vicinityList[id]==nil) ? Array.new([vicinityInfo]) : vicinityList[id].push(vicinityInfo)
+					i+=1
+					#response.insert(response.index(toMatch)+toMatch.length-1,' specialId="'+id.to_s+'"')
 				end
 			}
-			if (matches==0)
+			if (matches==false)
 				p "failed to find a match for "+toMatcht
 			end
-			if (matches>1)
-				#FIXME:We gotta find some way to eliminate this case, otherwise we are screwed.
+		end
+		if (l[0..0]=='&')
+			recordedVicinity[id] = l[1,l.length]		#if we want to extract children information
+		end
+	}
+	vicinityList.each_key{|id|
+		if (vicinityList[id].length>1)
+			#FIXME:We gotta find some way to eliminate this case, otherwise we are screwed.
+			screwed = true
+			vicinityList[id].each_index{|i|
+				if (approxmatching(vicinityList[id][i],recordedVicinity[id]))
+					listToAdd[id]=Array.new([listToAdd[id][i]])
+					screwed = false
+				end
+			}
+			if (screwed == true)
 				p "multiple matches found for: "+toMatcht + ", found a total of "+matches.to_s+" matches."
 			end
 		end
 	}
+	i = 0
+	idToAdd = Array.new
+	listToAdd.each_key{|id|
+		idToAdd.push(id.to_i)
+	}
+	idToAdd = idToAdd.sort
+	idToAdd.each{|id|
+		index = listToAdd[id.to_s][0]+i
+		content = " specialId=\"#{id.to_s}\""
+		response = response.insert(index, content)
+		i+=(" specialId=\"#{id.to_s}\"".length)
+	}
+	#p vicinityList
+	#p recordedVicinity	
 	return response
 end
 
@@ -228,13 +270,13 @@ if ($httpresponse.match(/\A[^{]/))               #response should not start w/ '
     if (($httpresponse.match(/\A\s*\<[\!hH]/)!=nil)&&(!$httpresponse.match(/\A\s*\<\?[xX]/)))
         #getting the URL and host of the request
         if $requestheader =~ /GET\s(.*?)\sHTTP/     #get the URL of the request
-        url = $1
-        if $requestheader =~ /Host:\s(.*)/  #get the host of the request
-            host = $1
-            hostChopped = host.chop     # The $1 matches the string with a CR added. we don't want that.
-            hostChopped = hostChopped.gsub(/(\.|\/|:)/,'')
-            $httpresponse=process($httpresponse,url,host)
-        end
+		url = $1
+		if $requestheader =~ /Host:\s(.*)/  #get the host of the request
+		    host = $1
+		    hostChopped = host.chop     # The $1 matches the string with a CR added. we don't want that.
+		    hostChopped = hostChopped.gsub(/(\.|\/|:)/,'')
+		    $httpresponse=process($httpresponse,url,host)
+		end
         end
     end
 end

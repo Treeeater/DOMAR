@@ -34,7 +34,7 @@ def identifyId(traffic, record)
 		result[k] = result[k].uniq
 	}
 	#done getting all specialId touched
-	document = Hpricot(traffic)
+	#document = Hpricot(traffic)
 	#document = Nokogiri::HTML(traffic)
 =begin
 	result.each_key{|k|
@@ -54,22 +54,84 @@ def identifyId(traffic, record)
 	return result
 end
 
+def findclosinggt(response,pointer)
+    fsmcode = 0         # 0 stands for no opening attr, 1 stands for opening single quote attr and 2 stands for opening double quote attr.
+    while (pointer<response.length)
+        if ((response[pointer..pointer]!='>')&&(response[pointer..pointer]!='\'')&&(response[pointer..pointer]!='"'))
+            pointer+=1
+            next
+        elsif (response[pointer..pointer]=='>')
+            if (fsmcode == 0)
+                break
+            end
+            pointer+=1
+            next
+        elsif (response[pointer..pointer]=='\'')
+            if (fsmcode&2!=0)
+                pointer+=1      #opening double quote attr, ignore sq
+                next
+            end
+            fsmcode = 1 - fsmcode       #flip sq status
+            pointer += 1
+            next
+        elsif (response[pointer..pointer]=='"')
+            if (fsmcode&1!=0)
+                pointer+=1      #opening single quote attr, ignore dq
+                next
+            end
+            fsmcode = 2 - fsmcode       #flip sq status
+            pointer += 1
+            next
+        end         
+    end 
+    return pointer
+end
+
+def findopeninglt(response,pointer)
+    fsmcode = 0         # 0 stands for no opening attr, 1 stands for opening single quote attr and 2 stands for opening double quote attr.
+    while (pointer<response.length)
+        if ((response[pointer..pointer]!='<')&&(response[pointer..pointer]!='\'')&&(response[pointer..pointer]!='"'))
+            pointer-=1
+            next
+        elsif (response[pointer..pointer]=='<')
+            if (fsmcode == 0)
+                break
+            end
+            pointer-=1
+            next
+        elsif (response[pointer..pointer]=='\'')
+            if (fsmcode&2!=0)
+                pointer-=1      #opening double quote attr, ignore sq
+                next
+            end
+            fsmcode = 1 - fsmcode       #flip sq status
+            pointer -= 1
+            next
+        elsif (response[pointer..pointer]=='"')
+            if (fsmcode&1!=0)
+                pointer-=1      #opening single quote attr, ignore dq
+                next
+            end
+            fsmcode = 2 - fsmcode       #flip sq status
+            pointer -= 1
+            next
+        end         
+    end 
+    return pointer
+end
+
 def learnTextPattern(traffic, specialIds)
 	result = Hash.new
-	document = Hpricot(traffic)
 	specialIds.each_key{|k|
+		result[k]=Array.new
 		specialIds[k].each{|id|
-			elem = document.search("//*[@specialid='#{id}']")[0]
+			attrIndex = traffic.index(/specialId\s=\s\'#{id}\'/)
 			p id
-			if (elem.elem?)
-				elem.remove_attribute('specialid')
-				elemText = elem.name + elem.attributes_as_html
-				elem.set_attribute('specialid',id)
-				if (result[k]==nil)
-					result[k] = Array.new
-				end
-				result[k].push(elemText)
-			end
+			closinggt = findclosinggt(traffic, attrIndex)
+			openinglt = findopeninglt(traffic, attrIndex)
+			tagInfo = traffic[openinglt..closinggt].gsub(/\sspecialId\s=\s\'\d+\'/,'')
+			vicinityInfo = (traffic[closinggt+1,100].gsub(/\sspecialId\s=\s\'\d+\'/,'').gsub(/\n/,''))[0,30]
+			result[k].push( [ tagInfo , vicinityInfo ] )
 		}
 	}
 	return result
@@ -86,9 +148,10 @@ def extractTextPattern(trafficFile,recordFile,url)
 	textPattern.each_key{|k|
 		fh.write(k)
 		textPattern[k].each_index{|id|
-			fh.write("\n<")
-			fh.write(textPattern[k][id])
-			fh.write(">"+result[k][id].to_s)
+			fh.write("\n")
+			fh.write(textPattern[k][id][0])
+			fh.write(result[k][id].to_s+"\n")
+			fh.write("&"+textPattern[k][id][1].to_s)
 		}
 		fh.write("\n-----\n")
 	}
