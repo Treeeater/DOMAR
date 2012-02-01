@@ -36,7 +36,7 @@ def identifyId(traffic, record)
 	#done getting all specialId touched
 	document = Hpricot(traffic)
 	#document = Nokogiri::HTML(traffic)
-	#p (document.search("//div[@id='SponLinkHP']"))[0]
+=begin
 	result.each_key{|k|
 		result[k].each{|id|
 			elem = document.search("//*[@specialid='#{id}']")[0]
@@ -44,12 +44,13 @@ def identifyId(traffic, record)
 				elemp = elem.parent
 				while (elemp!=nil)&&(elemp.elem?)
 					includedId = elemp.get_attribute('specialid')
-					#result[k].delete(includedId)
+					result[k].delete(includedId)
 					elemp = elemp.parent
 				end
 			end
 		}
 	}
+=end
 	return result
 end
 

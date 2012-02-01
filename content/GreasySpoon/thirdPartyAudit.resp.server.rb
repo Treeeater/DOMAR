@@ -25,10 +25,10 @@
 #
 require 'rubygems'
 require 'hpricot'
-require 'digest/md5'
-require 'net/http'
-require 'uri'
-require 'pp'
+#require 'digest/md5'
+#require 'net/http'
+#require 'uri'
+#require 'pp'
 
 #Available elements provided through ICAP server
 #puts "---------------"
@@ -110,20 +110,35 @@ def tryToBuildModel(url)
 	extractTextPattern("/home/yuchen/traffic/"+url+".txt", "/home/yuchen/records/"+url+".txt", url)
 end
 =end
+
 def convertResponse(response, textPattern)
 	textPattern.each_line{|l|
 		l = l.chomp
 		if (l[0..0]=='<')
-			toMatch = l.gsub(/\<(.*)\>\d*/,'\1')
-			toMatch = '<'+toMatch+'>'
+			matches = 0
 			id = l.gsub(/.*\>(\d+)$/,'\1')
-			if (response.index(toMatch)!=nil)
-				response.insert(response.index(toMatch)+toMatch.length-1,' specialId="'+id.to_s+'"')
-			else
-				p "didn't find a match for "+toMatch
+			tagName = l.gsub(/\<(\w*).*/,'\1')
+			toMatcht = l.gsub(/\<(.*)\>\d*/,'\1')
+			toMatch = l.gsub(/\<(.*)\>\d*/,'\1')
+			toMatchGrp = toMatch.scan(/(\w*)=\"([\w\s]*)\"/)
+			toMatchGrp.each_index{|i|
+				toMatchGrp[i] = toMatchGrp[i][0]+"=\""+toMatchGrp[i][1]+"\""
+			}
+			# to deal with the problem of having different permutations of attributes.
+			temp = toMatchGrp.permutation(toMatchGrp.length).to_a
+			temp.each_index{|i|
+				toMatch = '<'+tagName+(temp[i].length==0?"":" ")+temp[i].join(" ")+'>'
+				if (response.index(toMatch)!=nil)
+					matches += response.scan(toMatch).size
+					response.insert(response.index(toMatch)+toMatch.length-1,' specialId="'+id.to_s+'"')
+				end
+			}
+			if (matches==0)
+				p "failed to find a match for "+toMatcht
 			end
-			if (response.scan(toMatch).size>1)
-				p "multiple matches found for: "+toMatch
+			if (matches>1)
+				#FIXME:We gotta find some way to eliminate this case, otherwise we are screwed.
+				p "multiple matches found for: "+toMatcht + ", found a total of "+matches.to_s+" matches."
 			end
 		end
 	}
@@ -214,7 +229,6 @@ if ($httpresponse.match(/\A[^{]/))               #response should not start w/ '
         #getting the URL and host of the request
         if $requestheader =~ /GET\s(.*?)\sHTTP/     #get the URL of the request
         url = $1
-        digestzyc = Digest::MD5.hexdigest(url)
         if $requestheader =~ /Host:\s(.*)/  #get the host of the request
             host = $1
             hostChopped = host.chop     # The $1 matches the string with a CR added. we don't want that.
