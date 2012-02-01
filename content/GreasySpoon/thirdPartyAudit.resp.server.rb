@@ -96,11 +96,41 @@ def findclosinggt(response,pointer)
     return pointer
 end
 
-def process(response, url, host)
-    #puts url
-    #puts host
-    puts "Begin to parse "+url
-    p response[0..10]
+def collectTextPattern(url)
+	if (File.exists? "/home/yuchen/textPattern/"+url+".txt")
+		return File.read("/home/yuchen/textPattern/"+url+".txt")
+	end
+	return nil
+end
+=begin
+def tryToBuildModel(url)
+	if ((!File.exists? "/home/yuchen/traffic/"+url+".txt")||(!File.exists? "/home/yuchen/records/"+url+".txt"))
+		return
+	end
+	extractTextPattern("/home/yuchen/traffic/"+url+".txt", "/home/yuchen/records/"+url+".txt", url)
+end
+=end
+def convertResponse(response, textPattern)
+	textPattern.each_line{|l|
+		l = l.chomp
+		if (l[0..0]=='<')
+			toMatch = l.gsub(/\<(.*)\>\d*/,'\1')
+			toMatch = '<'+toMatch+'>'
+			id = l.gsub(/.*\>(\d+)$/,'\1')
+			if (response.index(toMatch)!=nil)
+				response.insert(response.index(toMatch)+toMatch.length-1,' specialId="'+id.to_s+'"')
+			else
+				p "didn't find a match for "+toMatch
+			end
+			if (response.scan(toMatch).size>1)
+				p "multiple matches found for: "+toMatch
+			end
+		end
+	}
+	return response
+end
+
+def initialTraining(response)
     globalNodeIdCount = 0
     pointer = 0
     startingTag = response.index('<',pointer)
@@ -124,7 +154,6 @@ def process(response, url, host)
             next
         end
         if (response.downcase[pointer..pointer+5] == "script")              #skip chunks of scripts
-            #FIXME: this should be more complicated. For a non-self-closing script tag, there could be /> inside the script's content.
             pointer = findclosinggt(response,pointer)
             if (response[pointer-1..pointer-1]=='/') 
                 #self closing script tag, we don't need to worry about this.
@@ -137,18 +166,6 @@ def process(response, url, host)
             next
         end
         #we need to add special attrs, now we should find the closing greater than for this opening tag.
-=begin
-        gt = response.index('>',pointer)
-        if (gt==nil) 
-            break
-        end
-        sq = response.index('\'',pointer)
-        dq = response.index('\"',pointer)
-        sq = sq==nil ? 9999999 : sq
-        dq = dq==nil ? 9999999 : dq
-        sqcnt = true
-        dqcnt = true
-=end
         #dealing with '>' in attrs.
         pointer = findclosinggt(response,pointer)
         globalNodeIdCount+=1
@@ -158,9 +175,25 @@ def process(response, url, host)
             response = response[0..pointer-1] + " specialId = \'" + globalNodeIdCount.to_s + "\'" + response[pointer..response.length-1]
         end
         startingTag = response.index('<',pointer)
-    end    
+    end   
+	return response
+end
 
-
+def process(response, url, host)
+    #puts url
+    #puts host
+    puts "Begin to parse "+url
+    p response[0..10]
+	sanitizedurl = url.gsub(/[^a-zA-Z0-9]/,"")
+	textPattern = collectTextPattern(sanitizedurl)
+	if (textPattern==nil)
+		#no policy file yet, we need to train one.
+		response = initialTraining(response)
+		#tryToBuildModel(sanitizedurl)
+	else
+		#found policy file, we can use it directly
+		response = convertResponse(response,textPattern)
+	end
     puts "finish parsing "+url
     filecnt = 1
     while (File.exists? "/home/yuchen/traffic/traffic"+filecnt.to_s+".txt")
