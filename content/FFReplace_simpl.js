@@ -889,6 +889,7 @@ var i = 0;
 var oldEGetTagName = new Array();
 var oldEGetClassName = new Array();
 var oldEGetTagNameNS = new Array();
+
 for (; i<allElementsType.length; i++)
 {
 	//store element.getElementsByTagName to old value
@@ -910,9 +911,21 @@ for (; i<allElementsType.length; i++)
 	
 	allElementsType[i].prototype.__defineGetter__('childNodes',function(){var thispath = getXPath(this); var callerInfo = getCallerInfo("childNodes"); if ((thispath!="")&&(callerInfo!=null)) {seqID++; if (recordedDOMActions["childNodes called on: "+thispath+callerInfo]!=true) { recordedDOMActions["childNodes called on: "+thispath+callerInfo]=true; record[DOMRecord].push({what:"childNodes called on: "+thispath,when:seqID,who:callerInfo,v:(enableV?getV(this):"")});}} return oldChildNodes.apply(this);});	
 }
+var oldGetAttr = new Array();
+var oldSetAttr = new Array();
+var oldHasAttr = new Array();
+var oldInsertBefore = new Array();
+var oldAppendChild = new Array();
+var oldReplaceChild = new Array();
 //assign element.getElementsByTagName to new value
 for (i=0; i<allElementsType.length; i++)
 {
+	oldGetAttr[i] = allElementsType[i].prototype.getAttribute;
+	oldSetAttr[i] = allElementsType[i].prototype.setAttribute;
+	oldHasAttr[i] = allElementsType[i].prototype.hasAttribute;
+	oldInsertBefore[i] = allElementsType[i].prototype.insertBefore;
+	oldAppendChild[i] = allElementsType[i].prototype.appendChild;
+	oldReplaceChild[i] = allElementsType[i].prototype.replaceChild;
 	allElementsType[i].prototype.getElementsByTagName = function(){
 		var func = oldEGetTagName[50];		//HTMLObjectElement in FF has a bug. This is a ad hoc workaround.
 		var j;
@@ -976,6 +989,130 @@ for (i=0; i<allElementsType.length; i++)
 				recordedDOMActions["getElementsByTagNameNS called on "+thispath+" NS: "+arguments[0]+" Tag: "+arguments[1]+callerInfo]=true; 
 				record[DOMRecord].push({what:"getElementsByTagNameNS called on "+thispath+" NS: "+arguments[0]+" Tag: "+arguments[1],when:seqID,who:callerInfo,v:(enableV?getV(this):"")});
 			}
+		}
+		return func.apply(this,arguments);
+	};
+	allElementsType[i].prototype.getAttribute = function(){
+		var func;
+		var j;
+		for (j=0; j < allElementsType.length; j++)
+		{
+			if ((this.constructor==allElementsType[j])||(this.__proto__==allElementsType[j].prototype)) func = oldGetAttr[j];
+		}
+		if ((arguments[0]!=null)&&(arguments[0].toLowerCase!=null)&&(arguments[0].toLowerCase()=="specialid"))
+		{
+			var thispath = getXPath(this);
+			var callerInfo = getCallerInfo("getAttribute");
+			if ((thispath!="")&&(callerInfo!=null))
+			{
+				seqID++;
+				if (recordedDOMActions["getAttribute specialId called on "+thispath+callerInfo]!=true) 
+				{ 
+					recordedDOMActions["getAttribute specialId called on "+thispath+callerInfo]=true; 
+					record[DOMRecord].push({what:"getAttribute specialId called on "+thispath,when:seqID,who:callerInfo,v:(enableV?getV(this):"")});
+				}
+			}
+		}
+		return func.apply(this,arguments);
+	};
+	allElementsType[i].prototype.setAttribute = function(){
+		var func;
+		var j;
+		for (j=0; j < allElementsType.length; j++)
+		{
+			if ((this.constructor==allElementsType[j])||(this.__proto__==allElementsType[j].prototype)) func = oldSetAttr[j];
+		}
+		if ((arguments[0]!=null)&&(arguments[0].toLowerCase!=null)&&(arguments[0].toLowerCase()=="specialid"))
+		{
+			var thispath = getXPath(this);
+			var callerInfo = getCallerInfo("setAttribute");
+			if ((thispath!="")&&(callerInfo!=null))
+			{
+				seqID++;
+				if (recordedDOMActions["setAttribute specialId called on "+thispath+" attr: "+arguments[1]+callerInfo]!=true) 
+				{ 
+					recordedDOMActions["setAttribute specialId called on "+thispath+" attr: "+arguments[1]+callerInfo]=true; 
+					record[DOMRecord].push({what:"setAttribute specialId called on "+thispath+" attr: "+arguments[1],when:seqID,who:callerInfo,v:(enableV?getV(this):"")});
+				}
+			}
+		}
+		return func.apply(this,arguments);
+	};
+	allElementsType[i].prototype.hasAttribute = function(){
+		var func;
+		var j;
+		for (j=0; j < allElementsType.length; j++)
+		{
+			if ((this.constructor==allElementsType[j])||(this.__proto__==allElementsType[j].prototype)) func = oldHasAttr[j];
+		}
+		if ((arguments[0]!=null)&&(arguments[0].toLowerCase!=null)&&(arguments[0].toLowerCase()=="specialid"))
+		{
+			var thispath = getXPath(this);
+			var callerInfo = getCallerInfo("hasAttribute");
+			if ((thispath!="")&&(callerInfo!=null))
+			{
+				seqID++;
+				if (recordedDOMActions["hasAttribute specialId called on "+thispath+callerInfo]!=true) 
+				{ 
+					recordedDOMActions["hasAttribute specialId called on "+thispath+callerInfo]=true; 
+					record[DOMRecord].push({what:"hasAttribute specialId called on "+thispath,when:seqID,who:callerInfo,v:(enableV?getV(this):"")});
+				}
+			}
+		}
+		return func.apply(this,arguments);
+	};
+	allElementsType[i].prototype.insertBefore = function(){
+	//var insertedElement = parentElement.insertBefore(newElement, referenceElement);
+		var func;
+		var get;
+		var j;
+		for (j=0; j < allElementsType.length; j++)
+		{
+			if ((this.constructor==allElementsType[j])||(this.__proto__==allElementsType[j].prototype)) 
+			{ 
+				func = oldInsertBefore[j]; 
+				get = oldGetAttr[j];
+			}
+		}
+		if ((arguments[0]!=null)&&(arguments[0].getAttribute!=null)&&(get.apply(arguments[0],["specialId"])!=null))
+		{
+			arguments[0].removeAttribute("specialId");
+		}
+		return func.apply(this,arguments);
+	};
+	allElementsType[i].prototype.appendChild = function(){
+		var func;
+		var get;
+		var j;
+		for (j=0; j < allElementsType.length; j++)
+		{
+			if ((this.constructor==allElementsType[j])||(this.__proto__==allElementsType[j].prototype)) 
+			{ 
+				func = oldAppendChild[j]; 
+				get = oldGetAttr[j];
+			}
+		}
+		if ((arguments[0]!=null)&&(arguments[0].getAttribute!=null)&&(get.apply(arguments[0],["specialId"])!=null))
+		{
+			arguments[0].removeAttribute("specialId");
+		}
+		return func.apply(this,arguments);
+	};
+	allElementsType[i].prototype.replaceChild = function(){
+	//replacedNode = parentNode.replaceChild(newChild, oldChild);
+		var func;
+		var j;
+		for (j=0; j < allElementsType.length; j++)
+		{
+			if ((this.constructor==allElementsType[j])||(this.__proto__==allElementsType[j].prototype)) 
+			{ 
+				func = oldReplaceChild[j]; 
+				get = oldGetAttr[j];
+			}
+		}
+		if ((arguments[0]!=null)&&(arguments[0].getAttribute!=null)&&(get.apply(arguments[0],["specialId"])!=null))
+		{
+			arguments[0].removeAttribute("specialId");
 		}
 		return func.apply(this,arguments);
 	};
