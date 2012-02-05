@@ -50,6 +50,7 @@ var oldParentNode = Element.prototype.__lookupGetter__('parentNode');
 var oldNextSibling = Element.prototype.__lookupGetter__('nextSibling');
 var oldPreviousSibling = Element.prototype.__lookupGetter__('previousSibling');
 var oldChildNodes = Element.prototype.__lookupGetter__('childNodes');
+var oldGetAttribute = Element.prototype.getAttribute;
 
 findPos = function(obj) 
 {
@@ -123,9 +124,9 @@ var getXPath = function(elt)
 	var path = "";
     for (; elt && (elt.nodeType == 1||elt.nodeType == 3||elt.nodeType == 2); elt = oldParentNode.apply(elt))
     {
-		if ((elt.nodeType ==1)&&(elt.getAttribute('specialId')!=null))
+		if ((elt.nodeType ==1)&&(oldGetAttribute.apply(elt,['specialId'])!=null))
 		{
-			path = "//" + elt.getAttribute('specialId') + path;
+			path = "//" + oldGetAttribute.apply(elt,['specialId']) + path;
 			break;
 		}
 		idx = getElementIdx(elt);
