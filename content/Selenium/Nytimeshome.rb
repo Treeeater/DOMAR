@@ -27,7 +27,7 @@ class Nytimes < Test::Unit::TestCase
     @selenium.execution_delay = "20"
     @selenium.open "/"
 	puts "opened!"
-	sleep(6)
+	sleep(60)
 	errcount = 0
 	while (count<10000)
 		count = count+1
@@ -39,10 +39,10 @@ class Nytimes < Test::Unit::TestCase
 				exit 2
 			end
 			@selenium.refresh
-			sleep(6)
+			sleep(60)
 		end
 		@selenium.click "//ul[@id='mainTabs']/li/a"
-		sleep(6)
+		sleep(60)
 		errcount = 0
 		puts count
 	end

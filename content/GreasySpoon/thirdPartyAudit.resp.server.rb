@@ -115,24 +115,33 @@ def approxmatching(a,b)
 	return (a==b)
 end
 
-def convertResponse(response, textPattern)
+def convertResponse(response, textPattern, url, filecnt)
 	listToAdd = Hash.new
 	vicinityList = Hash.new
 	recordedVicinity = Hash.new
+	processedNodes = Hash.new
 	id = ""
+	error = false
+	errormsg = ""
 	textPattern.each_line{|l|
 		l = l.chomp
 		if (l[0..0]=='<')
 			matches = false
 			id = l.gsub(/.*\>(\d+)$/,'\1')
+			if (processedNodes[id]==true)
+				next			#we don't want to add multiples of specialId to a node.
+			end
+			processedNodes[id]=true
 			tagName = l.gsub(/\<(\w*).*/,'\1')
-			toMatcht = l.gsub(/\<(.*)\>\d*/,'\1')
-			toMatch = l.gsub(/\<(.*)\>\d*/,'\1')
+			toMatch = l.gsub(/(\<.*\>)\d*/,'\1')
+			toMatcht = toMatch
+=begin
+			#this is the code base to deal with attributes shuffled. However there is a bug. if we need to turn this back on we need to fix it.
 			toMatchGrp = toMatch.scan(/(\w*)=\"([\w\s]*)\"/)
 			toMatchGrp.each_index{|i|
 				toMatchGrp[i] = toMatchGrp[i][0]+"=\""+toMatchGrp[i][1]+"\""
 			}
-			# to deal with the problem of having different permutations of attributes.
+			 to deal with the problem of having different permutations of attributes.
 			temp = toMatchGrp.permutation(toMatchGrp.length).to_a
 			temp.each_index{|i|
 				toMatch = '<'+tagName+(temp[i].length==0?"":" ")+temp[i].join(" ")+'>'
@@ -147,8 +156,19 @@ def convertResponse(response, textPattern)
 					#response.insert(response.index(toMatch)+toMatch.length-1,' specialId="'+id.to_s+'"')
 				end
 			}
+=end
+			matchpoints = response.enum_for(:scan,toMatch).map{Regexp.last_match.begin(0)}
+			i = 0
+			while (i<matchpoints.size)
+				matches = true
+				listToAdd[id] = (listToAdd[id]==nil) ? Array.new([matchpoints[i]+toMatch.length-1]) : listToAdd[id].push(matchpoints[i]+toMatch.length-1)
+				vicinityInfo = (response[matchpoints[i]+toMatch.length,100].gsub(/\n/,''))[0,30]
+				vicinityList[id] = (vicinityList[id]==nil) ? Array.new([vicinityInfo]) : vicinityList[id].push(vicinityInfo)
+				i+=1
+			end
 			if (matches==false)
-				p "failed to find a match for "+toMatcht
+				error = true
+				errormsg += "failed to find a match for "+toMatcht+"\n"
 			end
 		end
 		if (l[0..0]=='&')
@@ -159,14 +179,21 @@ def convertResponse(response, textPattern)
 		if (vicinityList[id].length>1)
 			#FIXME:We gotta find some way to eliminate this case, otherwise we are screwed.
 			screwed = true
+			found = 0
 			vicinityList[id].each_index{|i|
 				if (approxmatching(vicinityList[id][i],recordedVicinity[id]))
 					listToAdd[id]=Array.new([listToAdd[id][i]])
 					screwed = false
+					found += 1
 				end
 			}
 			if (screwed == true)
-				p "multiple matches found for: "+toMatcht + ", found a total of "+matches.to_s+" matches."
+				error = true
+				errormsg += "multiple matches found for: "+toMatcht + ", because no vicinity matches original model.\n"
+			end
+			if (found > 1)
+				error = true
+				errormsg += "multiple matches found for: "+toMatcht + ", because more than 1 vicinity matches original model. found a total of "+found.to_s+" matches.\n"
 			end
 		end
 	}
@@ -184,6 +211,12 @@ def convertResponse(response, textPattern)
 	}
 	#p vicinityList
 	#p recordedVicinity	
+	if (error)
+		logfh = File.open("/home/yuchen/errorlog.txt","a")
+		logfh.write("error when converting url: #{url}, id: #{filecnt}.\n")
+		logfh.write(errormsg)
+		logfh.close
+	end
 	return response
 end
 
@@ -240,8 +273,13 @@ def process(response, url, host)
     #puts url
     #puts host
     puts "Begin to parse "+url
+    sanitizedurl = url.gsub(/[^a-zA-Z0-9]/,"")
+    filecnt = 1
+    while (File.exists? "/home/yuchen/traffic/#{sanitizedurl}"+filecnt.to_s+".txt")
+    	filecnt+=1
+    end
     p response[0..10]
-	sanitizedurl = url.gsub(/[^a-zA-Z0-9]/,"")
+	
 	textPattern = collectTextPattern(sanitizedurl)
 	if (textPattern==nil)
 		#no policy file yet, we need to train one.
@@ -249,14 +287,10 @@ def process(response, url, host)
 		#tryToBuildModel(sanitizedurl)
 	else
 		#found policy file, we can use it directly
-		response = convertResponse(response,textPattern)
+		response = convertResponse(response,textPattern,url,filecnt)
 	end
     puts "finish parsing "+url
-    filecnt = 1
-    while (File.exists? "/home/yuchen/traffic/traffic"+filecnt.to_s+".txt")
-    filecnt+=1
-    end
-    File.open("/home/yuchen/traffic/traffic"+filecnt.to_s+".txt", 'w') {|f| f.write(response) }
+    File.open("/home/yuchen/traffic/#{sanitizedurl}"+filecnt.to_s+".txt", 'w') {|f| f.write(response) }
     return response
 end
 

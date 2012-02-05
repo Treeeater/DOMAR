@@ -3,8 +3,8 @@ require 'rubygems'
 require 'hpricot'
 #require 'nokogiri'
 
-TrafficDir = "/home/yuchen/traffic/"
-RecordsDir = "/home/yuchen/records/"
+TrafficDir = "/home/yuchen/training/"
+RecordsDir = "/home/yuchen/training/"
 PolicyDir = "/home/yuchen/textPattern/"
 
 def getTLD(url)
@@ -157,4 +157,4 @@ def extractTextPattern(trafficFile,recordFile,url)
 	}
 end
 
-extractTextPattern(TrafficDir+"httpwwwnytimescom.txt",RecordsDir+"httpwwwnytimescom.txt",PolicyDir+"httpwwwnytimescom.txt")
+extractTextPattern(TrafficDir+"traffic_techcrunch_item.txt",RecordsDir+"record_techcrunch_item.txt",PolicyDir+"httptechcrunchcom20120202visualizingfacebooksmediastorehowbigis100petabytes.txt")

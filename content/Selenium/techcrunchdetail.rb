@@ -9,7 +9,7 @@ class Nytimes < Test::Unit::TestCase
     @verification_errors = []
     @selenium = Selenium::Client::Driver.new \
 	  :host => "chromium.cs.virginia.edu", #:host => "localhost", #
-      :port => 12345,
+      :port => 12340,
       :browser => "*chrome",
       :url => "http://www.techcrunch.com/",
       :timeout_in_second => 60
@@ -25,11 +25,11 @@ class Nytimes < Test::Unit::TestCase
   def test_nytimes
     count = 0
     @selenium.execution_delay = "20"
-    @selenium.open "/2012/01/13/bloomberg-ipad-3-to-have-quad-core-cpu-lte-high-def-screen/"
+    @selenium.open "/2012/02/02/visualizing-facebooks-media-store-how-big-is-100-petabytes/"
 	puts "opened!"
-	sleep(8)
+	sleep(60)
 	errcount = 0
-	while (count<2431)
+	while (count<2000)
 		count = count+1
 		#To make sure this page loads first
 		while (!@selenium.element? "//img[@id='site-logo-cutout']")
@@ -39,10 +39,10 @@ class Nytimes < Test::Unit::TestCase
 				exit 2
 			end
 			@selenium.refresh
-			sleep(8)
+			sleep(60)
 		end
 		@selenium.refresh
-		sleep(8)
+		sleep(60)
 		errcount = 0
 		puts count
 	end
