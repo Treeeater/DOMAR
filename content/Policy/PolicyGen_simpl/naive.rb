@@ -1,10 +1,20 @@
-def exportAllRecords(extractedRecords, hostD)
-	pFolder = PRootDir+hostD
-	cleanDirectory(pFolder)
-	accessArray = extractedRecords.records
-	accessArray.each_key{|tld|
-		f = File.open(pFolder+tld+".txt","w")
-		accessArray[tld].each{|xpath|
+def exportPolicy(extractedRecords, hostD)
+	pFolderA = PRootDirA + hostD
+	pFolderR = PRootDirR + hostD
+	cleanDirectory(pFolderA)
+	cleanDirectory(pFolderR)
+	accessArrayA = extractedRecords.recordsA
+	accessArrayA.each_key{|tld|
+		f = File.open(pFolderA+tld+".txt","w")
+		accessArrayA[tld].each{|xpath|
+			f.puts (xpath)#+"|:=>"+accessArray[tld][xpath].to_s)
+		}
+		f.close()
+	}
+	accessArrayR = extractedRecords.recordsR
+	accessArrayR.each_key{|tld|
+		f = File.open(pFolderR+tld+".txt","w")
+		accessArrayR[tld].each{|xpath|
 			f.puts (xpath)#+"|:=>"+accessArray[tld][xpath].to_s)
 		}
 		f.close()
@@ -55,8 +65,8 @@ def isTrainingData?(file,extractedRecords,rFolder)
 	return false
 end
 
-def checkStrictModel(strictModel, hostD, extractedRecords)
-	pFolder = PRootDir+hostD
+def checkStrictModel(strictModel, hostD, extractedRecords, absolute)
+	pFolder = ((absolute)? PRootDirA : PRootDirR)+hostD
 	rFolder = RRootDir+hostD
 	testingFiles = Dir.glob(rFolder+"*")
 	numberOfCheckedRecords = 0
@@ -69,7 +79,7 @@ def checkStrictModel(strictModel, hostD, extractedRecords)
 			next
 		end
 		numberOfCheckedRecords += 1
-		accessArray = rLoad(file)
+		accessArray = rLoad(file,absolute)
 		diffArray = compareStrictModel(strictModel,accessArray)
 		if (diffArray!=0)
 			#There is difference in this record, we need to push into the diffRecords!

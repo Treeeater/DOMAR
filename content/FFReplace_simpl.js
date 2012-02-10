@@ -28,7 +28,7 @@ node.innerHTML
 function ___record(){
 var training = false;
 if (document.head.parentNode.getAttribute('specialId')!=null) training = true;		//FIXME: this is ad hoc right now.
-var enableV = false;						//used to remember the vicinity of the accessed nodes for automatic policy relearning.
+var enableV = training;						//used to remember the vicinity of the accessed nodes for automatic policy relearning.
 var seqID = 0;
 var recordedDOMActions = new Array();		//used to remember what we have already recorded to avoid duplicants.
 if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent))
@@ -68,6 +68,9 @@ findPos = function(obj)
 };
 var getV = function(elt)
 {
+	return getTrueXPath(elt);
+
+/*
 	result = "";
 	eltC = oldChildNodes.apply(elt);
 	i = 0;
@@ -99,6 +102,7 @@ var getV = function(elt)
 	}
 	
 	return result;
+	*/
 }
  
 var getTrueXPath = function(elt)

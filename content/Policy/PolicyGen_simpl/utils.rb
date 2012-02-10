@@ -60,25 +60,66 @@ def permute_array(a)
 	a
 end
 
-def rLoad(requestRecordFile)
+def rLoad(requestRecordFile, absolute)
 	#load from recordings of a single request into accessArray
 	accessArray = Hash.new
 	f = File.open(requestRecordFile, 'r')
-	while (line = f.gets)
-		line=line.chomp
-		_wholoc = line.index(" |:=> ")
-		if (_wholoc!=nil)
-			_what = line[0, _wholoc]
-			_who = line[_wholoc+1,line.length]
-			_tld = getTLD(_who)
-			if (accessArray[_tld]==nil)
-				#2-level array
-				#accessArray[_tld] = Hash.new
-				accessArray[_tld] = Array.new
+	if (absolute)
+		while (line = f.gets)
+			line=line.chomp
+			_wholoc1 = line.index(" |:=> ")
+			_wholoc2 = line.index(" <=:| ")
+			if (_wholoc1!=nil)
+				if (_wholoc2==nil)
+					_what = line[0.. _wholoc1]
+				else
+					_what = line[_wholoc2+6.._wholoc1]
+				end
+				_who = line[_wholoc1+6..line.length]
+				_tld = getTLD(_who)
+				if (accessArray[_tld]==nil)
+					#2-level array
+					#accessArray[_tld] = Hash.new
+					accessArray[_tld] = Array.new
+				end
+				#accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
+				if (!accessArray[_tld].include? _what)
+					accessArray[_tld].push(_what)
+				end
 			end
-			#accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
-			if (!accessArray[_tld].include? _what)
-				accessArray[_tld].push(_what)
+		end
+	else
+		while (line = f.gets)
+			line=line.chomp
+			_wholoc1 = line.index(" |:=> ")
+			_wholoc2 = line.index(" <=:| ")
+			if ((_wholoc1!=nil)&&(_wholoc2!=nil))
+				_what = line[0.. _wholoc2]
+				_who = line[_wholoc1+6..line.length]
+				_tld = getTLD(_who)
+				if (accessArray[_tld]==nil)
+					#2-level array
+					#accessArray[_tld] = Hash.new
+					accessArray[_tld] = Array.new
+				end
+				#accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
+				if (!accessArray[_tld].include? _what)
+					accessArray[_tld].push(_what)
+				end
+			elsif ((_wholoc1!=nil)&&(_wholoc2==nil))
+				#not a DOM related access
+				_what = line[0.. _wholoc1]
+				_who = line[_wholoc1+6..line.length]
+				_tld = getTLD(_who)
+				if (accessArray[_tld]==nil)
+					#2-level array
+					#accessArray[_tld] = Hash.new
+					accessArray[_tld] = Array.new
+				end
+				#accessArray[_tld][_what] = (accessArray[_tld][_what]==nil) ? 1 : accessArray[_tld][_what]+1
+				if (!accessArray[_tld].include? _what)
+					accessArray[_tld].push(_what)
+				end
 			end
 		end
 	end
@@ -88,12 +129,14 @@ end
 
 def cleanDirectory(param)
 	#cleans everything in param directory! Use extreme caution!
-	Dir.foreach(param) do |f|
-		if f == '.' or f == '..' then next 
-		elsif File.directory?(param+f) then FileUtils.rm_rf(param+f)      
-		else FileUtils.rm(param+f)
-		end
-	end 
+	if File.directory?(param)
+		Dir.foreach(param) do |f|
+			if f == '.' or f == '..' then next 
+			elsif File.directory?(param+f) then FileUtils.rm_rf(param+f)      
+			else FileUtils.rm(param+f)
+			end
+		end 
+	end
 end
 
 def exportDiffArrayToFiles(diffRecords, hostD, tld)
@@ -116,13 +159,13 @@ def exportDiffArrayToFiles(diffRecords, hostD, tld)
 	}
 end
 
-def exportDiffArrayToSingleFile(diffRecords, hostD, tld)
+def exportDiffArrayToSingleFile(diffRecords, hostD, tld, absolute)
 	#store diffrecords into hard drive (CRootDir).
 	#cleanDirectory(CRootDir)
 	if (diffRecords.records.length == 0)
 		return
 	end
-	outputFileName = CRootDir+tld+".txt"
+	outputFileName = ((absolute)? CRootDirA : CRootDirR)+tld+".txt"
 	outputFile = File.open(outputFileName, 'w')
 	diffRecords.records.each_key{|fileName|
 		outputFile.puts("-----"+fileName+"------")

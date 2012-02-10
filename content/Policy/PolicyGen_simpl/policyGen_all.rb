@@ -5,14 +5,16 @@ require_relative 'utils'
 require_relative 'naive'
 require_relative 'children'
 
-PRootDir=ENV["Desktop"]+"DOMAR/policy/"		#root directory for generated policy
-RRootDir=ENV["Desktop"]+"DOMAR/records/"	#root directory for collected records.
-CRootDir=ENV["Desktop"]+"DOMAR/diff/"		#root directory for record - policy checking.
 
 def getTLD(url)
 	domain = url.gsub(/.*?\/\/(.*?)\/.*/,'\1')
 	tld = domain.gsub(/.*\.(.*\..*)/,'\1')
 	return tld
+end
+
+def probeXPATH(hostD)
+	files = Dir.glob(hostD+"*")
+	return File.read(files[0]).include?("<=:| ")
 end
 
 def getSequentialFile(hostD)
@@ -56,7 +58,7 @@ def getNecessaryFile(hostD)
 			line=line.chomp
 			_wholoc = line.index(" |:=> ")
 			if (_wholoc!=nil)
-				_who = line[_wholoc+1,line.length]
+				_who = line[_wholoc+6..line.length]
 				_tld = getTLD(_who)
 				fileNo = (file.to_s.chomp.gsub(/.*record(\d*)\.txt$/,'\1')).to_i
 				if ((!recordedTLD.include?(_tld))&&((!existingDomains.keys.include? _tld) || (existingDomains[_tld]<MinRep)))
@@ -74,12 +76,10 @@ end
 
 def extractRecordsFromTrainingData(hostD, necFileList)
 # This function extracts data from files to an associative array randomly, given the P_inst.
-	accessHash = Hash.new
-	locationHash = Hash.new			#This hash is used to store the embedding location of scripts for each individual tld.
-	pFolder = PRootDir+hostD
+	accessHashA = Hash.new
+	accessHashR = Hash.new
 	rFolder = RRootDir+hostD
 	files = Dir.glob(rFolder+"*")
-	#files = Dir.glob(hostDir+"/*")
 	numberOfRecords = Dir.entries(rFolder).length-2					#Total number of records
 	numberOfTrainingSamples = (numberOfRecords * P_inst).round		#Total training cases
 	if (numberOfTrainingSamples < necFileList.length)
@@ -105,28 +105,61 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 		f = File.open(fileName, 'r')
 		while (line = f.gets)
 			line=line.chomp
+=begin
 			_scriptLocation = line.index(" <=|=> ")
 			if (_scriptLocation!=nil)
 				_who = line[0, _scriptLocation]
 				_where = line[_scriptLocation+1,line.length]
 				_tld = getTLD(_who)
 			end
-			_wholoc = line.index(" |:=> ")
-			if (_wholoc!=nil)
-				_what = line[0, _wholoc]
-				_who = line[_wholoc+1,line.length]
+=end
+			_wholoc1 = line.index(" |:=> ")
+			_wholoc2 = line.index(" <=:| ")
+			if (_wholoc1==nil)
+				next
+			end
+			if (_wholoc2==nil)
+				_whatA = line[0.._wholoc1]
+				_who = line[_wholoc1+6..line.length]
 				_tld = getTLD(_who)
-				if (accessHash[_tld]==nil)
+				if (accessHashA[_tld]==nil)
 					#2-level array
 					#accessHash[_tld] = Hash.new
-					accessHash[_tld] = Array.new
+					accessHashA[_tld] = Array.new
 				end
 				#If we want to care about the number of accesses of each node, we uncomment the next line and make necessary changes
 				#accessHash[_tld][_what] = (accessHash[_tld][_what]==nil) ? 1 : accessHash[_tld][_what]+1
-				if (!accessHash[_tld].include? _what)
-					accessHash[_tld].push(_what)
+				if (!accessHashA[_tld].include? _whatA)
+					accessHashA[_tld].push(_whatA)
 				end
-			end		
+				if (line[0]!='/')
+					#not DOM node access, but we still need to push it to relative model.
+					if (accessHashR[_tld]==nil)
+						accessHashR[_tld] = Array.new
+					end
+					if (!accessHashR[_tld].include? _whatA)
+						accessHashR[_tld].push(_whatA)
+					end
+				end
+			else
+				#relative XPATH
+				_whatR = line[0.._wholoc2]
+				_whatA = line[_wholoc2+6.._wholoc1]
+				_who = line[_wholoc1+6..line.length]
+				_tld = getTLD(_who)
+				if (accessHashR[_tld]==nil)
+					accessHashR[_tld] = Array.new
+				end
+				if (accessHashA[_tld]==nil)
+					accessHashA[_tld] = Array.new
+				end
+				if (!accessHashR[_tld].include? _whatR)
+					accessHashR[_tld].push(_whatR)
+				end
+				if (!accessHashA[_tld].include? _whatA)
+					accessHashA[_tld].push(_whatA)
+				end
+			end
 		end
 		f.close()
 	end
@@ -140,7 +173,7 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 			line=line.chomp
 			_wholoc = line.index(" |:=> ")
 			if (_wholoc!=nil)
-				_who = line[_wholoc+1,line.length]
+				_who = line[_wholoc+6..line.length]
 				_tld = getTLD(_who)
 				i = (file.to_s.chomp.gsub(/.*record(\d*)\.txt$/,'\1')).to_i
 				if (!tldsDetails.key? _tld) 
@@ -162,11 +195,14 @@ def extractRecordsFromTrainingData(hostD, necFileList)
 	}
 	p "done extracting all tlds."
 	#sort accessHash in an alphebatically order
-	accessHash.each_key{|_tld|
-		accessHash[_tld] = accessHash[_tld].sort
+	accessHashA.each_key{|_tld|
+		accessHashA[_tld] = accessHashA[_tld].sort
+	}
+	accessHashR.each_key{|_tld|
+		accessHashR[_tld] = accessHashR[_tld].sort
 	}
 	p "done sorting all tlds."
-	temp = ExtractedRecords.new(accessHash, indexOfTrainingSamples, tldsDetails)
+	temp = ExtractedRecords.new(accessHashR, accessHashA, indexOfTrainingSamples, tldsDetails)
 	return temp
 end
 
@@ -192,27 +228,47 @@ else
 	hostDomain = HostDomain
 	hostURL = HostURL
 end
-if (!File.directory? PRootDir) 
-	Dir.mkdir(PRootDir)
+if (!File.directory? PRootDirA) 
+	Dir.mkdir(PRootDirA)
 end
-if (!File.directory? PRootDir+hostDomain)
-	Dir.mkdir(PRootDir+hostDomain)
+if (!File.directory? PRootDirR) 
+	Dir.mkdir(PRootDirR)
+end
+if (!File.directory? PRootDirA+hostDomain)
+	Dir.mkdir(PRootDirA+hostDomain)
+end
+if (!File.directory? PRootDirR+hostDomain)
+	Dir.mkdir(PRootDirR+hostDomain)
 end
 workingDir = hostDomain+"/"+hostURL+"/"
-if (!File.directory? PRootDir+workingDir)
-	Dir.mkdir(PRootDir+workingDir)
+if (!File.directory? PRootDirA+workingDir)
+	Dir.mkdir(PRootDirA+workingDir)
 end
-if (File.directory? PRootDir+workingDir+"relaxed/")
-	cleanDirectory(PRootDir+workingDir+"relaxed/")
+if (!File.directory? PRootDirR+workingDir)
+	Dir.mkdir(PRootDirR+workingDir)
+end
+if (!File.directory? CRootDirR)
+	Dir.mkdir(CRootDirR)
+end
+if (!File.directory? CRootDirA)
+	Dir.mkdir(CRootDirA)
+end
+if (File.directory? PRootDirA+workingDir+"relaxed/")
+	cleanDirectory(PRootDirA+workingDir+"relaxed/")
+end
+if (File.directory? PRootDirR+workingDir+"relaxed/")
+	cleanDirectory(PRootDirR+workingDir+"relaxed/")
 end
 puts ""
 puts "Initialized directory configuration, starting to run model building..."
 puts ""
-cleanDirectory(CRootDir)
+cleanDirectory(CRootDirA)
+cleanDirectory(CRootDirR)
 puts "Cleaned diff dir..."
 #For now we make sure training data includes traces from all possible sources.
 #necessaryFileList = Alldomain ? getNecessaryFile(workingDir) : Array.new
-
+relativeXPATH = probeXPATH(RRootDir+workingDir)
+p relativeXPATH
 #
 for i in (1..Running_times)
 	modelTotalResult = 1.0
@@ -220,16 +276,18 @@ for i in (1..Running_times)
 	#necFileList = Alldomain ? necessaryFileList : Array.new
 	necFileList = Alldomain ? getNecessaryFile(workingDir) : (Sequential ? getSequentialFile(workingDir) : Array.new)
 	extractedRecords = extractRecordsFromTrainingData(workingDir, necFileList)
-	exportAllRecords(extractedRecords,workingDir)
+	exportPolicy(extractedRecords,workingDir)
 	model = Model.new
 	tlds = Array.new
 	p "done extracting records."
-	extractedRecords.records.each_key{|tld|
+	p "Absolute Results:"
+	p ""
+	extractedRecords.recordsA.each_key{|tld|
 		if ((domainOfInterest!="")&&(domainOfInterest!=tld)) 
 			next
 		end
-		tempModel = buildStrictModel(extractedRecords.records[tld], tld) 	#strictest model is actually just extractedRecord
-		strictModelTestResult = checkStrictModel(tempModel, workingDir, extractedRecords)
+		tempModel = buildStrictModel(extractedRecords.recordsA[tld], tld) 	#strictest model is actually just extractedRecord
+		strictModelTestResult = checkStrictModel(tempModel, workingDir, extractedRecords, true)
 		if ((strictModelTestResult.percentage > StrictModelThreshold) && (RelaxedModeEnabled))
 			#we need a more relaxed model
 			relaxedModel = learnRelaxedModel(tempModel)
@@ -239,23 +297,54 @@ for i in (1..Running_times)
 			p "Relaxed Model : Difference at #{tld} domain is :"
 			p relaxedModelTestResult.percentage.to_s
 			model.adoptTLD(tld,relaxedModel)
-			exportDiffArrayToSingleFile(relaxedModelTestResult, workingDir, tld)
+			exportDiffArrayToSingleFile(relaxedModelTestResult, workingDir, tld, true)
 		else
 			modelTotalResult *= (1-strictModelTestResult.percentage)
 			model.adoptTLD(tld,tempModel)
-			exportDiffArrayToSingleFile(strictModelTestResult, workingDir, tld)
+			exportDiffArrayToSingleFile(strictModelTestResult, workingDir, tld, true)
 		end
 		p "Strict Model : Difference at #{tld} domain is :"
 		p strictModelTestResult.percentage.to_s
 		tlds.push tld			#to record what tld(s) have been checked.
 		#exportDiffArray(strictModelTestResult, workingDir, tld)
 	}
+	p ""
+	p ""
+	if (relativeXPATH)
+		p "Relative Results:"
+		extractedRecords.recordsR.each_key{|tld|
+			if ((domainOfInterest!="")&&(domainOfInterest!=tld)) 
+				next
+			end
+			tempModel = buildStrictModel(extractedRecords.recordsR[tld], tld) 	#strictest model is actually just extractedRecord
+			strictModelTestResult = checkStrictModel(tempModel, workingDir, extractedRecords, false)
+			if ((strictModelTestResult.percentage > StrictModelThreshold) && (RelaxedModeEnabled))
+				#we need a more relaxed model
+				relaxedModel = learnRelaxedModel(tempModel)
+				exportRelaxedModel(relaxedModel, workingDir)
+				relaxedModelTestResult = checkRelaxedModel(relaxedModel, workingDir, extractedRecords, strictModelTestResult)
+				modelTotalResult *= (1-relaxedModelTestResult.percentage)
+				p "Relaxed Model : Difference at #{tld} domain is :"
+				p relaxedModelTestResult.percentage.to_s
+				model.adoptTLD(tld,relaxedModel)
+				exportDiffArrayToSingleFile(relaxedModelTestResult, workingDir, tld, false)
+			else
+				modelTotalResult *= (1-strictModelTestResult.percentage)
+				model.adoptTLD(tld,tempModel)
+				exportDiffArrayToSingleFile(strictModelTestResult, workingDir, tld, false)
+			end
+			p "Strict Model : Difference at #{tld} domain is :"
+			p strictModelTestResult.percentage.to_s
+			tlds.push tld			#to record what tld(s) have been checked.
+			#exportDiffArray(strictModelTestResult, workingDir, tld)
+		}
+	end
 	if ((!Alldomain)&&(domainOfInterest==""))
 		#if alldomain option is off, we need to check if any other domain exists besides the domains existing in training data.
 		p "All domain is set to false, we will check for potential domain lost in training data..."
 		flag = false
 		extractedRecords.tldsDetails.each_key{|tld|
-			if (!extractedRecords.records.keys.include? tld)
+			if (!extractedRecords.recordsA.keys.include? tld)
 				p tld + " not found in training data."
 				p "total numbers of records containing this domain is " + extractedRecords.tldsDetails[tld].length.to_s
 				if (extractedRecords.tldsDetails[tld].length<100)

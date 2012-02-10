@@ -1,7 +1,8 @@
 class ExtractedRecords
-	attr_accessor :records, :trainingData, :tldsDetails
-	def initialize(records, trainingData, tldsDetails)
-		@records = records
+	attr_accessor :recordsR, :recordsA, :trainingData, :tldsDetails
+	def initialize(recordsR, recordsA, trainingData, tldsDetails)
+		@recordsR = recordsR
+		@recordsA = recordsA
 		@trainingData = trainingData
 		@tldsDetails = tldsDetails
 	end
