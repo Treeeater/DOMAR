@@ -120,41 +120,59 @@ def findopeninglt(response,pointer)
     return pointer
 end
 
-def learnTextPattern(traffic, specialIds)
-	result = Hash.new
+def learnTextPattern(traffic, specialIds, textPattern)
 	specialIds.each_key{|k|
-		result[k]=Array.new
+		if (textPattern[k]==nil)
+			textPattern[k]=Array.new
+		end
 		specialIds[k].each{|id|
 			attrIndex = traffic.index(/specialId\s=\s\'#{id}\'/)
 			p id
 			closinggt = findclosinggt(traffic, attrIndex)
 			openinglt = findopeninglt(traffic, attrIndex)
 			tagInfo = traffic[openinglt..closinggt].gsub(/\sspecialId\s=\s\'\d+\'/,'')
-			vicinityInfo = (traffic[closinggt+1,100].gsub(/\sspecialId\s=\s\'\d+\'/,'').gsub(/\n/,''))[0,30]
-			result[k].push( [ tagInfo , vicinityInfo ] )
+			vicinityInfo = (traffic[closinggt+1,100].gsub(/\sspecialId\s=\s\'\d+\'/,'').gsub(/[\r\n]/,''))[0..30]
+			if (!$checked.include?(tagInfo + vicinityInfo))
+				textPattern[k].push( [ tagInfo , vicinityInfo ] )
+				$checked.push(tagInfo+vicinityInfo)
+			end
 		}
 	}
-	return result
+	return textPattern
 end
 
 def extractTextPattern(trafficFile,recordFile,url)
-	traffic = File.read(trafficFile)
-	record = File.read(recordFile)
-	result = identifyId(traffic,record)
-	textPattern = learnTextPattern(traffic,result)
+	textPattern = Hash.new
+	trafficFile.each_index{|i|
+		traffic = File.read(TrafficDir+trafficFile[i])
+		record = File.read(RecordsDir+recordFile[i])
+		result = identifyId(traffic,record)
+		textPattern = learnTextPattern(traffic,result,textPattern)
+	}
 	#p result
 	#p textPattern
 	fh = File.new(url,'w')
 	textPattern.each_key{|k|
-		fh.write(k)
+		i = 0
+		fh.write("Domain:= "+k)
 		textPattern[k].each_index{|id|
+			i+=1
 			fh.write("\n")
-			fh.write(textPattern[k][id][0])
-			fh.write(result[k][id].to_s+"\n")
+			fh.write("Tag:= "+textPattern[k][id][0])
+			fh.write(i.to_s+"\n")
 			fh.write("&"+textPattern[k][id][1].to_s)
 		}
 		fh.write("\n-----\n")
 	}
 end
 
-extractTextPattern(TrafficDir+"traffic_techcrunch_item.txt",RecordsDir+"record_techcrunch_item.txt",PolicyDir+"httptechcrunchcom20120202visualizingfacebooksmediastorehowbigis100petabytes.txt")
+$checked = Array.new
+outputFileName = "httpwwwnytimescom.txt"
+trafficInputs = Array.new
+recordInputs = Array.new
+trafficInputs.push("traffic.txt")
+recordInputs.push("record.txt")
+trafficInputs.push("httpwwwnytimescom1500.txt")
+recordInputs.push("record836.txt")
+extractTextPattern(trafficInputs, recordInputs, PolicyDir + outputFileName)
+#extractTextPattern(TrafficDir+"traffic_techcrunch_item.txt",RecordsDir+"record_techcrunch_item.txt",PolicyDir+"httptechcrunchcom20120202visualizingfacebooksmediastorehowbigis100petabytes.txt")

@@ -123,18 +123,24 @@ def convertResponse(response, textPattern, url, filecnt)
 	id = ""
 	error = false
 	errormsg = ""
+	currentDomain = ""
 	textPattern.each_line{|l|
 		l = l.chomp
-		if (l[0..0]=='<')
+		if (l[0..8]=="Domain:= ")
+			currentDomain = l[9..l.length]
+			next
+		end
+		if (l[0..5]=='Tag:= ')
 			matches = false
-			id = l.gsub(/.*\>(\d+)$/,'\1')
+			id = currentDomain + l.gsub(/.*\>(\d+)$/,'\1')
 			if (processedNodes[id]==true)
 				next			#we don't want to add multiples of specialId to a node.
 			end
 			processedNodes[id]=true
-			tagName = l.gsub(/\<(\w*).*/,'\1')
-			toMatch = l.gsub(/(\<.*\>)\d*/,'\1')
+			#tagName = l.gsub(/\<(\w*).*/,'\1')
+			toMatch = l.gsub(/Tag:=\s(\<.*\>)\d*/,'\1')
 			toMatcht = toMatch
+			p toMatch
 =begin
 			#this is the code base to deal with attributes shuffled. However there is a bug. if we need to turn this back on we need to fix it.
 			toMatchGrp = toMatch.scan(/(\w*)=\"([\w\s]*)\"/)
@@ -162,7 +168,7 @@ def convertResponse(response, textPattern, url, filecnt)
 			while (i<matchpoints.size)
 				matches = true
 				listToAdd[id] = (listToAdd[id]==nil) ? Array.new([matchpoints[i]+toMatch.length-1]) : listToAdd[id].push(matchpoints[i]+toMatch.length-1)
-				vicinityInfo = (response[matchpoints[i]+toMatch.length,100].gsub(/\n/,''))[0,30]
+				vicinityInfo = (response[matchpoints[i]+toMatch.length,100].gsub(/[\r\n]/,''))[0..30]
 				vicinityList[id] = (vicinityList[id]==nil) ? Array.new([vicinityInfo]) : vicinityList[id].push(vicinityInfo)
 				i+=1
 			end
@@ -197,17 +203,16 @@ def convertResponse(response, textPattern, url, filecnt)
 			end
 		end
 	}
-	i = 0
-	idToAdd = Array.new
 	listToAdd.each_key{|id|
-		idToAdd.push(id.to_i)
-	}
-	idToAdd = idToAdd.sort
-	idToAdd.each{|id|
-		index = listToAdd[id.to_s][0]+i
-		content = " specialId=\"#{id.to_s}\""
+		index = listToAdd[id][0]
+		content = " specialId=\"#{id}\""
 		response = response.insert(index, content)
-		i+=(" specialId=\"#{id.to_s}\"".length)
+		listToAdd.each_key{|i|
+			#N squared time complexity, we could definitely optimize this thing but I don't do it now.
+			if (listToAdd[i][0] > listToAdd[id][0])
+				listToAdd[i][0]+=content.length
+			end
+		}
 	}
 	#p vicinityList
 	#p recordedVicinity	
