@@ -196,7 +196,7 @@ function getTrustedDomain(domain)
 	// open an input stream from file
 	var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
 		createInstance(Components.interfaces.nsIFileInputStream);
-	istream.init(file, 0x01, 0444, 0);
+	istream.init(file, 0x01, 0777, 0);
 	istream.QueryInterface(Components.interfaces.nsILineInputStream);
 	// read lines into array
 	var line = {}, lines = [], hasmore;
@@ -333,7 +333,7 @@ hRO = {
 				// open an input stream from file
 				var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
 					createInstance(Components.interfaces.nsIFileInputStream);
-				istream.init(file, 0x01, 0444, 0);
+				istream.init(file, 0x01, 0777, 0);
 				istream.QueryInterface(Components.interfaces.nsILineInputStream);
 				// read lines into array
 				var line = {}, lines = [], hasmore;
@@ -422,7 +422,7 @@ function writePolicy()
 			historycount++;
 			file = FileUtils.getFile("Desk", ["DOMAR","records",domain,urlfile,"record"+historycount+".txt"]);
 		}
-		file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0);		//Create different file each time
+		file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE,0777);		//Create different file each time
 		//policy extraction
 		/*
 		var j = 0;

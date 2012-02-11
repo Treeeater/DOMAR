@@ -75,7 +75,7 @@ function DOMAccessRecorderOptions() {
 		// open an input stream from file
 		var istream = Components.classes["@mozilla.org/network/file-input-stream;1"].
               createInstance(Components.interfaces.nsIFileInputStream);
-		istream.init(file, 0x01, 0444, 0);
+		istream.init(file, 0x01, 0777, 0);
 		istream.QueryInterface(Components.interfaces.nsILineInputStream);
 		var domain = getDomain();
 		// read lines into array
